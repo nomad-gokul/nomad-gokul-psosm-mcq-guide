@@ -7,6 +7,7 @@ import { renderLearn, resetLearn } from './views/learn.js';
 import { renderExam, resetExam, startExam, examRunning, examKey } from './views/exam.js';
 import { renderUnanswered, unansweredCount } from './views/unanswered.js';
 import { sourceLinks } from './views/common.js';
+import { initAnalytics, pageView } from './analytics.js';
 import { renderCustomBuilder, customSelection, customPool } from './views/custom.js';
 
 // Every question by id, with the name of the set it belongs to.
@@ -210,8 +211,13 @@ function emptyPersonal(view, set) {
   view.append(box);
 }
 
+let lastViewed = null;
 function render() {
   const set = getSet(app.state.set);
+  if (set.id !== lastViewed) {
+    lastViewed = set.id;
+    pageView(set.id, shortName(set.name));
+  }
   document.title = `${shortName(set.name)} · PSOSM MCQ Guide`;
   renderRail();
   renderHead(set);
@@ -276,3 +282,4 @@ document.addEventListener('keydown', (e) => {
 });
 
 render();
+initAnalytics();

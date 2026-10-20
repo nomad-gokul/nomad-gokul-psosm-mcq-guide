@@ -1,5 +1,6 @@
 import { el, button, LETTERS, keepOrder, shuffle, sameSet } from '../util.js';
 import { bestLabel, recordScore, recordAnswers } from '../store.js';
+import { track } from '../analytics.js';
 import { questionHead, answeredOptions, optionButton, optionRow, explanation, toggle, figures } from './common.js';
 
 // One exam in progress at a time, tied to the set it was started from.
@@ -30,6 +31,7 @@ export function startExam(setId, questions, prefs, opts = {}) {
     record: opts.record !== false,
     label: opts.label || '',
   };
+  track('exam_start', { set_id: setId, questions: exam.items.length });
 }
 
 const grade = (it) => (it.pick.length ? (sameSet(it.pick, it.q.a) ? 'r' : 'w') : 's');
@@ -43,7 +45,10 @@ function choose(oi, app) {
   if (it.q.a.length > 1) it.pick = it.pick.includes(oi) ? it.pick.filter((x) => x !== oi) : [...it.pick, oi];
   else {
     it.pick = [oi];
-    if (app.state.instant) it.checked = true;
+    if (app.state.instant) {
+      it.checked = true;
+      track('question_answered', { set_id: exam.setId, correct: grade(it) === 'r' });
+    }
   }
   exam.confirm = false;
   app.render();
@@ -53,6 +58,7 @@ function check(app) {
   const it = exam.items[exam.i];
   if (!it.pick.length || it.checked) return;
   it.checked = true;
+  track('question_answered', { set_id: exam.setId, correct: grade(it) === 'r' });
   app.render();
 }
 
@@ -85,6 +91,12 @@ function finish(app) {
     exam.items.map((x) => ({ id: x.q.id, correct: grade(x) === 'r', answered: x.pick.length > 0 })),
   );
   exam.newMistakes = exam.items.filter((x) => grade(x) === 'w').length;
+  track('exam_finish', {
+    set_id: exam.setId,
+    score: exam.score,
+    total: exam.items.length,
+    percent: Math.round((100 * exam.score) / exam.items.length),
+  });
   app.render();
   window.scrollTo({ top: 0 });
 }

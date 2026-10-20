@@ -97,13 +97,20 @@ The site is fully static: no Functions, no server and no API calls, so it stays 
 
 ## Traffic analytics
 
-The site uses **Cloudflare Web Analytics**, which is free and privacy-first, so no code or cookie banner is needed.
+**Users and time spent: Google Analytics 4 (optional, off by default).**
 
-1. In Cloudflare, open **Workers & Pages → (this project) → Metrics** and click **Enable** under Web Analytics.
-2. Redeploy once (upload the `dist` zip again). Cloudflare injects its analytics snippet into every deployment from then on.
-3. Visits, page views, countries, referrers, browsers and devices then appear under **Analytics & Logs → Web Analytics**.
+1. Create a free GA4 property at analytics.google.com. Add a **Web** data stream for the site URL and copy its measurement ID (`G-…`).
+2. Paste the ID into `analytics.json`. This is `public/analytics.json` in the source, or `analytics.json` at the root of the built `dist` folder, so you can edit it without rebuilding. Then deploy.
+3. GA4 then reports **active users, new users, average engagement time per active user, sessions, countries and devices**.
+4. The app also sends these events:
+   - `page_view`: one per question set opened
+   - `exam_start`: an exam begins
+   - `question_answered`: includes whether the answer was correct
+   - `exam_finish`: includes the score
 
-Each question set is its own history entry (`#w08`, `#custom`, `#unanswered` …), so switching sets counts as a page view and shows up per path. The dashboard keeps the last six months, so export or screenshot it regularly if you need a longer record.
+With an empty ID, nothing is loaded and no data leaves the browser.
+
+**Visits and page views: Cloudflare Web Analytics (free, no cookies).** In the Cloudflare project, open **Metrics → Web Analytics → Enable**, then redeploy once.
 
 ## Sources and accuracy
 

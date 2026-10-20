@@ -1,0 +1,4 @@
+{
+  "_help": "Paste your Google Analytics 4 measurement ID (looks like G-ABC123XYZ9) between the quotes below, then deploy. Leave it empty to turn analytics off.",
+  "ga4MeasurementId": ""
+}
