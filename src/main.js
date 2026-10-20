@@ -87,16 +87,21 @@ function pick(id) {
   if (id === app.state.set) return;
   app.state.set = id;
   store.set('set', id);
-  if (location.hash.slice(1) !== id) history.replaceState(null, '', '#' + id);
+  // pushState (not replaceState) so each set is its own history entry: the browser's Back
+  // button works, and Cloudflare Web Analytics records each set as a page view.
+  if (location.hash.slice(1) !== id) history.pushState(null, '', '#' + id);
   resetExam();
   resetLearn();
   render();
   window.scrollTo({ top: 0 });
 }
-window.addEventListener('hashchange', () => {
+// Back / Forward between sets, or a #set link typed into the address bar.
+const onUrlChange = () => {
   const id = setFromHash();
   if (id) pick(id);
-});
+};
+window.addEventListener('popstate', onUrlChange);
+window.addEventListener('hashchange', onUrlChange);
 
 function countLabel(s) {
   if (s.custom) return '';

@@ -95,6 +95,16 @@ npm run preview   # serve the production build
 
 The site is fully static: no Functions, no server and no API calls, so it stays on the free plan. `public/_headers` is copied into `dist/` and sets long caching for `/assets/*`, a week for figures and screenshots, and revalidation for everything else.
 
+## Traffic analytics
+
+The site uses **Cloudflare Web Analytics**, which is free and privacy-first, so no code or cookie banner is needed.
+
+1. In Cloudflare, open **Workers & Pages → (this project) → Metrics** and click **Enable** under Web Analytics.
+2. Redeploy once (upload the `dist` zip again). Cloudflare injects its analytics snippet into every deployment from then on.
+3. Visits, page views, countries, referrers, browsers and devices then appear under **Analytics & Logs → Web Analytics**.
+
+Each question set is its own history entry (`#w08`, `#custom`, `#unanswered` …), so switching sets counts as a page view and shows up per path. The dashboard keeps the last six months, so export or screenshot it regularly if you need a longer record.
+
 ## Sources and accuracy
 
 The questions come from the TA-led weekly tutorial sessions of the NPTEL course. Answers follow the keys printed on the slides and the TA's in-class pen marks. Where a slide printed no key, the answer is a plain fact from the course material, and the question says so. Anything still in doubt goes to **Unanswered questions** rather than into an exam.
