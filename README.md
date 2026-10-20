@@ -1,0 +1,92 @@
+# PSOSM MCQ Guide
+
+A study and exam-practice web app for the NPTEL course **Privacy and Security in Online Social Media** (noc26-cs141). It has 710 multiple-choice questions from the course's weekly tutorial sessions, with every option, the answer, and a short explanation for each. Questions that depend on a table, chart or network diagram show that figure with the question.
+
+## Features
+
+- **Learn mode.** Each week opens with its key facts, then every question with all options, the correct one marked, and the reason. You can hide answers and pick before you reveal.
+- **Exam mode.** One question at a time with a progress grid, single- and multi-select questions, keyboard shortcuts (A–D, ← →), and shuffled questions and options. At the end you get a score and a full review of each answer.
+- **Mistakes.** Every question you answer wrong is saved and marked "Missed". You can study or sit just your mistakes, and a question leaves the list once you answer it correctly.
+- **Starred questions.** Star any question while learning or during an exam, then practise only the starred ones.
+- **Custom exam.** Tick any combination of weeks, choose 10, 20, 30, 50 or all questions, and get one shuffled exam across them.
+- **Figures in questions.** Paper tables, CDF plots, adjacency matrices and network graphs are attached where a question needs them.
+- **Open questions.** Questions the source slides don't settle (conflicting keys, no key, missing text) are kept out of the exams. Each one is listed with an image of the original slide and a note on what makes it uncertain.
+- **Progress stays in your browser.** Best scores, mistakes and stars are kept in `localStorage`. There is no account and no server.
+- **Works on any screen.** The layout is responsive and has light and dark themes.
+
+## Tech
+
+- Vanilla JavaScript (ES modules) bundled with [Vite](https://vitejs.dev/). There is no framework and no runtime dependencies.
+- The question bank is written in a small plain-text format (`content/sets/*.txt`). `scripts/build-data.mjs` compiles it to JSON at build time.
+- That build script also validates every question and fails the build on any of these problems:
+  - a missing option
+  - an answer key that points at an option that doesn't exist
+  - a missing explanation
+  - an unknown figure
+  - duplicate question text
+- It gives each question a stable ID (a hash of its text), so saved mistakes and stars survive edits.
+- Static output, so it deploys anywhere. It is configured for Vercel.
+
+```
+content/
+  sets/01-w01.txt …        question sets, one file per week or extra set
+  open-questions.json      unsettled questions shown with their slide images
+public/
+  figures/                 tables, charts and diagrams attached to questions
+  slides/                  slide images for the open questions
+scripts/build-data.mjs     compiles and validates the question bank
+src/
+  main.js                  routing, sidebar, set switching
+  store.js                 best scores, mistakes, stars (localStorage)
+  views/learn.js           Learn mode
+  views/exam.js            Exam mode and results
+  views/custom.js          multi-week exam builder
+  views/open.js            open questions
+  views/common.js          question card, options, figures, star button
+```
+
+## Question format
+
+```
+@ w10 | Week 10 | Session of 3 October — home-location inference, VPN / HTTPS
+N: A key fact shown at the top of the week in Learn mode.
+
+Q: According to Table I, which attribute has the highest share of non-geographic information?
+I: w10-table1.webp | Table I — availability of geographic information per attribute (%)
+A: Employment (Google+) at 50.81%
+B: Places Lived (Google+) at 31.48%
+C: Venue City (Foursquare) at 26.51%
+D: Education (Google+) at 36.04%
+=: A
+?: One- or two-sentence explanation.
+!: Optional note, e.g. where the key came from.
+```
+
+The format works like this:
+
+- Questions are separated by a blank line.
+- `=:` takes one letter, or several separated by commas (such as `A,C`) for multi-select questions.
+- `I:` attaches an image from `public/figures/`. You can attach more than one.
+
+## Run locally
+
+```bash
+npm install
+npm run dev       # http://localhost:5173
+npm run build     # outputs dist/
+npm run preview   # serve the production build
+```
+
+## Deploy to Vercel
+
+1. Push this folder to a GitHub repository.
+2. In Vercel, choose **Add New → Project** and import the repository.
+3. Vercel reads `vercel.json` (framework: Vite, build: `npm run build`, output: `dist`). Click **Deploy**.
+
+Or deploy from the terminal with the Vercel CLI: `npm i -g vercel`, then run `vercel` and later `vercel --prod` from this folder.
+
+## Sources and accuracy
+
+The questions come from the TA-led weekly tutorial sessions of the NPTEL course. Answers follow the keys printed on the slides and the TA's in-class pen marks. Where a slide printed no key, the answer is a plain fact from the course material, and the question says so. Anything still in doubt goes to **Open questions** rather than into an exam.
+
+This is an unofficial study aid and is not affiliated with NPTEL or IIT.

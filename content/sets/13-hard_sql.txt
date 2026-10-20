@@ -1,0 +1,84 @@
+@ hardsql | Extra · Scraping, MongoDB, SQL | TA's 10 hard MCQs on Twitter/X scraping, MongoDB indexing and sharding, and advanced SQL
+N: Scraping X: timelines render from XHR/GraphQL calls, so use a headless browser that scrolls and captures those JSON responses. On HTTP 429, sleep until the x-rate-limit-reset epoch. API v2 paginates with meta.next_token.
+N: MongoDB: a compound index serves only queries that include its leftmost prefix. Ranged sharding on an ever-increasing key funnels all inserts to one shard (hotspot). Dedupe with a unique index on tweet_id + updateOne(..., {upsert: true}).
+N: SQL: DENSE_RANK leaves no gaps after ties (100, 100, 90 → 1, 1, 2; RANK gives 3). NOT IN against a subquery containing NULL returns no rows; use NOT EXISTS. REPEATABLE READ still allows phantom reads. A function on an indexed column (UPPER(last_name)) makes the predicate non-sargable.
+
+Q: Twitter/X timelines load tweets via infinite scroll using JavaScript. Which approach is most reliable for collecting this data?
+A: requests + BeautifulSoup on the profile URL
+B: Headless browser (Playwright/Selenium) that scrolls and captures the underlying XHR/GraphQL responses
+C: Regex over the initial page source
+D: Increasing the request timeout of a plain HTTP client
+=: B
+?: A plain HTTP fetch gets an empty shell. You need a browser that runs the JS and scrolls to trigger the data calls, then read their JSON.
+
+Q: You hit HTTP 429 on the Twitter API v2. What is the best handling strategy?
+A: Retry immediately in a tight loop
+B: Rotate to a new IP and continue
+C: Read the x-rate-limit-reset header and sleep until that epoch time, optionally with backoff
+D: Switch from GET to POST requests
+=: C
+?: The header tells you when the window resets. Hammering or evading the limit risks suspension.
+
+Q: When paginating Twitter API v2 search results, how do you fetch the next page?
+A: Increment an offset parameter by the page size
+B: Increase since_id by 1
+C: Use meta.next_token from the response as the pagination token in the next request
+D: Re-run the query with a larger max_results
+=: C
+?: Cursor-based pagination: pass next_token back (as next_token or pagination_token) until it is absent.
+
+Q: A MongoDB compound index is {user:1, date:1, likes:1}. Which query CANNOT efficiently use this index?
+A: find({user:'a'})
+B: find({user:'a', date:{$gt:d}})
+C: find({date:{$gt:d}, likes:{$gt:5}})
+D: find({user:'a', date:d, likes:5})
+=: C
+?: Compound indexes need a leftmost prefix. C skips "user", so the index can't be used efficiently.
+
+Q: Which shard key choice most likely creates a write hotspot in a sharded MongoDB cluster?
+A: A hashed _id
+B: A monotonically increasing timestamp (ranged sharding)
+C: A compound key of user_id and hashed tweet_id
+D: A high-cardinality random UUID
+=: B
+?: Every new insert lands in the chunk holding the maximum range, so one shard takes all the writes.
+
+Q: You scrape tweets repeatedly and must avoid duplicates while updating changed metrics. What is the best MongoDB pattern?
+A: insertMany and dedupe later in application code
+B: Unique index on tweet_id + updateOne({tweet_id}, {$set: ...}, {upsert: true})
+C: find() then insert if not found, without an index
+D: Drop and recreate the collection each run
+=: B
+?: The unique index blocks duplicates even under concurrency; an upsert inserts or updates atomically.
+
+Q: Scores are 100, 100, 90. What does DENSE_RANK() OVER (ORDER BY score DESC) give for 90?
+A: 1
+B: 2
+C: 3
+D: NULL
+=: B
+?: The two 100s share rank 1, and DENSE_RANK leaves no gap, so 90 is 2. RANK() and ROW_NUMBER() would give 3.
+
+Q: SELECT * FROM a WHERE id NOT IN (SELECT id FROM b); — if b.id contains at least one NULL, what happens?
+A: Returns all rows of a
+B: Returns rows of a not matching non-NULL b.id values
+C: Returns no rows
+D: Raises a syntax error
+=: C
+?: NOT IN expands to id <> x AND … AND id <> NULL, which is UNKNOWN, so nothing qualifies. Use NOT EXISTS or filter out NULLs.
+
+Q: Under the SQL standard, which anomaly is still permitted at REPEATABLE READ isolation?
+A: Dirty read
+B: Non-repeatable read
+C: Lost update via dirty write
+D: Phantom read
+=: D
+?: REPEATABLE READ stops dirty and non-repeatable reads, but new rows matching a range can still appear. SERIALIZABLE stops phantoms.
+
+Q: There is a B-tree index on last_name. Why is WHERE UPPER(last_name) = 'SMITH' typically slow?
+A: UPPER() is not deterministic
+B: The function on the column makes the predicate non-sargable, so the index isn't used for seeks
+C: B-tree indexes only support numeric columns
+D: String comparison always forces a full sort
+=: B
+?: Fix it with an expression (function-based) index or a case-insensitive collation.

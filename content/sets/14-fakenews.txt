@@ -1,0 +1,326 @@
+@ fnbank | Extra · Fake-news bank | TA's 40-question bank on fake-news detection: text and image features, multimodal models, tools, datasets, WhatsApp
+N: About 30 of these 40 also appear in Week 8; the new ones cover GloVe, FactDrill, tiplines, image misinformation on WhatsApp, WhatsApp Monitor, older WhatsApp statistics, tipline timing and the overall solutions arc.
+N: GloVe = static vectors from a global word–word co-occurrence matrix (Word2Vec uses local windows). FactDrill = 22,435 fact-checks in 14 languages, 2013–2020 (Precog, IIIT-Delhi).
+N: WhatsApp research: tiplines are numbers users forward suspicious content to; WhatsApp Monitor (Garimella et al.) shows the most-shared images, videos, messages, URLs and audio in public groups by date. Image misinformation in Indian political groups = old images out of context, memes, photoshopped images.
+N: 2019 Indian election tipline: for the top 10% most-shared content, ~80% reached the tipline before it appeared in public groups. Image tricks: EXIF comparison between patches detects splicing; EANN uses an adversarial event discriminator.
+
+Q: In the "Components of Fake News" framework discussed in the course, an account that alternates between automated (bot-like) posting and manual human posting is classified as a:
+A: Cyborg
+B: Social Bot
+C: Real Human
+D: Sybil Account
+=: A
+?: A cyborg mixes automated posts with genuine manual activity, so it fits neither a pure-bot nor a pure-human profile.
+
+Q: Which of the following is NOT typically considered one of the four "Generic Text Features" used in content-based fake news detection?
+A: Lexicon
+B: Syntax
+C: Discourse
+D: Cryptographic Hash
+=: D
+?: The four are lexicon, syntax, semantics and discourse; a hash is an integrity check, not a linguistic feature.
+
+Q: Word2Vec primarily represents each word as:
+A: A one-hot sparse vector based on vocabulary index
+B: A dense low-dimensional vector learned from local context windows
+C: A co-occurrence matrix factorized globally across the corpus
+D: A contextualized vector that changes per sentence
+=: B
+?: CBOW / Skip-gram trained on local windows give one static dense vector per word.
+
+Q: GloVe (Global Vectors for Word Representation) differs fundamentally from Word2Vec in that GloVe:
+A: Uses only local context windows and ignores corpus statistics
+B: Is trained using a global word-word co-occurrence matrix
+C: Produces contextual embeddings that vary per sentence
+D: Cannot be used for downstream semantic feature extraction
+=: B
+?: GloVe factorizes corpus-wide co-occurrence counts; Word2Vec learns from local windows. Both are static, unlike BERT.
+
+Q: A defining architectural characteristic that distinguishes BERT from Word2Vec and GloVe is that BERT:
+A: Produces a single static vector per word type across all contexts
+B: Uses only forward (left-to-right) language modelling
+C: Generates contextualized embeddings via a bidirectional Transformer encoder
+D: Relies exclusively on co-occurrence matrix factorization
+=: C
+?: BERT's vector for a word changes with its sentence (masked LM + next-sentence prediction).
+
+Q: In the taxonomy of "Latent Text Features" for fake news detection, Rhetorical Structure Theory (RST) is primarily used to model:
+A: Word frequency distributions
+B: Part-of-speech tag sequences
+C: Coherence relations between discourse constituent parts of a text
+D: Character-level n-gram statistics
+=: C
+?: RST splits text into discourse units joined by relations such as elaboration, contrast, cause and evidence.
+
+Q: Regarding Context-Free Grammar (CFG) parse tree features in fake news detection research, which statement is most accurate?
+A: CFG parse trees alone outperform all combined feature approaches
+B: CFG parse tree-derived features consistently improve detection performance over baselines using only shallow lexico-syntactic features
+C: CFG parse trees are irrelevant to fake news detection and only used for compiler design
+D: CFG features can only be extracted from images, not text
+=: B
+?: Parse-tree production rules capture deeper structure than POS counts, and deceptive writing changes that structure.
+
+Q: In lexical n-gram feature engineering, a "bigram" feature refers to:
+A: A single isolated word treated independently
+B: A contiguous sequence of two words (or tokens) treated as one unit
+C: A pair of documents compared for similarity
+D: A grammatical dependency parse between subject and object
+=: B
+?: An n-gram of order two, e.g. "breaking news"; a single word is a unigram.
+
+Q: According to research on visual/image-based fake news characterization, the "image-to-tweet ratio" finding indicates that:
+A: Fake news events contain more images per tweet than real news events
+B: Real news events tend to contain more images than fake news events given the same number of tweets
+C: Image-to-tweet ratio has no correlation with news veracity
+D: Fake news never contains any images at all
+=: B
+?: For the same number of tweets, real events come with more distinct images (higher image-to-tweet ratio).
+
+Q: The "Visual Clarity Score" as used in fake-news image analysis research is best described as a metric that:
+A: Measures pixel-level sharpness and blur in an image
+B: Measures the distribution difference between two image sets, with a bigger score indicating a more distinct target news image set
+C: Counts the number of unique users who shared an image
+D: Determines whether an image has been geotagged
+=: B
+?: Bigger score = the event's image set differs more from general images; fake events tend to score higher.
+
+Q: In image forensics for fake news detection, the technique of comparing photo EXIF metadata between patches of an image is primarily used to detect:
+A: Whether the image was taken with a flash
+B: Image splicing, where content from two different real source images is combined
+C: The geographic location where a tweet was posted
+D: Whether an account is a bot
+=: B
+?: Different EXIF signatures in different patches suggest the photo was composited from two sources.
+
+Q: Which of the following multimodal (multiple-modality-based) fake news detection methods explicitly employs an adversarial neural network component to learn event-invariant features?
+A: SpotFake
+B: MVAE
+C: EANN
+D: CredEye
+=: C
+?: EANN (Event Adversarial Neural Network) uses an adversarial event discriminator so features generalize across events.
+
+Q: MVAE, as a multimodal fake news detection technique, is characterized by its use of:
+A: A community-based crowdsourced rating system
+B: A variational autoencoder that learns a shared latent representation from text and image modalities
+C: A browser extension displaying real-time credibility scores only
+D: An EXIF metadata comparison network
+=: B
+?: An encoder maps text + image to one shared latent space; a classifier sits on top of it.
+
+Q: WhatsFarzi, developed at IIIT-Delhi under Prof. Ponnurangam Kumaraguru's supervision, is best described as a tool that:
+A: Only detects fake video content
+B: Analyzes text article authenticity using a knowledge graph and detects tampering in images uploaded by users
+C: Is a WhatsApp group management application unrelated to fake news
+D: Exclusively bans WhatsApp accounts sharing misinformation
+=: B
+?: Articles are checked against a knowledge graph of entity relations; uploaded images get a tampering check.
+
+Q: CredEye's overall pipeline, upon receiving a textual claim, follows which general sequence of operations?
+A: Directly classify the claim using only a pretrained sentiment model
+B: Search the web for relevant articles, perform stance detection and content analysis, then aggregate credibility scores and extract supporting evidence
+C: Only check whether the claim contains banned keywords
+D: Encrypt the claim and forward it to a human fact-checker without automated analysis
+=: B
+?: Retrieve web articles → stance + content analysis + source trust → aggregated verdict with evidence snippets.
+
+Q: Twitter's Birdwatch (community-driven misinformation labelling system) makes a note visible to the general Twitter audience on a tweet only when:
+A: A single contributor submits a note
+B: There is consensus from a broad and diverse set of contributors
+C: Twitter's internal moderation team manually approves every single note
+D: The tweet has more than one million impressions
+=: B
+?: Notes are first visible only to contributors; diverse agreement on helpfulness makes them public.
+
+Q: The HawkEye paper primarily investigates Birdwatch's robustness with respect to:
+A: Server uptime and latency issues
+B: Robustness against adversaries who may manipulate ratings to influence note and tweet classification
+C: The readability level of notes written by contributors
+D: Twitter's advertising revenue model
+=: B
+?: Crowdsourced ratings can be gamed by fake or coordinated raters; HawkEye proposes a sturdier reputation system.
+
+Q: TweetCred, developed by researchers including Ponnurangam Kumaraguru, was primarily deployed as:
+A: A standalone mobile application only
+B: A browser plug-in / Chrome extension that assigns real-time credibility scores to tweets in a user's timeline
+C: A government surveillance tool
+D: An offline batch-processing academic simulation never released to real users
+=: B
+?: A real-time Chrome extension: 1,127 users, ~5.4M tweets scored over three months.
+
+Q: Facebook Inspector, as an extension of the TweetCred research lineage, primarily functions by:
+A: Deleting fake posts automatically without user consent
+B: Fetching post data through the Facebook Graph API, generating feature vectors, and applying supervised learning to assign and display a credibility label via a browser extension
+C: Only monitoring private messages between users
+D: Replacing Facebook's News Feed algorithm entirely
+=: B
+?: The browser extension sends the post URL; the back end fetches it via Graph API, scores it with a trained model and returns a label.
+
+Q: The LIAR-PLUS dataset extends the original LIAR dataset by additionally providing:
+A: Video transcripts of political debates
+B: An automatically extracted justification for each statement's truthfulness label
+C: Real-time streaming Twitter data
+D: Image tampering annotations
+=: B
+?: LIAR has ~12.8K PolitiFact statements with six labels; LIAR-PLUS adds the fact-check's reasoning passage.
+
+Q: The FA-KES dataset is specifically constructed around news articles concerning:
+A: The COVID-19 pandemic globally
+B: The Syrian civil war, with articles labelled true or false
+C: US presidential elections
+D: European Union economic policy
+=: B
+?: 804 articles, labelled by checking casualty claims against documented incident records.
+
+Q: The NELA-GT-2021 repository, as described in the associated research paper, is characterized by which of the following properties?
+A: It contains fewer than 1,000 articles from a single news outlet
+B: It contains approximately 1.8 million articles from 367 outlets, with various veracity levels, representing the 4th edition of the dataset
+C: It exclusively contains video content with no text
+D: It only covers articles published in a single calendar week
+=: B
+?: About 1.8 million articles from 367 outlets with graded source-veracity labels.
+
+Q: The MediaEval 2015/2016 dataset, illustrated with examples such as spliced shark images during Hurricane Sandy, is primarily focused on:
+A: Text-only political statement verification
+B: Image and multimedia verification of social media content, including doctored or miscaptioned images
+C: Audio deepfake detection exclusively
+D: Network topology analysis of Twitter follower graphs
+=: B
+?: Fabricated, out-of-context or mis-captioned images and videos (Sandy sharks, Nepal quake photo, eclipse artwork).
+
+Q: According to the FakeNewsNet repository's comparative feature table, which category of features — absent in most earlier fake news datasets like LIAR or BS Detector — does FakeNewsNet uniquely provide comprehensive coverage of, including Spatial and Temporal sub-features?
+A: Linguistic features only
+B: Spatiotemporal Information
+C: Visual features only
+D: Response features only
+=: B
+?: FakeNewsNet covers news content, social context and spatiotemporal information (PolitiFact + GossipCop).
+
+Q: The FactDrill dataset is notable for its multilingual coverage, spanning how many languages, and its temporal range?
+A: 5 languages, 2018–2022
+B: 14 languages, 2013–2020
+C: 2 languages, 2020–2021 only
+D: 22 languages, 1990–2020
+=: B
+?: 22,435 multimodal fact-checks in 14 languages, 2013–2020 (Precog, IIIT-Delhi).
+
+Q: Regarding WhatsApp misinformation research methodology, "tiplines" are best defined as:
+A: Automated bots that delete suspicious messages
+B: Dedicated phone numbers to which WhatsApp users can forward suspicious content for evaluation by fact-checkers
+C: Premium subscription services for verified news
+D: Encrypted backup servers for WhatsApp chat history
+=: B
+?: Users forward suspicious messages to a WhatsApp number so fact-checkers can verify them — a window into private chats.
+
+Q: In the "Credibility Ranking of Tweets during High Impact Events" research (Gupta & Kumaraguru), the machine learning approach used to rank tweets by credibility is best described as employing:
+A: Unsupervised k-means clustering only
+B: A ranking engine using RankSVM, trained on human-annotated ground truth with inter-annotator reliability measured via Cronbach's Alpha
+C: A purely rule-based keyword blacklist system
+D: Random forest regression on image pixel data only
+=: B
+?: Annotated tweets (agreement via Cronbach's alpha) train a RankSVM ranker, evaluated with NDCG.
+
+Q: Based on the "Information Credibility on Twitter" research by Castillo, Mendoza, and Poblete, the study's core finding regarding Twitter's overall reliability was that:
+A: Twitter messages are entirely fabricated and provide no reliable information
+B: Most messages posted on Twitter are truthful, though the platform is also used to spread misinformation and false rumors, often unintentionally
+C: Only verified accounts ever post truthful content
+D: Twitter credibility cannot be modeled computationally at all
+=: B
+?: WWW 2011: most tweets are true, but rumours spread too, often by people who believe them.
+
+Q: WhatsApp's fundamental architectural characteristics that differentiate it from platforms like Twitter or Facebook, as discussed in the course, include all of the following EXCEPT:
+A: It functions primarily on a peer-to-peer / decentralized communication model without algorithmic content ranking
+B: It has no public likes, shares, or follower counts, limiting large-scale influencing capability
+C: It uses an open, fully public content-recommendation algorithm to rank shared content
+D: It is heavily multimedia-based, being primarily mobile-based with end-to-end encryption
+=: C
+?: WhatsApp has no ranking algorithm; content arrives by forwarding.
+
+Q: In the research on public WhatsApp groups, a key structural constraint on data collection is that:
+A: There is no limit to the number of members a WhatsApp group can have
+B: Public WhatsApp groups are capped at 256 members, and researchers typically join them via publicly shared invite links (chat.whatsapp.com/xyz)
+C: WhatsApp groups cannot be joined via any link mechanism
+D: All WhatsApp communication, including private one-on-one chats, is publicly scrapable by researchers
+=: B
+?: Groups hold at most 256 members and are joined via chat.whatsapp.com links; only ~10–20% of traffic is in groups.
+
+Q: In the "Images and Misinformation in Political Groups: Evidence from WhatsApp in India" study, the three primary categories into which most image-based misinformation was found to fall are:
+A: Deepfakes, screenshots, and QR codes
+B: Old images taken out of context, memes, and photoshopped images
+C: Stock photography, watermarked images, and infographics only
+D: Cartoons, satire, and paid advertisements
+=: B
+?: Old images out of context, memes, and photoshopped images make up most image misinformation.
+
+Q: The WhatsApp Monitor system, built by researchers including Kiran Garimella, is designed to help users:
+A: Send bulk unsolicited messages to WhatsApp users
+B: Explore the most-shared multimedia content across monitored public WhatsApp groups for a given date, across contexts like Brazil and India
+C: Automatically ban WhatsApp accounts flagged as spreading misinformation
+D: Encrypt group chat messages with an additional security layer
+=: B
+?: A dashboard of the most-shared images, videos, messages, URLs and audio per day in monitored public groups (Brazil, India).
+
+Q: Which statement about the relative "trust" positioning of WhatsApp compared to platforms like Facebook and Twitter, as discussed in the course materials, is most accurate?
+A: WhatsApp is generally considered less trusted than Facebook and Twitter because of extensive algorithmic content curation
+B: WhatsApp is often perceived as more trusted than other platforms partly because of its peer-to-peer, decentralized nature and personal contact-based sharing
+C: Trust levels are identical and interchangeable across all three platforms
+D: WhatsApp trust levels cannot be meaningfully compared to other platforms due to lack of any research
+=: B
+?: Forwards from known contacts carry implicit trust, which helps rumours persist.
+
+Q: Regarding the "Social Context" component within the broader Fake News taxonomy (as distinct from News Content), which pair of features is correctly categorized under Social Context?
+A: Headlines and Body Text
+B: User Network Analysis and Temporal Pattern
+C: Sentiment and News Topics
+D: Physical Content and Non-Physical Content
+=: B
+?: Social Context is about how news spreads (who shares it and when), not its own text or images.
+
+Q: WhatsApp's platform scale statistics discussed in the course (approximate figures) include which of the following?
+A: Under 1 million monthly active users worldwide
+B: Over 1.5 billion monthly active users, with 500 million daily active users and roughly 5 billion pictures shared daily
+C: No daily active user metrics have ever been published
+D: Fewer than 10 million pictures shared per year
+=: B
+?: The only option with realistic figures; A, C and D are clearly false.
+!: These are the older figures from this bank. The Week 8 session quoted 2026 figures (3.3B+ MAU, ~6.9B pictures a day) — in an exam, match whichever set the options use.
+
+Q: In the fake news "Components" taxonomy, the "Target Victims" sub-category under Potential Risk Analysis is primarily used to characterize:
+A: The technical infrastructure used to host fake news websites
+B: The demographic groups (such as students, voters, parents, or senior citizens) that specific fake news content is designed to affect or exploit
+C: The specific programming languages used to build fake news detection classifiers
+D: The encryption algorithms used to protect fake news websites from takedown
+=: B
+?: Groups the content is designed to affect: students, voters, parents, senior citizens.
+
+Q: With respect to social bots specifically (as distinct from cyborgs) in the context of fake news creator analysis, which characteristic most accurately distinguishes a social bot?
+A: It exhibits a blend of automated and manual human posting behavior
+B: It is a fully or predominantly automated non-human account operating via scripted or algorithmic posting behavior
+C: It can only be operated by verified, officially registered organizations
+D: It is incapable of retweeting or resharing content
+=: B
+?: Fully or predominantly scripted; a cyborg mixes automation with human activity.
+
+Q: According to the "Fake News on Web" components diagram discussed in the course, which of the following correctly pairs a News Content sub-category with an example feature belonging to it?
+A: Physical Content — Sentiment
+B: Physical Content — Title, body text, and multimedia
+C: Non-Physical Content — Headlines
+D: Non-Physical Content — Body Text
+=: B
+?: Physical content = title, body text, images/video; non-physical = purpose, sentiment, topic.
+
+Q: Regarding the relative timing dynamics observed in the WhatsApp tipline effectiveness research during the 2019 Indian general election study, which finding is correct?
+A: Content was always shared on the tipline before appearing anywhere in public groups, with zero exceptions
+B: For the top 10% most-shared content, around 80% was shared on the tipline before being shared in public groups
+C: Tiplines captured 100% of all content eventually found in public groups
+D: There was no measurable time difference between tipline submission and public group appearance for any content
+=: B
+?: For the most viral content, tiplines usually got it first (~80%), useful for early fact-checking.
+
+Q: Considering the overall arc of "Practical Solutions to Combat Fake News" presented across the course (TweetCred, Facebook Inspector, WhatsFarzi, CredEye, Birdwatch/HawkEye), the most accurate high-level characterization of the progression and diversity of these solutions is that they collectively demonstrate:
+A: A single universal algorithm that works identically and without modification across all platforms and content types
+B: A range of complementary approaches — platform-specific browser extensions, standalone verification apps, evidence-based claim-checking systems, and community-driven crowdsourced labelling — each suited to different platform architectures and misinformation modalities
+C: That only government regulation, and no technical solution, can ever address fake news
+D: That fake news detection research stopped entirely after Twitter's initial credibility studies
+=: B
+?: No single tool solves fake news; each is fitted to its platform (extensions, apps, claim-checking, crowdsourcing).

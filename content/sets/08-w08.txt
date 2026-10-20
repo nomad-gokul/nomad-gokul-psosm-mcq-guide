@@ -1,0 +1,473 @@
+@ w08 | Week 8 | Session of 12 September — identity resolution, anonymous networks, network models, fake-news features, datasets and tools, WhatsApp
+N: Profile linking is probabilistic: matching attributes give evidence, not proof. Correlated features (username + display name) must not be double-counted. When visible attributes are changed on purpose, behavioural and temporal patterns remain the strongest signal.
+N: Skewed data: a few heavy username-changers pull the mean up; the median better represents the typical user (0, 1, 1, 2, 20 → median 1, mean 4.8). Local clustering coefficient = links among neighbours ÷ k(k−1)/2.
+N: Network models — Random (Erdős–Rényi): Poisson degrees, hubs extremely rare, short paths (~log N), small clustering. Small-world (Watts–Strogatz): short paths, large clustering. Scale-free (Barabási–Albert): power law P(k) ∝ k^−γ, hubs common via preferential attachment, short paths, rather small clustering. Hierarchical: power law, hubs connect modules, C(k) ~ k⁻¹, strong modularity.
+N: Generic text features = lexicon, syntax (POS, CFG parse trees), semantics (Word2Vec/GloVe/BERT), discourse (RST). Word2Vec = static vectors from local windows; GloVe = global co-occurrence factorization; BERT = contextual, bidirectional Transformer encoder.
+N: Tools: TweetCred (Chrome extension, real-time credibility; 1,127 users, 5.4M tweets) → Facebook Inspector (Graph API) → WhatsFarzi (knowledge graph + image tampering). CredEye = web search → stance + content → aggregated credibility + evidence. Birdwatch notes go public on diverse consensus; HawkEye studies robustness to rating manipulation.
+N: Datasets: LIAR (~12.8K PolitiFact statements, 6 labels) and LIAR-PLUS (+ justification) · FA-KES (804 Syrian civil war articles) · NELA-GT-2021 (~1.8M articles, 367 outlets, 4th edition) · MediaEval 2015/16 (image verification) · FakeNewsNet (PolitiFact + GossipCop, adds spatiotemporal info).
+N: WhatsApp: no ranking algorithm, no public likes/followers, peer-to-peer, mobile, multimedia-heavy, end-to-end encrypted; groups capped at 256 members, joined via chat.whatsapp.com links; only ~10–20% of traffic is in groups.
+
+Q: A researcher wants to know whether account A1 on Platform X and A2 on Platform Y belong to the same person. Username and photo differ, but they share the same city, employer, unusual posting schedule and several rare biographical details. Which inference is most scientifically defensible?
+A: The accounts must belong to the same person because multiple attributes agree.
+B: The accounts cannot belong to the same person because their usernames and photographs differ.
+C: The combination of partially independent attributes can provide probabilistic evidence for linkage, but does not by itself establish identity with certainty.
+D: Identity resolution is impossible unless the email address is identical.
+=: C
+?: Profile linking is probabilistic. Several matching attributes are strong evidence, but none of them proves identity on its own.
+
+Q: A user deliberately changes their username, profile picture, biography, location and posting style across two platforms to prevent profile linking. Which feature is most likely to remain useful to an identity-resolution system?
+A: Exact username matching
+B: Exact profile-picture matching
+C: Latent behavioural and temporal patterns that are difficult to alter consistently
+D: Identical biography text
+=: C
+?: Posting frequency, activity times, interaction patterns and writing style act like a behavioural fingerprint that is hard to change consistently.
+
+Q: A user changes their username repeatedly: u1 → u2 → u3 → u4. An investigator finds u1 is no longer searchable, while historical references still contain u1. What is the most important implication for identity resolution?
+A: The user necessarily deleted the account.
+B: Username changes can create apparent disappearance of an account even when the underlying account persists.
+C: The historical references become useless because usernames are mutable.
+D: Username changes automatically imply malicious activity.
+=: B
+?: A username is mutable. Searches for the old name fail while the account lives on, so historical records matter for tracking it.
+
+Q: Among 10,000 observed accounts, the username travel_lites appears on five platforms. Which is the strongest methodological conclusion?
+A: All five accounts belong to the same person.
+B: None of the accounts can be linked because usernames are not unique globally.
+C: Username reuse provides a candidate linkage, but additional attributes are required to estimate whether the linkage is genuine.
+D: The probability of coincidence is exactly 1/5.
+=: C
+?: The same username is a candidate match, not proof. Combine it with location, bio, photo, posting behaviour and network structure.
+
+Q: A researcher computes a profile-linking score from username, display-name, profile-picture, biography and posting-time similarity, assuming all five are statistically independent. Why could this be a problem?
+A: Social-media attributes are always statistically independent.
+B: Several features may originate from the same underlying user behaviour and therefore provide correlated evidence.
+C: Independent evidence cannot be used for identity resolution.
+D: Correlation always makes identity resolution impossible.
+=: B
+?: Username and display name often come from one naming decision. Treating them as independent double-counts the same evidence.
+
+Q: 70% of users never change their username, 20% change it once, 7% twice and 3% five or more times. Which statement is most appropriate?
+A: Username changes are uniformly distributed.
+B: The mean number of changes necessarily represents the behaviour of the majority.
+C: A small group of highly active changers may substantially influence the mean.
+D: The median must be larger than the mean.
+=: C
+?: The distribution is right-skewed; a few heavy changers pull the mean up, so it misrepresents the typical user.
+
+Q: Five users change their usernames 0, 1, 1, 2 and 20 times. Which statement is correct?
+A: Mean = median, because the distribution contains five observations.
+B: Median better represents the typical user because the extreme value strongly affects the mean.
+C: Mean better represents the typical user because it incorporates every observation.
+D: The distribution is necessarily Gaussian.
+=: B
+?: Median = 1; mean = 24 ÷ 5 = 4.8. The outlier 20 pulls the mean up; the median is robust.
+
+Q: Which scenario is the strongest example of username squatting?
+A: A user changes their username because of a marriage.
+B: A user changes their username to reflect a new employer.
+C: A user deliberately acquires a previously associated username after another account abandons it.
+D: A user changes their profile picture every month.
+=: C
+?: Squatting means claiming a name tied to another identity, often to borrow its reputation or confuse people.
+
+Q: A user changes from user_A to user_B. Another researcher searches for user_A and cannot find the account. Which conclusion is least justified?
+A: The account may have changed its username.
+B: The account may have been deleted.
+C: The old username may have been reassigned or become unavailable.
+D: The account definitely never existed.
+=: D
+?: A failed search can't prove the account never existed; it may have been renamed, deleted or made private.
+!: The TA's side note on this slide reads "Multiple option B, D both / If MCQ D mark": as a single-answer MCQ, mark D.
+
+Q: Two accounts have nearly identical usernames and profile photographs, but their posting times are systematically shifted by about 12 hours. Which interpretation is most cautious?
+A: The accounts must be operated by different people.
+B: The 12-hour difference alone is sufficient to reject linkage.
+C: Time-zone differences, scheduled posting or other behavioural explanations should be considered before rejecting the linkage.
+D: Posting time has no relevance whatsoever to identity resolution.
+=: C
+?: A 12-hour shift can come from time zones or scheduled posts, so check broader behaviour before rejecting a match.
+!: The TA ticked C on the slide. The side note "Multiple option B, D both / If MCQ D mark" sits next to Q9, not this question.
+
+Q: Which property most directly distinguishes an anonymous social network from a conventional identity-based platform?
+A: Users cannot form connections.
+B: User-generated content exists without requiring persistent real-world identity disclosure.
+C: The network must contain no edges.
+D: The network must have a power-law degree distribution.
+=: B
+?: Anonymous platforms still have nodes, edges and hubs; what's missing is the link to a real-world identity.
+
+Q: An anonymous platform hides usernames but exposes timestamps, interaction patterns and writing characteristics. Which statement is most accurate?
+A: Anonymity guarantees complete protection against identity inference.
+B: Removing explicit identifiers can reduce direct identification while still allowing probabilistic re-identification through auxiliary information.
+C: Re-identification becomes mathematically impossible.
+D: Network analysis cannot be performed on anonymous platforms.
+=: B
+?: Timestamps, style and interaction patterns can be matched to accounts elsewhere. Anonymization is not unlinkability.
+
+Q: In an anonymous network, each user interacts with many unrelated users, who rarely interact with one another. What structural property would you expect?
+A: Very high local clustering coefficients.
+B: Low clustering coefficients for many users.
+C: Every node must belong to a complete graph.
+D: Degree must be identical for all nodes.
+=: B
+?: Few closed triangles means low clustering, even if each user has a high degree.
+
+Q: For a node i with kᵢ = 10 neighbours, only 9 of the possible kᵢ(kᵢ − 1)/2 neighbour–neighbour connections exist. What is the local clustering coefficient?
+A: 9/10
+B: 9/45
+C: 10/45
+D: 9/90
+=: B
+?: Maximum links among 10 neighbours = 10 × 9 / 2 = 45. Only 9 exist, so Cᵢ = 9/45 = 0.2.
+!: The slide shows this question as an image; the TA ticked B.
+
+Q: A network has high average degree, low clustering coefficient and short average path length. Which interpretation is most defensible?
+A: Every user necessarily knows every other user.
+B: Users may interact broadly without forming densely interconnected local communities.
+C: The network must be a regular lattice.
+D: The network cannot contain highly connected nodes.
+=: B
+?: Many connections, but neighbours aren't connected to each other; short paths mean information travels efficiently.
+
+Q: A network's degree distribution is approximately P(k) ∝ k^(−γ). Which statement follows most directly?
+A: Every node has approximately the same degree.
+B: High-degree nodes are impossible.
+C: A small number of nodes can have exceptionally large degree compared with the majority.
+D: The network must have exactly one connected component.
+=: C
+?: A power law means many low-degree nodes and a few hubs — the mark of a scale-free network.
+
+Q: Two networks have degree distributions P1(k) ∝ e^(−λk) and P2(k) ∝ k^(−γ). For sufficiently large k, which generally allows a greater relative probability of extreme-degree nodes?
+A: P1
+B: P2
+C: Both are identical asymptotically.
+D: Neither can contain high-degree nodes.
+=: B
+?: An exponential falls off very fast; a power law has a heavier tail, so hubs are far more likely.
+
+Q: A researcher plots degree on log-log axes, sees an approximately straight line over a limited range, and concludes "the network is definitively scale-free." What is the strongest criticism?
+A: Log-log plots cannot be used for network data.
+B: A straight-looking log-log plot alone is insufficient evidence for a power-law distribution.
+C: Scale-free networks cannot have hubs.
+D: Power laws can only occur in directed networks.
+=: B
+?: Log-normal and truncated power laws can look straight too. You need proper fitting, cut-offs and statistical tests.
+
+Q: In a directed Twitter-like network, an edge A → B means A follows B. For user B, what does the in-degree represent?
+A: Number of people B follows.
+B: Number of people following B.
+C: Number of tweets posted by B.
+D: Number of mutual friendships of B.
+=: B
+?: Incoming edges point to B, so they are B's followers. Out-degree would be the people B follows.
+!: Key not printed on the slide; this is the standard definition.
+
+Q: A researcher imports an edge list into Gephi and sees one node with extremely high degree. Which conclusion is NOT justified solely from this observation?
+A: The node is structurally highly connected within the observed network.
+B: The node may act as a hub.
+C: The node necessarily represents the most influential real-world individual.
+D: The node could strongly affect network-level statistics.
+=: C
+?: The TA's note: influence also needs connections to other influential nodes (eigenvector centrality), and the graph is only what was observed.
+!: Key not printed on the slide; the TA's side note supports C.
+
+Q: In fake news detection, Context-Free Grammar (CFG) parse-tree features are used. Which statement is most accurate?
+A: CFG parse trees alone outperform all combined feature approaches.
+B: CFG parse-tree-derived features consistently improve detection performance over baselines using only shallow lexico-syntactic features.
+C: CFG parse trees are irrelevant to fake news detection and only used for compiler design.
+D: CFG features can only be extracted from images, not text.
+=: B
+?: Parse trees capture deeper sentence structure than simple POS counts, and deceptive writing changes that structure.
+
+Q: In lexical n-gram feature engineering, a "bigram" feature refers to:
+A: A contiguous sequence of two words (or tokens) treated as one unit
+B: A single isolated word treated independently
+C: A pair of documents compared for similarity
+D: A grammatical dependency parse between subject and object
+=: A
+?: A bigram is an n-gram of order two, e.g. "breaking news". A single word is a unigram.
+!: The slide printed "B)" twice; the first option is labelled A here, matching the TA's answer "A".
+
+Q: Which of the following lists does NOT consist entirely of anonymous social networks?
+A: Hunch, FRND, Yik Yak
+B: Whisper, Ask.fm, Voice Club
+C: Clarity, Sincerely, Socialmoth
+D: None of the above
+=: D
+?: The TA's note: "All are anonymous", so no list fails the test.
+!: The slide numbers these options 1–4; the answer is option 4.
+
+Q: A defining architectural characteristic that distinguishes BERT from Word2Vec and GloVe is that BERT:
+A: Produces a single static vector per word type across all contexts
+B: Uses only forward (left-to-right) language modelling
+C: Generates contextualized embeddings via a bidirectional Transformer encoder
+D: Relies exclusively on co-occurrence matrix factorization
+=: C
+?: BERT's vector for a word changes with the sentence (masked LM + next-sentence prediction). A is Word2Vec/GloVe, D is GloVe.
+
+Q: In the taxonomy of "Latent Text Features" for fake news detection, Rhetorical Structure Theory (RST) is primarily used to model:
+A: Word frequency distributions
+B: Part-of-speech tag sequences
+C: Coherence relations between discourse constituent parts of a text
+D: Character-level n-gram statistics
+=: C
+?: RST splits text into discourse units linked by relations such as elaboration, contrast and evidence.
+
+Q: Which of the following OSNs are banned in India? (Select all that apply.)
+A: Snack Video
+B: DingTalk
+C: Moj
+D: WeChat
+=: A,B,D
+?: Snack Video, DingTalk and WeChat were blocked by MeitY under Section 69A of the IT Act. Moj is an Indian app.
+
+Q: Which of the following is NOT typically considered one of the four "Generic Text Features" used in content-based fake news detection?
+A: Lexicon
+B: Syntax
+C: Discourse
+D: Cryptographic Hash
+=: D
+?: The four are lexicon, syntax, semantics and discourse. A hash is an integrity check, not a linguistic feature.
+
+Q: Word2Vec primarily represents each word as:
+A: A one-hot sparse vector based on vocabulary index
+B: A dense low-dimensional vector learned from local context windows
+C: A co-occurrence matrix factorized globally across the corpus
+D: A contextualized vector that changes per sentence
+=: B
+?: CBOW / Skip-gram over a sliding window; vectors are static. C describes GloVe, D describes BERT.
+
+Q: Facebook Inspector, an extension of the TweetCred research line, primarily functions by:
+A: Deleting fake posts automatically without user consent
+B: Fetching post data through the Facebook Graph API, generating feature vectors, and applying supervised learning to assign and display a credibility label via a browser extension
+C: Only monitoring private messages between users
+D: Replacing Facebook's News Feed algorithm entirely
+=: B
+?: The browser extension sends the post URL to a back end, which fetches via Graph API, scores with a trained model and returns a label.
+
+Q: The LIAR-PLUS dataset extends the original LIAR dataset ("Liar, Liar Pants on Fire") by additionally providing:
+A: Video transcripts of political debates
+B: An automatically extracted justification for each statement's truthfulness label
+C: Real-time streaming Twitter data
+D: Image tampering annotations
+=: B
+?: LIAR has ~12.8K PolitiFact statements with six labels; LIAR-PLUS adds the fact-check's reasoning passage.
+
+Q: The "Visual Clarity Score" in fake-news image analysis is best described as a metric that:
+A: Measures pixel-level sharpness and blur in an image
+B: Measures the distribution difference between two image sets, with a bigger score indicating a more distinct target news image set
+C: Counts the number of unique users who shared an image
+D: Determines whether an image has been geotagged
+=: B
+?: Real-news images look general (lower score); fake-news image sets are more distinct (higher score).
+
+Q: MVAE (Multimodal Variational Autoencoder), as a multimodal fake news detection technique, is characterized by its use of:
+A: A community-based crowdsourced rating system
+B: A variational autoencoder that learns a shared latent representation from text and image modalities
+C: A browser extension displaying real-time credibility scores only
+D: An EXIF metadata comparison network
+=: B
+?: The encoder compresses text + image into one latent space; a classifier sits on top. Related methods: EANN, SpotFake.
+
+Q: WhatsFarzi, developed at IIIT-Delhi under Prof. Ponnurangam Kumaraguru, is best described as a tool that:
+A: Only detects fake video content
+B: Analyzes text article authenticity using a knowledge graph and detects tampering in images uploaded by users
+C: Is a WhatsApp group management application unrelated to fake news
+D: Exclusively bans WhatsApp accounts sharing misinformation
+=: B
+?: Articles are checked against a knowledge graph of entity relations; images get a tampering check with highlighted regions.
+
+Q: CredEye's overall pipeline, on receiving a textual claim, follows which general sequence?
+A: Directly classify the claim using only a pretrained sentiment model
+B: Search the web for relevant articles, perform stance detection and content analysis, then aggregate credibility scores and extract supporting evidence
+C: Only check whether the claim contains banned keywords
+D: Encrypt the claim and forward it to a human fact-checker without automated analysis
+=: B
+?: Stance, article language and source trustworthiness are combined into a verdict with evidence snippets.
+
+Q: Twitter's Birdwatch makes a note visible to the general Twitter audience only when:
+A: A single contributor submits a note
+B: There is consensus from a broad and diverse set of contributors
+C: Twitter's internal moderation team manually approves every single note
+D: The tweet has more than one million impressions
+=: B
+?: Notes are first seen only by contributors, who rate them; diverse agreement is needed to resist brigading.
+
+Q: The HawkEye paper primarily investigates Birdwatch's robustness with respect to:
+A: Server uptime and latency issues
+B: Robustness against adversaries who may manipulate ratings to influence note and tweet classification
+C: The readability level of notes written by contributors
+D: Twitter's advertising revenue model
+=: B
+?: Because Birdwatch is crowdsourced, fake or coordinated ratings can push notes up or down; HawkEye proposes a sturdier reputation system.
+
+Q: TweetCred, developed by researchers including Ponnurangam Kumaraguru, was primarily deployed as:
+A: A standalone mobile application only
+B: A browser plug-in / Chrome extension that assigns real-time credibility scores to tweets in a user's timeline
+C: A government surveillance tool
+D: An offline batch-processing academic simulation never released to real users
+=: B
+?: Used by 1,127 people over three months, scoring about 5.4 million tweets, with a "Do you agree?" feedback button.
+
+Q: The FA-KES dataset is specifically constructed around news articles concerning:
+A: The COVID-19 pandemic globally
+B: The Syrian civil war, with articles labelled true or false
+C: US presidential elections
+D: European Union economic policy
+=: B
+?: 804 articles, labelled by checking casualty claims against documented incident records.
+
+Q: The NELA-GT-2021 repository is characterized by which property?
+A: It contains fewer than 1,000 articles from a single news outlet
+B: It contains approximately 1.8 million articles from 367 outlets, with various veracity levels, representing the 4th edition of the dataset
+C: It exclusively contains video content with no text
+D: It only covers articles published in a single calendar week
+=: B
+?: Graded source-veracity labels rather than a plain true/false split.
+
+Q: The MediaEval 2015/2016 dataset, illustrated with examples such as spliced shark images during Hurricane Sandy, is primarily focused on:
+A: Text-only political statement verification
+B: Image and multimedia verification of social media content, including doctored or mis-captioned images
+C: Audio deepfake detection exclusively
+D: Network topology analysis of Twitter follower graphs
+=: B
+?: Other examples: a real photo falsely tied to the 2015 Nepal quake and digital art passed off as the March 2015 eclipse.
+
+Q: According to FakeNewsNet's comparative feature table, which category of features — absent in most earlier datasets like LIAR or BS Detector — does FakeNewsNet uniquely cover, including spatial and temporal sub-features?
+A: Linguistic features only
+B: Spatiotemporal Information
+C: Visual features only
+D: Response features only
+=: B
+?: FakeNewsNet covers news content, social context and spatiotemporal info, drawn from PolitiFact and GossipCop.
+
+Q: In "Credibility Ranking of Tweets during High Impact Events" (Gupta & Kumaraguru), the machine-learning approach used to rank tweets by credibility is best described as:
+A: Unsupervised k-means clustering only
+B: A ranking engine using RankSVM, trained on human-annotated ground truth with inter-annotator reliability measured via Cronbach's Alpha
+C: A purely rule-based keyword blacklist system
+D: Random forest regression on image pixel data only
+=: B
+?: Evaluated with NDCG over 14 events from July–August 2011 (UK riots, Libya crisis, Hurricane Irene).
+
+Q: In "Information Credibility on Twitter" (Castillo, Mendoza & Poblete), the core finding about Twitter's overall reliability was that:
+A: Twitter messages are entirely fabricated and provide no reliable information
+B: Most messages posted on Twitter are truthful, though the platform is also used to spread misinformation and false rumours, often unintentionally
+C: Only verified accounts ever post truthful content
+D: Twitter credibility cannot be modelled computationally at all
+=: B
+?: WWW 2011. Ordinary users often reshare false content believing it true.
+
+Q: WhatsApp's architectural characteristics that differentiate it from Twitter or Facebook include all of the following EXCEPT:
+A: It functions primarily on a peer-to-peer / decentralized model without algorithmic content ranking
+B: It has no public likes, shares or follower counts, limiting large-scale influencing capability
+C: It uses an open, fully public content-recommendation algorithm to rank shared content
+D: It is heavily multimedia-based, primarily mobile, with end-to-end encryption
+=: C
+?: WhatsApp has "No Algorithms": content arrives chronologically by forwarding.
+
+Q: In research on public WhatsApp groups, a key structural constraint on data collection is that:
+A: There is no limit to the number of members a WhatsApp group can have
+B: Public WhatsApp groups are capped at 256 members, and researchers typically join them via publicly shared invite links (chat.whatsapp.com/xyz)
+C: WhatsApp groups cannot be joined via any link mechanism
+D: All WhatsApp communication, including private one-on-one chats, is publicly scrapable by researchers
+=: B
+?: Only ~10–20% of WhatsApp traffic is in groups, so group monitoring sees a partial slice; tiplines help fill the gap.
+
+Q: Which statement most precisely defines the average degree of a network?
+A: The average number of shortest paths connecting every pair of nodes.
+B: The average number of edges directly incident on a node, with the precise calculation depending on whether the network is directed or undirected.
+C: The fraction of a node's neighbours that are also connected to one another.
+D: The tendency of nodes with similar degrees to establish connections.
+=: B
+?: Undirected ⟨k⟩ = 2E/N. C is clustering and D is assortativity.
+
+Q: Which statement gives the most precise definition of the local clustering coefficient of a node?
+A: The fraction of all network nodes directly connected to that node.
+B: The ratio of the node's actual number of edges to its maximum possible degree.
+C: The fraction of pairs of the node's neighbours that are directly connected to each other.
+D: The probability that the node connects to another node having the same degree.
+=: C
+?: Actual neighbour–neighbour links ÷ k(k−1)/2.
+
+Q: Which is the most accurate definition of average path length?
+A: The average number of direct neighbours possessed by each node.
+B: The average shortest-path distance between pairs of nodes in the network.
+C: The average number of triangles surrounding each node.
+D: The average degree difference between nodes connected by an edge.
+=: B
+?: How many steps it typically takes to get from one node to another.
+
+Q: When assortativity is calculated based on degree, which definition is most appropriate?
+A: The probability that two randomly selected nodes belong to the same community.
+B: The correlation between the degrees of nodes connected by edges.
+C: The fraction of possible edges that actually exist in the network.
+D: The average number of edges in the shortest path between two nodes.
+=: B
+?: Positive: similar-degree nodes connect. Negative: hubs link to low-degree nodes.
+
+Q: Two networks have the same number of nodes but different numbers of edges. Which statement best distinguishes number of edges from average degree?
+A: Number of edges describes total connections in the network, whereas average degree describes connections per node on average.
+B: Number of edges describes local neighbourhood density, whereas average degree describes shortest-path distance.
+C: Number of edges and average degree are always identical quantities.
+D: Number of edges measures degree correlation, whereas average degree measures clustering.
+=: A
+?: Edges are a global count; average degree normalizes by node count (⟨k⟩ = 2E/N).
+
+Q: A researcher defines: 1. Average degree — average number of direct connections per node. 2. Clustering coefficient — tendency of a node's neighbours to connect with one another. 3. Average path length — average shortest-path distance between node pairs. 4. Assortativity — correlation between the degrees of connected nodes. Which statement is correct?
+A: All four definitions are correct.
+B: Only 1 and 2 are correct.
+C: Only 2 and 3 are correct.
+D: Definitions 1 and 4 are interchangeable because both measure node connectivity.
+=: A
+?: Each definition is right, and 1 and 4 measure different things.
+
+Q: Which statement about WhatsApp's "trust" positioning compared with Facebook and Twitter is most accurate?
+A: WhatsApp is generally considered less trusted than Facebook and Twitter because of extensive algorithmic content curation
+B: WhatsApp is often perceived as more trusted than other platforms partly because of its peer-to-peer, decentralized nature and personal contact-based sharing
+C: Trust levels are identical and interchangeable across all three platforms
+D: WhatsApp trust levels cannot be meaningfully compared to other platforms due to lack of any research
+=: B
+?: A forward from family or friends carries implicit endorsement, which is why WhatsApp rumours spread so persistently.
+
+Q: Within the Fake News taxonomy, which pair of features is correctly categorized under "Social Context" (as distinct from News Content)?
+A: Headlines and Body Text
+B: User Network Analysis and Temporal Pattern
+C: Sentiment and News Topics
+D: Physical Content and Non-Physical Content
+=: B
+?: News Content = physical (headline, body, image/video) + non-physical (purpose, sentiment, topic). Social Context = how it spreads.
+
+Q: WhatsApp's platform scale statistics in 2026 (approximate) include which of the following?
+A: Under 1 million monthly active users worldwide
+B: Over 3.3 billion monthly active users, with 2.3 million daily active users and roughly 6.9 billion pictures shared daily
+C: No daily active user metrics have ever been published
+D: Fewer than 10 million pictures shared per year
+=: B
+?: The only option in the right order of magnitude; the others are clearly false.
+!: Key not printed on the slide. "2.3 million daily active users" in option B is almost certainly a typo for billion.
+
+Q: In the fake-news "Components" taxonomy, the "Target Victims" sub-category under Potential Risk Analysis characterizes:
+A: The technical infrastructure used to host fake news websites
+B: The demographic groups (such as students, voters, parents or senior citizens) that specific fake news content is designed to affect or exploit
+C: The specific programming languages used to build fake news detection classifiers
+D: The encryption algorithms used to protect fake news websites from takedown
+=: B
+?: It pairs with role-based analysis (politicians, students, voters, parents) and temporal risk analysis.
+
+Q: With respect to social bots (as distinct from cyborgs) in fake-news creator analysis, which characteristic most accurately distinguishes a social bot?
+A: It exhibits a blend of automated and manual human posting behaviour
+B: It is a fully or predominantly automated non-human account operating via scripted or algorithmic posting behaviour
+C: It can only be operated by verified, officially registered organizations
+D: It is incapable of retweeting or resharing content
+=: B
+?: Option A describes a cyborg.
+
+Q: According to the "Fake News on Web" components diagram, which option correctly pairs a News Content sub-category with an example feature?
+A: Physical Content — Sentiment
+B: Physical Content — Title, body text and multimedia
+C: Non-Physical Content — Headlines
+D: Non-Physical Content — Body Text
+=: B
+?: Physical = what you can see (title, body, images/video); non-physical = purpose, sentiment, topic.
+!: Key not printed on the slide; the taxonomy in Q54's explanation settles it.

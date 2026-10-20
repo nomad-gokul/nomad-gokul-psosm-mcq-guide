@@ -1,0 +1,213 @@
+@ w10 | Week 10 | Session of 3 October, deck PSOSM_10 (headed "Week 11 Content Part 1") — "Beware of What You Share: Inferring Home Location in Social Networks" and VPN / HTTPS
+N: The paper infers users' home city on Foursquare, Google+ and Twitter from public attributes and friends' locations, using simple majority voting. Headline accuracy: Foursquare ~67%, Google+ ~72%, Twitter ~82%.
+N: Residence coordinates: ~60% within ~6 km for Foursquare and Twitter, only ~10% for Google+ (its education/employment/address don't track where people live now; address filled by 5,162 of 27M users).
+N: Free-text locations were geocoded with the Yahoo! Places Finder API. Its "quality" (0–99) is a granularity level (40 = city), not a probability. Geotagged tweets are the only 100% clean attribute, but only ~0.5% of tweets have them.
+N: Voting classes: Class 0 = one vote (taken as the answer) · Class 1 = several votes with a clear winner · Class 2 = a tie (can't be inferred; excluded from accuracy).
+N: Foursquare single models: Mayorship 60.12% > Tip 59.11% > Like 55.89% > Friend 53.51%. Google+: Friend 50.89% > All 30.22% > Education 21.57% > Employment 7.64%.
+N: VPN vs HTTPS: HTTPS encrypts browser ↔ website; a VPN encrypts device ↔ VPN server and hides your IP from sites. Neither hides your logged-in account, cookies or behaviour from the platform, and a VPN shifts trust from the ISP to the VPN provider.
+
+Q: According to Table I, which single attribute across the three datasets has the HIGHEST percentage of non-geographic information (non-GI)?
+I: w10-table1.webp | Table I — availability of geographic information per attribute (%)
+A: Employment (Google+) at 50.81%
+B: Places Lived (Google+) at 31.48%
+C: Venue City (Foursquare) at 26.51%
+D: Education (Google+) at 36.04%
+=: A
+?: Employment is auto-filled with company names, which a geocoder can't resolve to places, so over half of entries are non-geographic.
+
+Q: In Table II, what is the total (Class 0 + Class 1) accuracy of the Mayorship model for Foursquare home-city inference?
+I: w10-table2.webp | Table II — results of the home-city inference models
+A: 59.11%
+B: 60.12%
+C: 55.89%
+D: 53.51%
+=: B
+?: Mayorships need repeated check-ins, a strong habitual signal of home. 59.11% is Tip, 55.89% Like, 53.51% Friend.
+
+Q: Among the Google+ single-attribute models in Table II, which yields the highest total accuracy, and why do the authors say this is the case?
+I: w10-table2.webp | Table II — results of the home-city inference models
+A: Employment (7.64%), because job locations are stable over a career
+B: Education (21.57%), because schools are usually attended locally
+C: Friend, no refinement (50.89%), because friends tend to live nearby
+D: All combined attributes (30.22%), because more evidence always helps
+=: C
+?: Friend is the best Google+ model — the reverse of Foursquare, where the user's own check-ins beat friends.
+!: The slide first printed Education; the TA marked it "written incorrect" and confirmed C in class.
+
+Q: In Figure 5 (coordinate-level residence inference), what fraction of Twitter's inferences have a distance of exactly zero between the predicted and real residence coordinates?
+I: w10-fig5.webp | Fig. 5 — distance between real and predicted user residence (inset: first 20 km)
+A: 52.73%
+B: 73.67%
+C: 35.41%
+D: 5.23%
+=: C
+?: Twitter: 35.41% exact, 73.67% within 20 km. 52.73% is Foursquare within 5 km; 5.23% is Google+ exact.
+
+Q: What percentage of Foursquare users have their inferred residence within a 5 km radius of the true residence?
+I: w10-fig5.webp | Fig. 5 — distance between real and predicted user residence (inset: first 20 km)
+A: 35.41%
+B: 52.73%
+C: 60.31%
+D: 77.27%
+=: B
+?: 52.73% within 5 km, 77.27% within 20 km; the headline "60%" is the ~6 km threshold.
+
+Q: Which attribute in Table I is the ONLY one with 100% valid unambiguous geographic information (UGI) and 0% in every other category?
+I: w10-table1.webp | Table I — availability of geographic information per attribute (%)
+A: User Home City (Foursquare)
+B: User Location (Twitter)
+C: Geotagged Tweet (Twitter)
+D: Places Lived (Google+)
+=: C
+?: It's a GPS latitude/longitude added by the device, not free text. Only 716,681 tweets (~0.5%) had it.
+
+Q: The abstract reports home-city inference accuracies of about 67%, 72% and 82%. Which network corresponds to each, in order?
+A: Twitter (67%), Foursquare (72%), Google+ (82%)
+B: Foursquare (67%), Google+ (72%), Twitter (82%)
+C: Google+ (67%), Twitter (72%), Foursquare (82%)
+D: Foursquare (67%), Twitter (72%), Google+ (82%)
+=: B
+?: Stated verbatim in the abstract. Twitter's high accuracy covers only ~1% of its users (those who geotag).
+
+Q: The authors call it "surprising" that a large fraction of Foursquare venue locations are non-valid or ambiguous. What makes this surprising?
+A: Venue coordinates are collected via GPS, so errors should be impossible
+B: Unlike the optional home-city field, venue location is a mandatory attribute, yet it still shows substantial noise
+C: Foursquare charges venue owners a fee to register, which should incentivize accuracy
+D: Venue locations are verified by Yahoo! before being accepted into the system
+=: B
+?: About 26% non-valid and 18% ambiguous: "mandatory" only means not blank, since nothing checks the content.
+
+Q: Which Google+ model in Table II covers the largest number of eligible users, and what is its total accuracy?
+I: w10-table2.webp | Table II — results of the home-city inference models
+A: Friend (no refinement): 599,649 users, 50.89% accuracy
+B: Education: 1,171,456 users, 21.57% accuracy
+C: All: 1,538,227 users, 30.22% accuracy
+D: Employment: 619,265 users, 7.64% accuracy
+=: C
+?: "All" counts anyone with any location attribute, so it covers the most users — but at lower accuracy than Friend.
+
+Q: At the residence (coordinate) level, the paper reports ~60% accuracy within ~6 km for two networks but only ~10% for the third. Which is the outlier, and why?
+A: Twitter is the outlier, because too few users geo-tag their tweets
+B: Foursquare is the outlier, because mayorships expire after 60 days
+C: Google+ is the outlier, because its location attributes (education, employment, address) are less tied to the user's actual nearby residence
+D: All three networks show roughly equal residence-level accuracy
+=: C
+?: People study and work away from home, and only 5,162 of 27M Google+ users filled in an address.
+
+Q: According to the cumulative distribution in Figure 2(a), roughly what percentage of Foursquare users have up to 100 friends?
+I: w10-fig2.webp | Fig. 2 — cumulative distribution of location-based attributes per user
+A: About 18%
+B: About 50%
+C: About 98%
+D: About 62%
+=: C
+?: Heavily skewed: ~98% have ≤ 100 friends, ~2% reach almost 7,000. (18% is the Google+ "at least two friends" figure.)
+
+Q: In Figure 3, refining the Friend model (dropping users with too few or too many friends) gives the largest accuracy gain for which dataset, and by roughly how much?
+I: w10-fig3.webp | Fig. 3 — home-city inference for the refined Friend model
+I: w10-table2.webp | Table II — the unrefined Friend models, for comparison
+A: Foursquare, by about 21%
+B: Google+, by about 21%
+C: Twitter, by about 21%
+D: Google+, by about 6%
+=: B
+?: Google+ gains ~21%, Foursquare ~6%. Twitter has no follower data, so it has no Friend model.
+
+Q: The paper defines three classes of users in the majority-voting scheme. How is "Class 2" defined, and what happens to these users?
+A: Users with only one vote; they are automatically classified correctly
+B: Users with multiple votes and a clear predominant location; they are inferred using the most common vote
+C: Users with multiple votes but no single location standing out (a tie); the current model cannot infer their location
+D: Users with zero votes; they are excluded from the dataset entirely
+=: C
+?: Accuracy is computed over Class 0 + Class 1 only. A is Class 0, B is Class 1.
+
+Q: For coordinate-level residence inference (Section V-C), how many users were eligible in each dataset?
+A: Foursquare: 1,272,919; Google+: 516; Twitter: 10,140
+B: Foursquare: 7,153,078; Google+: 1,538,227; Twitter: 196,653
+C: Foursquare: 13,570,060; Google+: 27,556,390; Twitter: 19,684,469
+D: Foursquare: 1,814,184; Google+: 599,649; Twitter: 295,307
+=: A
+?: Residence ground truth is rare (a "Residence" mayorship, a filled address, coordinate-level location). B is city-level eligibility, C is raw dataset size.
+
+Q: The paper uses the Yahoo! Places Finder API and its "quality" indicator to validate free-text location fields. What does a quality of 40, returned for "New York", indicate?
+A: That the location is invalid and should be discarded
+B: That the match is at the city level, the best possible granularity for that query
+C: That there is a 40% probability the location is correct
+D: That the location corresponds to a specific street address
+=: B
+?: Quality (0–99) is a granularity level, not a probability or a validity flag.
+
+Q: In the Twitter dataset (Section III-C), roughly what fraction of the 120,331,140 crawled tweets were geotagged, and how many unique users does this correspond to?
+A: About 5%, corresponding to 19,684,469 users
+B: About 0.5%, corresponding to 295,307 unique users
+C: About 50%, corresponding to 10,140 unique users
+D: About 82.9%, corresponding to 716,681 unique users
+=: B
+?: 716,681 geotagged tweets from 295,307 users. 19.7M is all users; 716,681 is a tweet count.
+
+Q: Comparing the "All" model's total accuracy for Foursquare (55.72%) with Google+ (30.22%) in Table II, what explains the large gap according to the authors?
+I: w10-table2.webp | Table II — results of the home-city inference models
+A: Foursquare's All model uses fewer attributes overall, avoiding dilution
+B: Foursquare has far more eligible users, which mechanically inflates accuracy
+C: Google+'s single-attribute models show much greater variability in accuracy (e.g., Employment at only 7.64%), so combining them introduces more noise into the vote
+D: The Yahoo! API performs systematically worse on Google+-formatted queries
+=: C
+?: Weak attributes cast wrong votes that drown out Friend. Foursquare's attributes are similar in accuracy, so combining them doesn't hurt.
+
+Q: The authors chose simple majority voting rather than machine learning such as k-nearest neighbour. What reason do they give?
+A: Machine learning techniques were computationally infeasible given their dataset size
+B: Majority voting allowed them to assess the potential for effective inference in the analyzed systems, and their preliminary results showed this simple approach could be reasonably effective, leaving more advanced techniques for future work
+C: The Yahoo! Places Finder API only supports majority-voting-compatible outputs
+D: Ethical review board restrictions prohibited the use of supervised learning on personal data
+=: B
+?: A simple method any attacker could use; its accuracy is a conservative lower bound on the real risk.
+
+Q: Synthesizing the text, tables and figures, which statement best captures the paper's overall conclusion about privacy risk across the three networks?
+A: All three networks pose an equally severe risk of both city-level and residence-level location leakage
+B: Only Twitter poses any meaningful privacy risk, since it is the only network with GPS-verified data
+C: Foursquare and Twitter both pose meaningful risk of leaking a user's precise residence (within a few kilometres), while Google+ leaks home city reasonably well but is comparatively poor at pinpointing exact residence
+D: None of the three networks can reliably infer home location; the paper's models perform close to random chance
+=: C
+?: The risk depends on granularity and attribute: Google+ is second-best at city level (72%) but only ~10% at residence level.
+
+Q: A user connects to a social-media platform through a VPN, which encrypts traffic between the device and the VPN server. Which information can still potentially be available to the platform?
+A: The user's original IP address in every circumstance
+B: The user's activity and account information visible to the platform after authentication
+C: The encryption key used by the VPN
+D: The user's complete local browsing history
+=: B
+?: The VPN hides your IP from the site, but posts, messages, cookies and browser signals stay visible once you log in.
+
+Q: A user accesses a social-media website through HTTPS without a VPN. Which statement is most accurate?
+A: The ISP can necessarily read the complete contents of the user's HTTPS messages
+B: HTTPS protects data in transit between the browser and the website, while a VPN additionally creates an encrypted tunnel between the device and the VPN server
+C: HTTPS completely hides the destination website from the ISP in all circumstances
+D: A VPN makes HTTPS unnecessary
+=: B
+?: They protect different legs of the path and work together; HTTPS still matters with a VPN.
+
+Q: A user picks a VPN specifically to stop their ISP seeing which websites they visit. Which additional privacy issue should they consider?
+A: The VPN provider may become able to observe metadata or traffic information that previously passed through the ISP
+B: The VPN automatically deletes all social-media account records
+C: The VPN prevents websites from identifying authenticated users
+D: The VPN guarantees complete anonymity
+=: A
+?: A VPN shifts trust from the ISP to the VPN provider rather than removing it.
+!: The slide's explanation names no letter, but it describes option A.
+
+Q: A user believes a VPN stops a social-media platform tracking them because their IP address changes. Which mechanism can still let the platform link activity to the same account?
+A: Cookies and authenticated account identifiers
+B: VPN encryption keys
+C: DNSSEC alone
+D: TCP checksum
+=: A
+?: Changing IP isn't anonymity: login sessions, cookies and device signals still identify you.
+!: The slide's explanation names no letter, but it describes option A.
+
+Q: A student uses a social-media account over public Wi-Fi with a properly configured VPN and HTTPS. Which threat is most directly reduced by the VPN?
+A: A compromised account caused by a stolen password reused elsewhere
+B: Network-level observation of the user's traffic by someone monitoring the local Wi-Fi connection
+C: Tracking performed directly by the social-media platform after login
+D: Phishing caused by voluntarily entering credentials into a fake website
+=: B
+?: The VPN encrypts the device-to-VPN leg, defeating local Wi-Fi snooping. It does nothing about phishing, password reuse or platform tracking.

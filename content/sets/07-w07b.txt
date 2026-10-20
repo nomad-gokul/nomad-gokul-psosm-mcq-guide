@@ -1,0 +1,317 @@
+@ w07b | Week 7 · Part 2 | Session of 5 September — link farming on Twitter, spam studies, semantic attacks, phishing, privacy nudges
+N: Thomas et al. (suspended spam accounts): 77% suspended within a day of their first tweet · 5 campaigns ran 145,000 accounts for months · only 9% formed real relationships · 17% hijacked trends · 52% used unsolicited mentions · 1.1M+ accounts suspended. "@spam" paper: 0.13% clickthrough, high compared with email.
+N: 2009 Twitter snapshot (54M users, 1.9B links): 7 spammers in PageRank top 10,000, 2,131 in top 1M. Spam-followers and spam-targets overlap 82% (1,134,379 of 1,383,214). Only 41,352 of 379,340 suspended accounts (~11%) posted a blacklisted URL.
+N: Attack taxonomy: Physical (hardware/access) · Syntactic (code and protocol flaws) · Semantic (meaning: phishing, money mules, Nigerian scams). Phishing variants: spear (specific person), whaling (executives), vishing (voice), smishing (SMS), angler (fake customer-support accounts).
+N: Nudge study (picture, timer, sentiment) measured privacy-setting changes, cancelled/edited posts, posting frequency and topic sensitivity. The timer interrupts System 1 so System 2 can reconsider.
+
+Q: According to the graph-theoretic rationale for link farming, why does high in-degree benefit a node's PageRank?
+A: In-degree directly multiplies the damping factor.
+B: PageRank propagates authority through incoming links, so more (and better) inbound links increase the score recursively.
+C: Search engines cap PageRank by out-degree.
+D: In-degree sets crawl frequency, used as a proxy for PageRank.
+=: B
+?: Each inbound link is a vote weighted by the linker's importance; link farms harvest that. The damping factor is a global constant.
+
+Q: Link farming is also referred to by which alternate terms in the slides?
+A: Cloaking or keyword stuffing
+B: Spamdexing or spamexing
+C: Doorway pages or cloaked redirects
+D: Sybil attacks or botnetting
+=: B
+?: Spam + indexing: manipulating the search index through artificial links.
+
+Q: Why is "follower-rank"/in-degree especially consequential on Twitter compared with a generic web page?
+A: Twitter uses only follower count, never PageRank-like metrics.
+B: Twitter search results and influence metrics (e.g., Klout) are directly influenced by in-degree, which encourages manipulation.
+C: Twitter penalizes low-follower accounts regardless of content.
+D: Twitter in-degree is capped.
+=: B
+?: Followers drive both search visibility and outside influence scores.
+
+Q: Zhang & Paxson detected automated activity on Twitter using only data from the tweets themselves. Why is this methodologically notable?
+A: It uses tweet sentiment, which needs NLP.
+B: It uses only publicly available tweet timestamps, avoiding the need for account metadata or content, so it is broadly applicable and privacy-light.
+C: It uses follower/following ratios from full graph crawls.
+D: It uses IP geolocation from network access.
+=: B
+?: Inter-tweet timing alone revealed automation in about 16% of active accounts.
+
+Q: What key structural difference distinguishes link farming on Twitter from link farming on the Web?
+A: On Twitter only bots participate; on the Web only humans.
+B: On Twitter, legitimate popular users also engage in reciprocal following, not just spammers, unlike the Web where it's almost exclusively spammers.
+C: On the Web it is legal; on Twitter it is criminal.
+D: On Twitter it reduces in-degree.
+=: B
+?: So mutual following alone can't be treated as a spam signal on Twitter.
+
+Q: The social etiquette of "following back" on Twitter mainly complicates spam detection because it:
+A: Makes reciprocal edges automatically verified.
+B: Creates a norm-driven confound where legitimate reciprocity mimics the exact signature spammers exploit.
+C: Removes the need for graph-based detection.
+D: Only affects accounts created before 2009.
+=: B
+?: A classifier using reciprocity alone would flag polite real users.
+
+Q: In the Thomas et al. "Suspended Accounts" study, what share of spam accounts were suspended within one day of their first tweet, and what does it imply?
+A: 77%; spammers optimize for rapid, high-volume bursts before detection rather than long-term account cultivation
+B: 52%; spammers rely mainly on hijacked trends
+C: 17%; most spam accounts survive for months
+D: 9%; spam accounts mimic real relationships to survive
+=: A
+?: 52% is unsolicited mentions, 17% trend hijacking and 9% relationship formation.
+
+Q: Despite daily account losses, five spam campaigns controlling 145,000 accounts lasted for months. What does this reveal?
+A: Individual accounts are disposable, but campaign-level infrastructure and coordination allow resilience despite high account churn
+B: Twitter's suspension algorithm is ineffective against any spam
+C: Campaigns clone one master account via the API
+D: Persistence comes only from IP spoofing
+=: A
+?: Defenders need to target the campaign's infrastructure, not just single accounts.
+
+Q: Only about 9% of spam accounts formed relationships with regular users, while 17% hijacked trends and 52% used unsolicited mentions. What is the dominant spam distribution vector?
+A: Organic follower growth through genuine engagement
+B: Unsolicited, non-relational contact mechanisms (mentions, trend hijacking) rather than cultivated social ties
+C: Spam accounts mostly target other spam accounts
+D: Relationship formation is required for all successful spam
+=: B
+?: Short-lived accounts have no time to build relationships, so they push into visible spaces.
+
+Q: The "@spam: The Underground on 140 Characters or Less" paper reports a 0.13% clickthrough rate on Twitter spam, high compared with email spam. What is the most likely explanation?
+A: Twitter filters content more strictly
+B: The social context and perceived trust of follower relationships make users more willing to click than with anonymous email spam
+C: Shorter links are clicked more regardless of trust
+D: Email filters block all spam
+=: B
+?: Tweets arrive in a feed of accounts you chose to follow, which lowers your guard.
+
+Q: 11% of accounts that appear to publish only through the browser are actually automated, spoofing their source. What broader vulnerability does this reveal?
+A: Source/client metadata is self-reported by the posting application and can be trivially forged, so it is unreliable as a trust signal
+B: Browser tweets are cryptographically signed and can't be spoofed
+C: Automated accounts can't use the "web" label
+D: It reflects only server-side misclassification
+=: A
+?: The "via web" label is just a field the client supplies.
+
+Q: In the spam-targeting diagram (nodes A, B, S, C), S is the spammer. How do "spam-targets" and "spam-followers" differ?
+A: Spam-targets are accounts the spammer follows to appear legitimate and get follow-backs; spam-followers are accounts recruited or controlled to follow the spammer directly and inflate its in-degree
+B: They are the same set by definition
+C: Spam-targets are bots; spam-followers are always suspended
+D: Spam-followers interact only with spam-targets
+=: A
+?: Two mechanisms work together: converting outbound follows into inbound ones, and buying followers outright.
+
+Q: An analysis reports 82% overlap between spam-followers and spam-targets (1,134,379 of 1,383,214 combined). What does this most strongly suggest?
+A: Spammers largely reuse the same pool of accounts for both targeting and follower recruitment — a shared, non-random population exploited by several mechanisms
+B: The two groups are exclusive, so the overlap is measurement error
+C: 82% of all Twitter users are spammers
+D: Spam-targets are always suspended first
+=: A
+?: Certain permissive, high-reciprocity accounts are vulnerable to both tactics.
+
+Q: In a 2009 Twitter snapshot (54M users, 1.9B links), only 7 spammers ranked in the PageRank top 10,000. What does this imply about PageRank as spam mitigation?
+A: It works at the very top but weakens quickly — 2,131 spammers still reach the top 1 million, so spam can gain moderate influence at scale
+B: PageRank removes spam from every meaningful rank
+C: The small numbers prove spam is insignificant
+D: PageRank ranks spammers uniformly at every scale
+=: A
+?: PageRank helps but must be combined with other detection.
+
+Q: 41,352 of 379,340 suspended accounts (Aug 2009–Feb 2011) posted at least one blacklisted URL via bitly/tinyurl. What limitation does this show for blacklisted-URL posting as the only spam signal?
+A: It catches over 90% of suspended accounts, so it's near-complete
+B: It identifies only about 11% of suspended accounts, so URL-blacklist matching alone is a low-recall detector
+C: URL shorteners cause all suspensions
+D: bitly and tinyurl collude with spammers
+=: B
+?: About 89% were suspended for other reasons.
+
+Q: OSN-policing research asks whether OSNs can give police "actionable information about crime AND residents' opinion about policing activities". Why is combining the two goals significant?
+A: They are the same construct measured twice
+B: One is a factual/operational signal (crime reports) and the other attitudinal (public trust), so they need different methods such as topic extraction vs sentiment analysis
+C: Crime information is irrelevant to policing
+D: Residents' opinions only help marketing
+=: B
+?: Together they give a fuller picture of how OSNs can support policing.
+
+Q: Scenarios: 1. A fake "security alert" asks a user to reset their password. 2. A fraudulent inheritance offer asks for an advance payment. 3. A program modifies packet fields to exploit a protocol implementation. 4. A fake Amazon login page collects credentials. Which classification is most defensible?
+A: 1, 2 and 4 are semantic; 3 is primarily syntactic
+B: 1 and 3 are semantic; 2 and 4 are syntactic
+C: All four are semantic because they involve computers
+D: 1 and 4 are physical; 2 is semantic; 3 is social phishing
+=: A
+?: The split depends on what is exploited: human interpretation (semantic) or technical structure (syntactic).
+
+Q: A sentiment nudge showed "Other people may perceive your post as negative", and sensitive posts dropped from 13 to 7. What confound does the lecture identify?
+A: Users couldn't see the warning due to a UI bug
+B: The sentiment analysis lacked contextual understanding and made errors, so the behaviour change can't confidently be credited to the nudge's intended mechanism
+C: The nudge showed for every user regardless of content
+D: Sentiment nudges increased posting frequency
+=: B
+?: Sarcasm and ambiguity can trigger the warning wrongly, muddying cause and effect.
+
+Q: Which metrics did the researchers use to evaluate nudge effectiveness across the picture, timer and sentiment conditions?
+A: Follower growth, likes received and comment sentiment
+B: Number of changes in inline privacy settings, number of cancelled or edited posts, posting frequency, and topic sensitivity
+C: Ad click-through rate and account age
+D: Server latency and page load time
+=: B
+?: Each captures a different side of a more deliberate, privacy-conscious decision.
+
+Q: One attacker changes a network request's syntax so a vulnerable server misreads it. Another sends a perfectly valid message falsely claiming to be the user's bank. What is the key difference?
+A: The first exploits machine interpretation of technical structure; the second exploits human interpretation of communicated meaning
+B: Both are semantic
+C: The first is physical, the second syntactic
+D: Both are syntactic
+=: A
+?: Syntactic attacks target parsing; semantic attacks target trust, fear, urgency or authority.
+
+Q: In the timer-nudge condition users saw a countdown before posting ("your post will be published in 3 seconds. Post Now | Edit It | Cancel"). How did participants characterize it?
+A: Purely beneficial with no downside
+B: Both "at times annoying" and "at times handy" — it delayed venting posts but also prompted users to reconsider
+C: Nobody noticed the timer
+D: It cut posting frequency to zero for everyone
+=: B
+?: Friction can feel negative and useful at once.
+
+Q: Why can a Nigerian/advance-fee scam be a significant cybersecurity threat even with no malware or software exploit?
+A: Cybersecurity threats are defined only by cryptographic attacks
+B: The attack exploits human cognitive and behavioural vulnerabilities, achieving its goals without a software vulnerability
+C: All Nigerian scams install ransomware
+D: The absence of malware makes it syntactic
+=: B
+?: The victim voluntarily does what the attacker wants; human cognition is the attack surface.
+
+Q: In the OSN nudge study, one participant changed their audience from "Friends" to "Friends except acquaintances" in response to which nudge?
+A: The sentiment nudge
+B: The picture nudge, after seeing concrete faces of who could view the post
+C: The timer nudge
+D: No nudge; it happened spontaneously
+=: B
+?: Seeing actual faces made the abstract audience real.
+
+Q: Why might a countdown/timer nudge work from a dual-process (System 1 / System 2) perspective?
+A: It eliminates System 1 processing entirely
+B: It interrupts fast, automatic (System 1) posting impulses with a brief pause, giving reflective System 2 a chance to override an impulsive disclosure
+C: It has no cognitive basis
+D: It affects only System 2 during account creation
+=: B
+?: It doesn't remove System 1; it creates a window for reflection.
+
+Q: Considering all three nudges together, what overall conclusion does the lecture draw?
+A: All three are equally effective in every context and should be applied to everyone
+B: Interventions can help users make better privacy decisions, but more research is needed on which nudge works best in which context, since effectiveness varies
+C: Nudges have no measurable effect
+D: Sentiment nudges should be dropped
+=: B
+?: Different nudges work through different mechanisms and suit different users and content.
+
+Q: The MIT Facemail project appears alongside the nudge study. What theme connects them?
+A: Both focus on encryption algorithms
+B: Both use visual/social recognition cues (contacts' faces) to make abstract privacy or audience information concrete and actionable
+C: Facemail is unrelated
+D: Both optimize ad personalization
+=: B
+?: Facemail shows recipients' faces; the picture nudge shows who can see your post.
+
+Q: To isolate the causal effect of the picture nudge alone, which design consideration matters most?
+A: Running all three nudges on the same post so effects add up
+B: Presenting each nudge as a distinct condition so changes can be attributed to that nudge alone
+C: Removing ethics (IRB) oversight to speed things up
+D: Restricting the study to users with maximally private settings
+=: B
+?: Bundling the nudges would confound their effects.
+
+Q: Semantic attacks "target the way we, as humans, assign meaning to content." In the mental-model vs system-model diagram, what is the "semantic barrier"?
+A: A firewall rule blocking malicious IPs
+B: The gap between what a user perceives an interaction to mean (e.g., who the message is from) and what is actually happening at the technical/bit level
+C: A physical barrier preventing communication
+D: An encryption boundary in the TLS handshake
+=: B
+?: Attackers make messages look meaningful and trustworthy while the technical reality is different.
+
+Q: In the physical / semantic / syntactic taxonomy, phishing is classed as semantic alongside mules and Nigerian scams. Why does this make sense?
+A: Phishing manipulates users' interpretation of trust cues (branding, urgency, authority) rather than exploiting code (syntactic) or physical access (physical)
+B: Phishing always involves stealing hardware
+C: Phishing exploits buffer overflows, making it syntactic
+D: Semantic attacks involve no humans
+=: A
+?: So technical defences alone aren't enough; user education and verifiable cues help.
+
+Q: In the phishing-cost table for a 10,000-employee organization, which category is the largest share (48%) of the total per-employee cost?
+A: The cost to contain malware
+B: Productivity losses from phishing
+C: The cost of credential compromises not contained
+D: The cost to contain credential compromises
+=: B
+?: $1,819,923 of $3,768,820. Uncontained credential compromises are 27%, malware containment 6%, credential containment 2%.
+
+Q: Which phishing variant targets high-profile individuals such as executives or senior officials?
+A: Vishing
+B: Whaling
+C: Smishing
+D: Physical phishing
+=: B
+?: Vishing = voice calls, smishing = SMS; "physical phishing" isn't a category.
+
+Q: Across OSM crimes (phishing, fake accounts, reputation manipulation, clickbait, hashtag hijacking, account compromise, impersonation, work-from-home scams), what is the common underlying mechanism?
+A: Technical zero-day exploits in platform servers
+B: Exploiting social trust signals (verified-looking identities, popularity, reciprocity, brand affinity) to manipulate perception and prompt action
+C: Malware delivered by email attachments
+D: Prior physical access to the victim's device
+=: B
+?: The attack surface is mostly human perception and social trust.
+
+Q: The "Social reputation manipulation" slide shows fake Flipkart/Amazon reviews with near-identical text. Which integrity attack is this, and why are near-duplicates a detection signal?
+A: Astroturfing/fake-review injection; near-identical text across "different" reviewers signals coordinated, templated fake reviews rather than independent opinions
+B: A/B testing artifacts; duplicates are benign
+C: Reviewer collusion protected by consumer law
+D: A caching bug
+=: A
+?: Independent reviewers rarely write the same words; timing and account history add evidence.
+
+Q: A Foursquare "Fake Tip" example splits into two outcomes: "Advertising/Marketing" and "Scam/Phishing". What does this reveal about moderating location-based platforms?
+A: The same low-quality promotional pattern (unrelated product plug + external link) can serve benign spam or malicious phishing, so intent is hard to classify from surface features alone
+B: Advertising and phishing tips always come from easily distinguishable accounts
+C: Foursquare tips can't contain links
+D: Only verified businesses can post tips
+=: A
+?: Destination URL, account history and behaviour are needed to judge intent.
+
+Q: An attacker sends a fake "PayPal account verification" message, obtains credentials, accesses the account, then recruits someone else to transfer the stolen funds. Which statement captures the attack chain?
+A: The whole attack is syntactic
+B: The first stage is semantic phishing; the later money-transfer stage may involve a money mule
+C: The victim becomes a botnet
+D: The second person must be the original phisher
+=: B
+?: Real attacks often have several stages that belong in different categories.
+
+Q: A criminal recruits an apparently legitimate person to receive stolen money into their bank account and forward it for a commission. Which role does this person represent?
+A: Phisher
+B: Money mule
+C: Botnet controller
+D: Whaling victim
+=: B
+?: The mule puts distance between the criminal and the money; they may be deceived into thinking it's a real job.
+
+Q: The "Fake customer service accounts" example — fraudsters impersonate a bank's support account and reply to public complaint tweets with a "secure sign-on" link — demonstrates which phishing technique?
+A: Spear phishing targeting a named executive
+B: Angler phishing — impersonating a brand's customer support to intercept public complaints and redirect victims to credential-harvesting sites
+C: Whaling of C-suite officials
+D: Pharming via DNS cache poisoning
+=: B
+?: Attackers watch public complaints and "cast a line" at frustrated customers.
+
+Q: In the "Understanding Needs" analysis, comments like "amend the criminal laws", "CCTVs in police stations" and "the COP on social media" cluster around which theme?
+A: Emotional venting with no requests
+B: Structural/systemic and procedural reform — legal changes, surveillance infrastructure and institutional presence
+C: Requests for entertainment from police pages
+D: Complaints only about traffic
+=: B
+?: These are concrete institutional improvements.
+
+Q: Precog researchers studied 85 police department pages (2010–April 2015) with 47,474 wall posts and 85,408 status updates. What is the ratio, and what does it suggest?
+A: About 1.8:1 — departments (status updates) produced more content than citizens (wall posts), suggesting departments mainly broadcast
+B: About 1:1 — balanced engagement
+C: About 0.5:1 — citizens posted twice as much
+D: It can't be computed
+=: A
+?: 85,408 ÷ 47,474 ≈ 1.8.

@@ -1,0 +1,1059 @@
+@ lastclass | Extra · Last class & practice test | Sessions of 10–12 October — revision questions with figures, plus the 116-question practice assessment
+N: The slides for this class printed almost no answer keys. Answers here come from the TA's pen marks in class (noted on each question) or, for the unmarked practice-test questions, from plain course facts. Questions the marks and facts do not settle are under Open questions, with the slide.
+N: X verification colours: gold = verified companies/businesses · grey = government or affiliated accounts · blue = individuals. Direct communication = the victim reports their own incident; indirect = someone reports on others' behalf.
+N: Graph formulas: ⟨k⟩ = 2E/N · Cᵢ = 2Eᵢ / kᵢ(kᵢ−1), range 0–1 · assortativity r ∈ [−1, +1] · L = Σ d(i,j) / N(N−1). An N×N adjacency matrix has N nodes; a directed graph's matrix is asymmetric. Degree = in-degree + out-degree.
+N: NLP: word_tokenize keeps punctuation as separate tokens; str.maketrans('', '', string.punctuation) + translate deletes punctuation. Valence = pleasant ↔ unpleasant, arousal = calm ↔ excited.
+N: Activity rate example: 10,000 statuses over 38 days (912 hours) ≈ 10.96 posts per hour.
+
+Q: As of 1 January 2024, which verification check mark is applied to law-enforcement accounts on X (formerly Twitter)?
+I: lc-verify.webp | The three check marks as shown on the slide
+A: Blue Check Mark
+B: Grey Check Mark
+C: Gold Check Mark
+D: None of the above
+=: B
+?: Grey checks mark government and government-affiliated accounts, which covers police. Gold is for verified businesses and blue for individuals.
+!: Key not printed; the TA ticked Grey in class.
+
+Q: Which of the following is/are true about the visualization shown? (Select all that apply.)
+I: lc-heatmap.webp | The visualization from the slide
+A: The visualization is called a Heatmap
+B: The data used to plot the above visualization is called Temporal Data
+C: This type of visualization falls under the category of Geospatial Analysis
+D: None of the above
+=: A,C
+?: Colour intensity laid over a city map is a heatmap, and plotting points by location is geospatial analysis. Nothing in it says when anything happened, so it is not temporal data.
+!: Key not printed; the TA ticked A and C and noted "no temporal information given".
+
+Q: "Saturday evening. Time – between 5.30 pm and 6pm. Location: The circle between Freedom Park and the route that goes into Cubbon Park, towards Century Club. Not a single police posted here…" What type of actionable information is highlighted in bold in this example?
+I: lc-freedom.webp | The post as shown on the slide; the bold parts are what the question asks about
+A: Temporal data
+B: Spatial data
+C: Linguistic data
+D: None of the above
+=: A
+?: The bold phrases are "Saturday evening" and "Time – between 5.30 pm and 6pm", which say when it happened.
+!: Key not printed; the TA ticked Temporal data.
+
+Q: The adjacency matrix in Figure 1 is an example of a:
+I: lc-matrix-fig1.webp | Figure 1
+A: Directed Graph
+B: Undirected Graph
+=: A
+?: The matrix is not symmetric: A₁₂ = 1 but A₂₁ = 0. An undirected graph always has a symmetric matrix.
+!: The slide prints "Correct Answer → Option A".
+
+Q: Consider Figure 2 and select the correct adjacency matrix for the undirected graph shown.
+I: lc-matrix-fig2.webp | Figure 2 — the graph and the four candidate matrices A–D
+A: Matrix A
+B: Matrix B
+C: Matrix C
+D: Matrix D
+=: D
+?: Node 1 is linked to 2 and to 3, so rows and columns 1–2 and 1–3 hold 1s on both sides: [0 1 1; 1 0 0; 1 0 0], which is matrix D.
+!: Key not printed; the TA ticked D and wrote out the same matrix.
+
+Q: Using the table: for the same number of nodes/users on Whisper, Facebook and Twitter, users on Whisper create more connections/edges than on Facebook/Twitter.
+I: lc-net-table.webp | Network statistics for Whisper, Facebook and Twitter
+A: True
+B: False
+=: A
+?: Whisper's average degree is 9.47, against 1.78 for Facebook and 3.93 for Twitter, so each user has far more connections.
+!: Key not printed; the TA ticked True and wrote "High average degree".
+
+Q: Using the table: users on Whisper tend to create more close-knit groups than on Facebook/Twitter.
+I: lc-net-table.webp | Network statistics for Whisper, Facebook and Twitter
+A: True
+B: False
+=: B
+?: Close-knit groups show up as a high clustering coefficient. Whisper's is the lowest (0.033, against 0.059 and 0.048).
+!: Key not printed; the TA ticked False and wrote "Clustering coefficient".
+
+Q: Using the table: an assortativity coefficient closer to zero implies the graph is more random than small-world.
+I: lc-net-table.webp | Network statistics for Whisper, Facebook and Twitter
+A: True
+B: False
+=: A
+?: Near-zero assortativity means no preference for linking to similar-degree nodes, i.e. near-random mixing, as the Whisper study concluded.
+!: Key not printed; the TA ticked True.
+
+Q: Consider the degree distribution graph generated in Gephi. Which statement is correct?
+I: lc-degdist.webp | The Gephi degree distribution from the slide
+A: The average degree of the graph is greater than 70
+B: The average degree of the graph is less than 50
+C: The average degree of the graph is 125
+D: The average degree of the graph is less than 10
+=: B
+?: Almost all nodes have degree between roughly 10 and 50, with only a thin tail beyond, so the average lies below 50 but well above 10.
+!: Key not printed; the TA ticked B and crossed out A, C and D.
+
+Q: Look at Figure 2 (cumulative distribution of displacements between consecutive tips/dones posted per user). About ___% of the users have spatial differences between their tips/dones of 6,000 km or more on average.
+I: lc-spatial-cdf.webp | Figure 2 — use the "Average" curve
+A: 10
+B: 20
+C: 30
+D: 40
+=: A
+?: The "Average" curve is already at about 0.9 by 6,000 km, so only about 10% of users lie beyond it.
+!: Key not printed; the TA ticked 10.
+
+Q: Look at Figure 3 (cumulative distribution of time interval between consecutive tips/dones posted per user). "50% of the users post tips/dones in intervals of less than 500 hours on average." This statement is:
+I: lc-temporal-cdf.webp | Figure 3 — the red line marks 500 hours
+A: True
+B: False
+=: A
+?: The "Average" curve crosses about 0.5 at the 500-hour line.
+!: Key not printed; the TA ticked True.
+
+Q: Look at Figure 1 (quality of the valid and unambiguous geographic information). "Majority of the users on each of the above platforms provide home location information at the street level." This statement is:
+I: lc-geo-quality.webp | Fig. 1 — granularity of valid, unambiguous location information on Foursquare, Google+ and Twitter
+A: True
+B: False
+=: B
+?: On every platform the tallest bar is at City level; street-level bars are small.
+!: Key not printed; the TA ticked False.
+
+Q: Refer to Figure 2. The distance between inferred and declared user home cities on Twitter is less than 40 km for ___ of users.
+I: lc-home-dist.webp | Figure 2 — read the inset; Twitter is the dashed blue line
+A: 20%
+B: 40%
+C: 80%
+D: None
+=: A
+?: In the inset, the dashed Twitter curve is at about 0.2 at 40 km.
+!: Key not printed; the TA ticked 20%.
+
+Q: Observe Figure 4 (additions or deletions of characters to usernames of several Twitter users while changing their usernames) and select the correct option(s). (Select all that apply.)
+I: lc-char-change.webp | Figure 4 — position of the change relative to the old username (0 = start, 1 = end)
+A: Most users added or deleted characters either from the start or end of their username.
+B: Most users deleted characters at the end of their usernames.
+C: Most users added characters to the middle of their usernames.
+D: None of the above.
+=: A,B
+?: The tallest bars are at positions 0 and 1 (start and end), and the tallest of all is the green "delete" bar at 1, the end of the username.
+!: Key not printed; the TA marked A and B and wrote "green bar highest at 1 = last of the username".
+
+Q: Which of the following statements is/are true?
+A: Changing usernames rapidly in a short period of time is called Space Gain.
+B: Actively using common usernames like "@happy" or "@smile" is called Username Squatting.
+C: Inactive users preventing others from using that specific username is called Username Squatting.
+D: None of the above
+=: C
+?: Squatting means holding a name so nobody else can take it. Space Gain is shortening a name to free up characters, not changing it often.
+!: Key not printed; the TA ticked C.
+
+Q: Refer to Figure 5 about a partner account promoting another in a tweet. Which phenomenon from the paper is shown?
+I: lc-ubl.webp | Figure 5 — the tweet ends "Follow @UBL_CricKet"
+A: Username Squatting
+B: Obscured Username Promotion
+C: Adjust to Events
+D: Space Gain
+=: B
+?: An unrelated tweet slips in a plug for another account (@UBL_CricKet), promoting a username without making it the subject.
+!: Key not printed; the TA ticked Obscured Username Promotion.
+
+Q: Calculate the GlobalEngagement for Aditya using Table 1, where GE(u) = n(status) / age and the age is taken in hours.
+I: lc-ge-table.webp | Table 1 — Aditya's account
+A: 263.15
+B: 10.96
+C: 1.096
+D: None of the above
+=: B
+?: Age = 38 days × 24 = 912 hours; 10,000 statuses ÷ 912 ≈ 10.96.
+!: The slide prints "Correct Answer → Option b) 10.96".
+
+Q: Observe the graph in Figure 3. The in-degree of node 2 is:
+I: lc-fig3.webp | Figure 3
+A: 1
+B: 2
+C: 3
+D: 4
+=: B
+?: Node 2 receives the arrow from node 1 and its own self-loop, which counts once as incoming.
+!: Key not printed; the TA ticked 2.
+
+Q: Consider each node in Figure 4 to be an account on Instagram (an arrow points to the account being followed). Which node is the most influential?
+I: lc-fig4.webp | Figure 4
+A: Node 1
+B: Node 2
+C: Node 4
+D: Node 5
+=: C
+?: In a follower graph the most influential account is the one most people follow, i.e. the highest in-degree, which is node 4.
+!: Key not printed; the TA ticked Node 4 and wrote "person with high in-degree = most influential".
+
+Q: The X (formerly Twitter) profile shown, whose bio links to the user's Tumblr page, helps in profile linking through self-identification.
+I: lc-tumblr.webp | The Twitter profile and the linked Tumblr from the slide
+A: True
+B: False
+=: A
+?: The user names their own Tumblr in the profile URL, linking the two accounts themselves — exactly the self-identification used for ground truth.
+!: Key not printed; the TA ticked True.
+
+Q: Several look-alike "HDFC Bank Cares" Twitter handles (@hdfcbank.rb, @hdfcbank.rbl, @HDFCBank 26…) all offer customer support. This image is an example of:
+I: lc-hdfc.webp | The slide's image of the four "HDFC Bank Cares" accounts
+A: Hashtag Hijacking
+B: Compromised Account
+C: Fake Customer Service Accounts
+D: None of the above
+=: C
+?: Impostor support handles intercept customers who complain publicly (angler phishing). Hashtag hijacking repurposes a trending tag instead.
+!: Key not printed on the slide.
+
+Q: Post A: "My vehicle KA-02-HW-3183 … was stolen from Kadamba Hotel … on Friday evening between 6:30–7:45 PM. Please help in tracing my vehicle." Post B: an RWA member living elsewhere reports 8–10 youths creating a public nuisance at KSFC Layout. Select the correct labels.
+I: lc-direct.webp | Posts A and B as shown on the slide
+A: A = Direct Communication; B = Indirect Communication
+B: A = Indirect Communication; B = Indirect Communication
+C: A = Direct Communication; B = Direct Communication
+D: A = Indirect Communication; B = Direct Communication
+=: A
+?: In A the victim reports their own theft (direct); in B someone reports a problem affecting others (indirect).
+!: Key not printed on the slide.
+
+Q: An N×N adjacency matrix implies there are ___ nodes in the graph.
+A: N/2
+B: N−1
+C: 2N−1
+D: None of the above
+=: D
+?: One row and one column per node, so N nodes — which isn't among A–C.
+!: Key not printed on the slide.
+
+Q: Which of the following are NOT stopwords in this list? ["i", "me", "my", "myself", "we", "our", … "yourself", … "do", "does", "did", "doing", "mango", "a", "an", "the", … "between", "into", "now"]
+A: because, against, mango, yourself
+B: mango, now
+C: mango
+D: All the words in the list are stopwords
+=: C
+?: "mango" was planted in an otherwise standard stopword list; "now", "because", "against" and "yourself" are real stopwords.
+!: Key not printed on the slide.
+
+Q: Using NLTK's English stopword list, which of these words are NOT stopwords? [our, are, yourself, yourselves, apple, orange, have, doesn't, aren't, most, where] (Select all that apply.)
+A: apple
+B: orange
+C: yourself
+D: most
+=: A,B
+?: "yourself" and "most" are both in NLTK's stopword list; the fruit names are content words.
+!: Key not printed on the slide.
+
+Q: A sentiment-analysis study scores a passage on a −1 to 1 scale: valence 0.80, arousal 0.90. What do these values suggest?
+A: Negative sentiment, low emotional intensity
+B: Positive sentiment, high emotional intensity
+C: Negative sentiment, high emotional intensity
+D: Positive sentiment, low emotional intensity
+=: B
+?: High valence = pleasant; high arousal = energetic, intense (e.g., excitement).
+!: Key not printed on the slide.
+
+Q: What is the output of nltk.tokenize.word_tokenize("Welcome to PSOSM.")?
+A: ['W', 'e', 'l', 'c', 'o', 'm', 'e', ' ', 't', 'o', ' ', 'P', 'S', 'O', 'S', 'M', '.']
+B: ['Welcome', 'to', 'PSOSM', '.']
+C: ['Welcome', 'to', 'PSOSM']
+D: None of the above
+=: B
+?: word_tokenize splits on words and keeps the full stop as its own token.
+!: Key not printed on the slide. The slide text lost the "." inside quotes; it is restored here.
+
+Q: tokens holds 1000+ words. What does this code do? p = str.maketrans('', '', string.punctuation); tokens = [i.translate(p) for i in tokens]
+A: Maps uppercase characters to lowercase characters in the tokens list
+B: Maps all punctuation to a null character in the tokens list
+C: Maps all null characters to punctuation in the tokens list
+D: None of the above
+=: B
+?: The third argument of maketrans lists characters to delete, so translate strips all punctuation.
+!: Key not printed on the slide.
+
+Q: Which statement is true about the Boston blasts?
+I: lc-boston.webp | The Boston blasts questions and Figure 6 as shown on the slide
+A: Twin blasts occurred during the Boston Marathon on April 15th, 2013 at 18:50 GMT
+B: Twin blasts occurred during the Boston Marathon on April 15th, 2009 at 18:50 GMT
+C: Four people were killed and 264 were injured in the incident
+D: All of the above
+=: A
+?: The course paper on the Boston blasts gives 15 April 2013, 18:50 GMT; three people were killed and 264 injured, so C (and D) are false.
+!: Key not printed on the slide.
+
+Q: A chart plots number of tweets (×10⁵) against "hours after the blast", annotated "1 hour after the blast", "pictures of suspects released" and "manhunt is over". What does it depict?
+I: lc-boston.webp | Figure 6 — number of tweets in the hours after the blast
+A: The temporal distribution of tweets after the Boston blast
+B: The spatial distribution of tweets after the Boston blast
+C: Both (a) and (b)
+D: None of the above
+=: A
+?: The x-axis is time, not location.
+!: Key not printed on the slide.
+
+Q: Which of the following is/are anonymous social networking sites? (Select all that apply.)
+A: Whisper
+B: Sarahah
+C: Facebook
+D: X (formerly Twitter)
+=: A,B
+?: Whisper and Sarahah let users post or message without revealing identity.
+!: Practice test — key not printed on the slide.
+
+Q: Which statements are true about ephemeral content on social networks? (Select all that apply.)
+A: Content on social networks disappears after a fixed period of time.
+B: Snaps on Snapchat are an example of ephemeral content.
+C: Stories on Instagram are an example of ephemeral content.
+D: None of the above
+=: A,B,C
+?: Ephemeral = disappears after a set time, like snaps and 24-hour stories.
+!: Practice test — key not printed on the slide.
+
+Q: Which of the 4 V's of social media addresses the correctness of information posted online?
+A: Velocity
+B: Veracity
+C: Volume
+D: Variety
+=: B
+?: Veracity = truthfulness. Volume = amount, velocity = speed, variety = types.
+!: Practice test — key not printed on the slide.
+
+Q: Facebook Friends and Instagram Followers follow the principles of a unidirectional network.
+A: True
+B: False
+=: B
+?: Instagram following is one-way, but Facebook friendship is mutual (bidirectional).
+!: Practice test — key not printed on the slide.
+
+Q: ……… helps users find posts related to a specific topic by clicking or searching.
+A: Mentions
+B: Hashtags
+C: Shares
+D: Likes
+=: B
+?: Clicking a hashtag shows all posts using it.
+!: Practice test — key not printed on the slide.
+
+Q: Which V of social media represents the amount of content generated across platforms?
+A: Value
+B: Velocity
+C: Volume
+D: Veracity
+=: C
+?: Volume is the sheer quantity of data.
+!: Practice test — key not printed on the slide.
+
+Q: Which of the following is/are e-crimes on online social media?
+A: Phishing
+B: Clickbaiting
+C: Work From Home Scam
+D: All of the above
+=: D
+?: All three are covered in the course as OSM crimes.
+!: Practice test — key not printed on the slide.
+
+Q: Hitesh has 400 followers on Twitter, 500 on Facebook and 1,400 on Instagram. Finding the actual number of unique followers across all his profiles is called de-duplicating.
+A: True
+B: False
+=: A
+?: The same person may follow him on several platforms; removing those repeats is de-duplication.
+!: Practice test — key not printed on the slide.
+
+Q: A node in a graph has an in-degree of 2 and an out-degree of 4. The degree of this node is:
+A: 2
+B: 4
+C: 6
+D: 8
+=: C
+?: Total degree = in-degree + out-degree = 2 + 4.
+!: Practice test — key not printed on the slide.
+
+Q: Which is the correct command for initializing a git repository in a newly created empty folder?
+A: git initialize
+B: git create
+C: git initiate
+D: git init
+=: D
+?: git init creates the .git directory.
+!: Practice test — key not printed on the slide.
+
+Q: Latanya Sweeney's research showed how two seemingly unrelated pieces of information can be linked to identify an individual. Which term best describes this?
+A: Data Anonymization
+B: Data Aggregation
+C: Re-identification
+D: All of the above
+=: C
+?: Sweeney linked "anonymous" medical records to a public voter list (ZIP code, birth date, sex) and named individuals — re-identification.
+!: Practice test — no key printed; the TA ticked C.
+
+Q: Which of the following OSNs have an API? (Select all that apply.)
+A: X (formerly Twitter)
+B: Facebook
+C: YouTube
+D: None of the above
+=: A,B,C
+?: X API, Facebook Graph API and YouTube Data API all exist.
+!: Practice test — key not printed on the slide.
+
+Q: Which is the correct syntax for installing numpy version 1.21.5?
+A: pip3 install numpy==1.21.5
+B: pip3 install package==numpy version==1.21.5
+C: pip3 install numpy --v=1.21.5
+D: None of the above
+=: A
+?: pip pins versions with package==version.
+!: Practice test — key not printed on the slide.
+
+Q: Which of the following libraries can be used to send and receive requests to a server?
+A: numpy
+B: requests
+C: math
+D: None of the above
+=: B
+?: requests handles HTTP GET/POST; numpy and math are for computation.
+!: Practice test — key not printed on the slide.
+
+Q: A self-contained directory with its own Python installation and libraries, used to isolate project dependencies, is called a:
+A: Python Standard Library
+B: PIP
+C: Virtual Environment
+D: None of the above
+=: C
+?: Created with python -m venv; each project keeps its own packages.
+!: Practice test — key not printed on the slide.
+
+Q: Which of the following are advantages of a version control system? (Select all that apply.)
+A: Keeps a record of all changes made to a file
+B: Allows collaboration between people on the same project
+C: Allows backup and recovery in a project
+D: None of the above
+=: A,B,C
+?: History, collaboration and recovery are the core benefits.
+!: Practice test — key not printed on the slide.
+
+Q: Which social network was NOT mentioned in the home-location paper as a source for the dataset?
+A: Twitter
+B: Foursquare
+C: Facebook
+D: Google Plus
+=: C
+?: The paper used Foursquare, Google+ and Twitter.
+!: Practice test — key not printed on the slide.
+
+Q: What is the main focus of the study mentioned in the paper?
+A: Inference of Social Security Number from Home Location
+B: Inference of Home Location in Social Networks
+C: Impact of Nudges on Location Sharing
+D: None of the above
+=: B
+?: "Beware of What You Share: Inferring Home Location in Social Networks".
+!: Practice test — key not printed on the slide.
+
+Q: What is a valid AGI (in the home-location paper)?
+A: Valid Artificial General Intelligence
+B: Valid Ambiguous Geographical Information
+C: Valid Artificial Geographical Interface
+D: None of the above
+=: B
+?: Valid locations split into UGI (unambiguous) and AGI (ambiguous, e.g. several cities named Springfield).
+!: Practice test — key not printed on the slide.
+
+Q: Which can be used for writing Python programs in an Ubuntu terminal?
+A: vim
+B: neovim
+C: vi
+D: All of the above
+=: D
+?: All three are terminal text editors.
+!: Practice test — key not printed on the slide.
+
+Q: What is used to install and manage packages for Python?
+A: pip
+B: npm
+C: apt-get
+D: Anaconda
+=: A
+?: pip is Python's package installer. npm is for Node.js and apt-get for system packages; Anaconda is a distribution whose manager is conda.
+!: Practice test — no key printed; the TA ticked A.
+
+Q: Why is a "Graph" API called so?
+A: It allows users to draw and create graphs and charts
+B: It represents social connections and relationships as a graph data structure
+=: B
+?: Users, posts and pages are nodes; their connections are edges.
+!: Practice test — key not printed on the slide; only two options were printed.
+
+Q: What characteristics did researchers find among top link farmers?
+A: Low in-degree compared to random samples
+B: They were unpopular and inactive users
+C: High in-degree compared to random samples
+D: None of the above
+=: C
+?: Link farmers follow back aggressively, so they gather far more followers than typical users.
+!: Practice test — key not printed on the slide.
+
+Q: Which of the following are/were virtual worlds in social media? (Select all that apply.)
+A: Club Penguin
+B: Habbo
+C: Twitter
+D: All of the above
+=: A,B
+?: Club Penguin (Disney, closed 2017) and Habbo Hotel are virtual worlds; Twitter is a microblog, so "All" is wrong.
+!: Practice test — key not printed on the slide.
+
+Q: Which platforms allow managing/hosting git repositories?
+A: GitHub
+B: GitLab
+C: Bitbucket
+D: All of the above
+=: D
+?: All three host git repositories.
+!: Practice test — key not printed on the slide.
+
+Q: Select the correct syntax for allowing git to track all files in a repository (from the repo root).
+A: git add --all
+B: git commit -m "track"
+C: git status
+D: git log
+=: A
+?: git add stages files for tracking; commit, status and log do other jobs.
+!: Practice test — key not printed on the slide.
+
+Q: Creating a new file in a git repository adds it to:
+A: Tracked Files
+B: Untracked Files
+C: Remote Repository
+D: None of the above
+=: B
+?: Git ignores new files until you git add them.
+!: Practice test — key not printed on the slide.
+
+Q: What does JSON stand for?
+A: JavaScript Object Notation
+B: Java Standard Object Notation
+C: JSON Scripted Object Name
+D: Joint Syntax Object Network
+=: A
+?: A lightweight key–value data-interchange format.
+!: Practice test — key not printed on the slide.
+
+Q: MongoDB stores data in a structure most similar to:
+A: JSON
+B: SQL
+C: XML
+D: None of the above
+=: A
+?: MongoDB stores BSON, a binary form of JSON.
+!: Practice test — key not printed on the slide.
+
+Q: MySQL can be used for querying relational databases.
+A: True
+B: False
+=: A
+?: MySQL is a relational database system queried with SQL.
+!: Practice test — key not printed on the slide.
+
+Q: A MongoDB collection "words" has documents like {_id, count: 300, department: "the"}. Which query retrieves all words with count in descending order?
+A: db.words.find().sort({count:-1})
+B: db.words.find().sort({count:1})
+C: db.words.find().order_by("count", DESCENDING)
+D: db.words.find().sort({descending:1})
+=: A
+?: In sort(), −1 means descending and 1 ascending.
+!: Practice test — key not printed on the slide.
+
+Q: Which of the following are components of a graph? (Select all that apply.)
+A: Vertices
+B: Edges
+C: Unique Identifier/ID
+=: A,B
+?: A graph G = (V, E) is made of vertices and edges.
+!: Practice test — key not printed on the slide; only three options were printed.
+
+Q: Select the correct sequence of steps for evaluating social media data.
+A: Collection/Filtering > Characterization > Classification > Evaluation
+B: Collection/Filtering > Characterization > Evaluation > Classification
+C: Characterization > Collection/Filtering > Evaluation > Classification
+D: Characterization > Collection/Filtering > Classification > Evaluation
+=: A
+?: You must collect data before characterizing it, and build a classifier before evaluating it.
+!: Practice test — key not printed on the slide.
+
+Q: TweetCred is a Chrome extension that ranks the credibility of each tweet on Twitter.
+A: True
+B: False
+=: A
+?: TweetCred is a real-time browser extension that scores the credibility of each tweet in your timeline.
+!: Practice test — key not printed on the slide.
+
+Q: Which Python library would you most likely use to get the top 10 hot posts from r/politics via the Reddit API?
+A: praw
+B: requests
+C: urllib
+D: json
+=: A
+?: PRAW (Python Reddit API Wrapper) is Reddit's dedicated client: reddit.subreddit("politics").hot(limit=10).
+!: Practice test — key not printed on the slide.
+
+Q: An indicator similar to hashtags on Reddit is called:
+A: Flair
+B: Karma
+C: Comment
+D: Upvote
+=: A
+?: Flairs are tags attached to posts that let readers filter by topic, much like hashtags. Karma is a user's points.
+!: Practice test — key not printed on the slide.
+
+Q: Communities on Reddit are called:
+A: Subreddits
+B: Flairs
+C: Threads
+D: None of the above
+=: A
+?: Each topic community is a subreddit, named r/<topic>.
+!: Practice test — key not printed on the slide.
+
+Q: A higher Follower-Friend ratio on Twitter can be associated with the popularity of the user.
+A: True
+B: False
+=: A
+?: Many followers relative to accounts followed signals an account people seek out.
+!: Practice test — key not printed on the slide.
+
+Q: "Whispers" on Whisper are equivalent to ………. on X (formerly Twitter).
+A: Replies
+B: Likes
+C: Tweets
+D: None of the above
+=: C
+?: A whisper is an original post; replies to it are a separate thing, as on X.
+!: Practice test — key not printed on the slide.
+
+Q: The measure of how close a graph is to complete (0 = no edges, 1 = complete) is called:
+A: Average Degree
+B: Clustering Coefficient
+C: Graph Density
+D: None of the above
+=: C
+?: Density = actual edges ÷ possible edges, so a complete graph scores 1.
+!: Practice test — key not printed on the slide.
+
+Q: Which of the following charts can be generated using Highcharts? (Select all that apply.)
+A: Bar Chart
+B: Line Chart
+C: Scatter Plot
+D: Bubble Chart
+=: A,B,C,D
+?: Highcharts supports all four series types: bar, line, scatter and bubble.
+!: Practice test — key not printed on the slide.
+
+Q: Which is the correct chart type in the Highcharts options dictionary to draw a horizontal bar chart?
+A: bar
+B: column
+C: horizontal bars
+D: None of the above
+=: A
+?: In Highcharts "bar" is horizontal and "column" is vertical.
+!: Practice test — key not printed on the slide.
+
+Q: Why is studying username change behaviour preferable for social media researchers? (Select all that apply.)
+A: It is one of the unique attributes of the user
+B: Usernames are length-restricted, allowing smaller datasets
+C: It is a publicly available attribute
+D: None of the above
+=: A,C
+?: The lecture's "Why only usernames?" slide: usernames are unique and publicly available. Length limits make them homogeneous, not datasets smaller.
+!: Practice test — key not printed on the slide.
+
+Q: What are the reasons behind using anonymous social networks? (Select all that apply.)
+A: Increasing awareness of privacy amongst users
+B: Preventing use of public personal information for surveillance
+C: Avoiding consequences of controversial political opinions
+D: None of the above
+=: A,B,C
+?: The lecture cites privacy awareness, the Snowden/PRISM surveillance revelations, and cases like the Bal Thackeray arrests over posts.
+!: Practice test — key not printed on the slide.
+
+Q: Which of the following is/are anonymous social networks? (Select all that apply.)
+A: Whisper
+B: Yik Yak
+C: Blind
+D: None of the above
+=: A,B,C
+?: All three let users post without revealing their identity (Blind is an anonymous workplace network).
+!: Practice test — key not printed on the slide.
+
+Q: "Shantanu never likes people taking his photo because he doesn't want it posted online." According to Westin's three categories, Shantanu is a:
+A: Fundamentalist
+B: Pragmatist
+C: Unconcerned
+D: None of the above
+=: A
+?: Privacy fundamentalists resist sharing almost anything; Shantanu refuses even photos.
+!: Practice test — key not printed on the slide.
+
+Q: "Geeta browses all social media casually, but always opens her banking website in incognito." According to Westin's three categories, Geeta is a:
+A: Fundamentalist
+B: Pragmatist
+C: Unconcerned
+D: None of the above
+=: B
+?: Pragmatists weigh each situation: relaxed in general, careful where the stakes are high.
+!: Practice test — key not printed on the slide.
+
+Q: According to Westin's three categories, the LOWEST percentage of US citizens fall into:
+A: Fundamentalist
+B: Pragmatist
+C: Unconcerned
+=: C
+?: Westin's surveys put roughly a quarter as fundamentalists, over half as pragmatists and the smallest group, under a fifth, as unconcerned.
+!: Practice test — key not printed on the slide.
+
+Q: According to Westin's three categories, the HIGHEST percentage of US citizens fall into:
+A: Fundamentalist
+B: Pragmatist
+C: Unconcerned
+=: B
+?: Pragmatists are the majority, over half of respondents.
+!: Practice test — key not printed on the slide.
+
+Q: Which can be used in authentication for the Twitter API? (Select all that apply.)
+A: Bearer Token
+B: Client ID
+C: Client Secret
+D: None of the above
+=: A,B,C
+?: App-only calls use a Bearer Token; OAuth 2.0 user flows use the Client ID and Client Secret.
+!: Practice test — key not printed on the slide.
+
+Q: Which of the following can be achieved using the Twitter API? (Select all that apply.)
+A: Retrieving reverse chronological home timeline
+B: Retrieving user Tweet timeline
+C: Retrieving user mention timeline
+D: None of the above
+=: A,B,C
+?: API v2 has all three timeline endpoints: reverse-chronological home, user Tweets and user mentions.
+!: Practice test — key not printed on the slide.
+
+Q: In a "users" table of Twitter profiles, which attribute can be used as a primary key?
+A: Full Name
+B: User ID
+C: No. of Followers
+D: No. of Tweets
+=: B
+?: Only the user ID is guaranteed unique and unchanging; names and counts repeat or change.
+!: Practice test — key not printed on the slide.
+
+Q: Which refers to profile linking on social media, as discussed in the lectures?
+A: Connecting a user's profiles on different social networks
+B: Posting on multiple social media from a single platform
+C: A common verification check mark across two or more networks
+D: None of the above
+=: A
+?: Profile linking (identity resolution) finds which accounts on different networks belong to the same person.
+!: Practice test — key not printed on the slide.
+
+Q: Which OSN contains quality, descriptive information useful for profile linking, as discussed in the lecture?
+A: 4Chan
+B: Reddit
+C: Whisper
+D: LinkedIn
+=: D
+?: The "Degree of details" slide puts LinkedIn and Facebook at the detailed end; 4chan and Whisper are anonymous.
+!: Practice test — key not printed on the slide.
+
+Q: Mayorships on Foursquare are given to:
+A: The first person to check in at a location
+B: The person who leaves the most tips at a location
+C: The person who checks in most frequently in a given period
+D: People who write the most reviews
+=: C
+?: The mayor of a venue is its most frequent visitor by check-ins.
+!: Practice test — key not printed on the slide.
+
+Q: Which of the following is publicly available data on Foursquare? (Select all that apply.)
+A: Mayorships
+B: Tips
+C: Dones
+D: Checkins
+=: A,B,C
+?: The home-location paper used mayorships, tips and dones/likes because they are public; individual check-ins are not.
+!: Practice test — key not printed on the slide.
+
+Q: A Spearman's correlation of 0.78 between the number of mayorships and tips across cities indicates:
+A: A high monotone increasing relation
+B: A high monotone decreasing relation
+C: No relation regarding monotonicity
+D: None of the above
+=: A
+?: Spearman's ρ measures monotonic association; +0.78 is strong and positive.
+!: Practice test — key not printed on the slide.
+
+Q: A table in SQL is called a ………. in MongoDB.
+A: Database
+B: Index
+C: Document
+D: Collection
+=: D
+?: Table → collection, row → document, column → field.
+!: Practice test — key not printed on the slide.
+
+Q: A row in SQL is called a ………. in MongoDB.
+A: Collection
+B: Field
+C: Index
+D: Document
+=: D
+?: Each row corresponds to one document.
+!: Practice test — key not printed on the slide.
+
+Q: Which can be used to create a database "project" with a collection "users" in MongoDB?
+A: use project; db.users.insert({});
+B: use project; db.users.insert();
+C: create_db project; db.users.insert({});
+D: create project; db.users.insert();
+=: A
+?: "use" switches to (and lazily creates) the database, and inserting a document creates the collection. insert() needs a document argument, and create_db/create aren't shell commands.
+!: Practice test — key not printed on the slide.
+
+Q: What are the different forms of privacy? (Select all that apply.)
+A: Information
+B: Communication
+C: Territorial
+D: Bodily
+=: A,B,C,D
+?: The lecture lists all four: information, communication, territorial and bodily privacy.
+!: Practice test — key not printed on the slide.
+
+Q: "Please Rob Me" highlighted issues specifically stemming from:
+A: Public self-disclosure of information by users
+B: Data leaks due to hacking attempts
+C: Sharing passwords with friends
+D: None of the above
+=: A
+?: The site aggregated people's own public check-ins to show when their homes were empty.
+!: Practice test — key not printed on the slide.
+
+Q: Using an unidentified source of information to extract an individual's sensitive information is called:
+A: Re-identification
+B: Personally Identifiable Information
+C: Self-Disclosure
+D: None of the above
+=: A
+?: Linking "anonymous" data back to a named person is re-identification.
+!: Practice test — key not printed on the slide.
+
+Q: Considering each attribute in isolation, which are examples of PII (Personally Identifiable Information)? (Select all that apply.)
+A: Race
+B: Age
+C: Aadhaar Number
+D: College Student ID
+=: C,D
+?: An Aadhaar number or student ID points to one person on its own; race or age alone is shared by many.
+!: Practice test — key not printed on the slide.
+
+Q: What are the advantages of NumPy arrays over Python lists? (Select all that apply.)
+A: Faster and more compact
+B: Much less memory, with a mechanism to specify data types
+C: Allows code to be optimized even further
+D: None of the above
+=: A,B,C
+?: NumPy's own docs: arrays are faster and more compact, use less memory, let you specify data types, and so allow further optimization.
+!: Practice test — key not printed on the slide.
+
+Q: Which code converts the list [1,2,3,4] to a NumPy array?
+A: import numpy as np; arr = np.array([1,2,3,4])
+B: import numpy as np; arr = numpy.array([1,2,3,4])
+C: import numpy as np; arr = np.array(1,2,3,4)
+D: All of the above
+=: A
+?: B fails because only the alias np was imported; C passes four arguments instead of one list.
+!: Practice test — key not printed on the slide.
+
+Q: Which code makes a NumPy array of 10 random numbers? (Select all that apply.)
+A: Loop with random.random(), appending to a list, then np.array()
+B: np.random.rand(10)
+C: np.random.random(10)
+D: None of the above
+=: A,B,C
+?: All three give a 10-element array of uniform random floats; B and C do it in one call.
+!: Practice test — key not printed on the slide.
+
+Q: Which NumPy function can be used to generate an N×N diagonal matrix?
+A: np.eye(5)
+B: np.diagonal(np.eye(5))
+C: np.diagonal(5)
+D: None of the above
+=: A
+?: np.eye(5) builds a 5×5 identity (diagonal) matrix. np.diagonal extracts the diagonal as a 1-D array.
+!: Practice test — key not printed on the slide.
+
+Q: Which Python code reads a CSV file using Pandas?
+A: import pandas as pd; data = pd.read_excel('file.csv')
+B: import pandas as pd; data = pandas.readcsv('file.csv')
+C: import pandas as pd; data = pd.read_csv('file.csv')
+D: None of the above
+=: C
+?: read_csv is the CSV reader, called through the pd alias.
+!: Practice test — key not printed on the slide.
+
+Q: Which attribute best differentiates a real police account from a fake one on X?
+A: User Handle
+B: Profile Picture
+C: Verification Status of the Account
+D: None of the above
+=: C
+?: Handles and pictures are easy to copy; the grey government check mark is not.
+!: Practice test — key not printed on the slide.
+
+Q: Analyzing data without any preconceptions is called:
+A: Inductive Thematic Analysis
+B: Lexical Analysis
+C: Natural Language Processing
+D: None of the above
+=: A
+?: Inductive analysis lets themes emerge from the data rather than from a predefined framework.
+!: Practice test — key not printed on the slide.
+
+Q: Which of the following are graph centrality measures? (Select all that apply.)
+A: Node degree
+B: Betweenness centrality
+C: Closeness centrality
+D: None of the above
+=: A,B,C
+?: Degree, betweenness and closeness are all standard centrality measures.
+!: Practice test — key not printed on the slide.
+
+Q: "There is a huge pothole on the main road, kindly repair it. Address: Opposite Ki… Hyderabad." This tweet is an example of:
+A: Actionable Information
+B: Unactionable Information
+=: A
+?: It names a concrete problem and a location that someone can act on.
+!: Practice test — key not printed on the slide.
+
+Q: What is meant by an n-gram?
+A: A sequence of alternative characters in a corpus
+B: A method for optimizing databases using caching
+C: A continuous sequence of n items from a text or speech corpus
+D: A method for optimizing big data queries using indexing
+=: C
+?: For example, a bigram is two consecutive words.
+!: Practice test — key not printed on the slide.
+
+Q: LIWC can categorize an input corpus into the following categories: (Select all that apply.)
+A: Positive Emotions
+B: Negative Emotions
+C: Anxiety
+D: Sadness
+=: A,B,C,D
+?: All four are LIWC affect categories (anxiety and sadness sit under negative emotion).
+!: Practice test — key not printed on the slide.
+
+Q: Select the correct option(s) when analyzing a social media post: (Select all that apply.)
+A: Valence = negative or positive sentiment
+B: Valence = intensity of the sentiment
+C: Arousal = negative or positive sentiment
+D: Arousal = intensity of the sentiment
+=: A,D
+?: Valence is how pleasant or unpleasant; arousal is how intense or energetic.
+!: Practice test — key not printed on the slide.
+
+Q: An email from "Facebook Technical Support" from an unverified address asks you to reset your password via a suspicious form. This is called:
+A: Phishing
+B: Clickbaiting
+C: Compromised Account
+D: None of the above
+=: A
+?: Impersonating a trusted brand to harvest credentials is phishing.
+!: Practice test — key not printed on the slide.
+
+Q: Hackers target a company's Managing Director with suspicious emails to steal credit card details. As discussed in the lecture, this is called:
+A: Clickbaiting
+B: Whaling
+C: Account Compromise
+D: None of the above
+=: B
+?: Phishing aimed at senior executives is whaling.
+!: Practice test — key not printed on the slide.
+
+Q: Which helps improve the PageRank of a website (abc.com) on search engines?
+A: Reputed websites creating reciprocal links with abc.com
+B: abc.com creating unidirectional links to many websites
+C: Number of links on abc.com's homepage
+D: None of the above
+=: A
+?: PageRank rises with incoming links from important pages; outgoing links don't raise your own score.
+!: Practice test — key not printed on the slide.
+
+Q: Spamming the index of search engines is called:
+A: Spamdexing
+B: Spamexing
+C: Spamming
+D: None of the above
+=: A
+?: Spam + indexing = spamdexing.
+!: Practice test — key not printed on the slide.
+
+Q: Abhishek follows Suresh on Instagram; Suresh feels compelled to follow back. This phenomenon is called:
+A: Spamming
+B: Reciprocity
+C: Link farming
+D: All of the above
+=: B
+?: Following back out of social obligation is reciprocity, which link farmers exploit.
+!: Practice test — key not printed on the slide.
+
+Q: Anushka has 500 followers / 250 following, Ramesh 1,500 / 1,000 and Himanshu 500 / 200. All tweeted about #BLRrains. Ranking by in-degree, which account is likely to rank higher when searching #BLRrains?
+A: Anushka
+B: Ramesh
+C: Himanshu
+=: B
+?: In-degree = followers; Ramesh has the most (1,500).
+!: Practice test — key not printed on the slide.
+
+Q: Which of the following is/are NOT a social media nudge? (Select all that apply.)
+A: Picture Nudge
+B: Timer Nudge
+C: Voice Nudge
+D: Video Nudge
+=: C,D
+?: The nudge study used picture, timer and sentiment nudges; voice and video nudges weren't part of it.
+!: Practice test — key not printed on the slide.
+
+Q: Which statements are correct about nudges? (Select all that apply.)
+A: Interventions help users make better posting decisions
+B: The primary aim is to reduce user-generated content
+C: Nudges help avoid regrettable online disclosures
+D: All of the above
+=: A,C
+?: Nudges aim at better decisions and fewer regrets, not at cutting how much people post.
+!: Practice test — key not printed on the slide.
+
+Q: Hemant steals files from a rival's computer by connecting a USB drive in their office. This attack is called:
+A: Physical Attack
+B: Semantic Attack
+C: Syntactic Attack
+D: All of the above
+=: A
+?: It needs physical access to the machine.
+!: Practice test — key not printed on the slide.
+
+Q: Denial of Service and Buffer Overflow attacks fall under:
+A: Physical Attacks
+B: Semantic Attacks
+C: Syntactic Attacks
+D: None of the above
+=: C
+?: Both exploit how software and protocols process input — syntactic attacks.
+!: Practice test — key not printed on the slide.
+
+Q: Shivani emails Anisha "Check your NPTEL Certification Exam Results Here!", leading to a login form on an unrelated domain. This is a ………… attack.
+A: Syntactic
+B: Semantic
+C: Physical
+D: None of the above
+=: B
+?: It tricks the reader's judgment of meaning and trust (phishing), not the software.
+!: Practice test — key not printed on the slide.
+
+Q: Himesh gets an SMS: "Your Bank Account has been suspended: Click here to re-activate." This most closely resembles:
+A: Whaling
+B: Vishing
+C: Smishing
+D: None of the above
+=: C
+?: Phishing by SMS is smishing; vishing is by voice call.
+!: Practice test — key not printed on the slide.

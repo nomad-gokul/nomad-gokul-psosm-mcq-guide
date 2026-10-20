@@ -1,0 +1,350 @@
+@ w05 | Week 5 | Session of 22 August — location privacy (Foursquare), sentiment, policing on social media
+N: Combining individually harmless data (check-ins, times, friends' locations) lets attackers infer things never disclosed — home, routines, health. Removing usernames doesn't anonymize a unique trajectory.
+N: Valence = direction of emotion (negative ↔ positive). Arousal = intensity (calm ↔ excited).
+N: Policing study (Week 5.2): public posts 21 Jul–21 Aug 2014 filtered to citizen→police, 255 posts and 1,600 comments. Pipeline: collection → filtering → thematic inductive analysis → lexical analysis/word trees → interpretation. Response time: mean 30.53 h, max 211.16 h, min 4 min, SD 41.26 h.
+N: Direct reporting = your own incident. Indirect reporting = a problem seen or known in the community. Actionable posts carry spatial and temporal detail.
+
+Q: Experiments on Foursquare behaviour and inferring home location from social networks are connected by which principle?
+A: Privacy is violated only when users explicitly publish confidential information.
+B: Combining individually innocuous pieces of information can permit inference of sensitive attributes that were never directly disclosed.
+C: Offline information is inherently more private and cannot be linked.
+D: Social-network privacy is primarily a password problem.
+=: B
+?: Location, time and network behaviour together reveal patterns; the risk comes from aggregation and inference.
+
+Q: Foursquare's Pilgrim SDK uses "snap-to-place" technology. Which combination of signals does it mainly use for accuracy while saving battery?
+A: Continuous high-frequency GPS and Bluetooth beacons in all major retail environments.
+B: Server-side IP tracking and browser cookies.
+C: A hybrid of geofencing, Wi-Fi triangulation and cell-tower analysis, using high-power GPS only when needed.
+D: Accelerometer-only dead reckoning with no network use.
+=: C
+?: Wi-Fi and cell signals help indoors and save power; GPS is switched on only when more precision is needed.
+
+Q: Foursquare recommends a venue based on venues visited by users with similar check-in histories. This is most closely associated with:
+A: Collaborative filtering
+B: Packet filtering
+C: Intrusion detection
+D: Hash-based indexing
+=: A
+?: Similar past behaviour is used to predict what a user will like.
+
+Q: An attacker creates many fake Foursquare accounts and makes coordinated check-ins at a venue to boost its popularity. Which attack is this?
+A: Sybil attack
+B: Dictionary attack
+C: Replay attack
+D: Man-in-the-middle attack
+=: A
+?: Many fake identities controlled by one actor. Dictionary attacks guess passwords; replay resends captured data; MITM intercepts communication.
+
+Q: A researcher re-identifies individuals by combining public Foursquare venue, timestamp and location data with an external dataset. This is an example of:
+A: Data anonymization
+B: Linkage attack
+C: SQL injection
+D: Credential stuffing
+=: B
+?: Indirect information is matched across datasets to identify people even after direct identifiers are removed.
+
+Q: In 2021 Foursquare acquired Unfolded, which became part of Foursquare Studio. What is its main technical value-add?
+A: Improving battery efficiency of Pilgrim SDK apps.
+B: A consumer social interface for check-ins and photos.
+C: Managing real-time location-based ad bids.
+D: Processing, analyzing and visualizing massive geospatial datasets and complex spatial queries via advanced vector rendering.
+=: D
+?: It added enterprise-scale geospatial analytics and visualization.
+
+Q: What is the strongest methodological criticism of predicting a sensitive attribute from public social-media data?
+A: The prediction is impossible because public data has no useful information.
+B: The prediction proves the individual intentionally disclosed the attribute.
+C: Predictive association does not establish that the inferred attribute is correct for every individual, or that the person meant to disclose it.
+D: Any prediction from social media is equivalent to encryption.
+=: C
+?: A model's statistical association can be wrong for individuals and says nothing about intent.
+
+Q: How does the Foursquare Places API structure "chain" venues such as a specific Starbucks in relation to the global brand?
+A: A parent-child relationship: a canonical ID for the brand linked to unique location IDs for each branch.
+B: Chains are stripped of global identifiers for privacy.
+C: A chain is one database entry regardless of location or hours.
+D: Chains sit in a separate "Franchise" API.
+=: A
+?: Each branch keeps its own ID, address and hours while linking to the brand.
+
+Q: Post 1: 200 likes, 20 comments, 10 shares. Post 2: 100, 80, 60. Post 3: 150, 30, 20. Which post shows the greatest variability across likes, comments and shares?
+A: Post 1
+B: Post 2
+C: Post 3
+D: All three show identical variability
+=: A
+?: Post 1's values (200, 20, 10) are the most spread out.
+
+Q: Two users with similar venue-category habits live in different cities. The system recommends a restaurant to one because the other visits similar ones. Which assumption is exploited?
+A: Homophily in user preferences
+B: IP fragmentation
+C: Cryptographic collision resistance
+D: DNS resolution
+=: A
+?: Similar behaviour implies similar preferences, regardless of distance.
+
+Q: A post has valence −0.72 and arousal 0.81 on a −1 to +1 scale. What does this indicate?
+A: Positive sentiment with low emotional intensity
+B: Negative sentiment with high emotional intensity
+C: Neutral sentiment with moderate intensity
+D: Positive sentiment with high intensity
+=: B
+?: Negative valence means unpleasant; high arousal means intense.
+
+Q: A citizen posts: "While I appreciate the municipality's efforts to repair the main road, it is frustrating that the same potholes have reappeared within weeks, leaving commuters at serious risk." Which classification fits?
+A: Citizen-initiated, predominantly positive, low intensity
+B: Citizen-initiated, predominantly negative, with mixed sentiment and high emotional intensity
+C: Authority-initiated, predominantly negative, high intensity
+D: Citizen-initiated, neutral, since both positive and negative appear
+=: B
+?: It opens with appreciation but the main message is frustration and "serious risk".
+
+Q: Sentence: "The government launched a new digital public health monitoring platform." Which option correctly gives a bigram and a trigram from it?
+A: Bigram: government launched; Trigram: launched a new
+B: Bigram: digital public health; Trigram: public health monitoring
+C: Bigram: new digital public; Trigram: monitoring platform
+D: Bigram: health monitoring platform; Trigram: government launched
+=: A
+?: A bigram is exactly two consecutive words, a trigram exactly three.
+
+Q: A social-media analyst records likes, comments and shares for three posts: Post 1 = 180, 40, 20; Post 2 = 120, 90, 60; Post 3 = 150, 50, 40. If variability is the standard deviation of the three measures within each post, which post has the highest variability?
+A: Post 1
+B: Post 2
+C: Post 3
+D: All three have approximately equal variability
+=: A
+?: Population SD ≈ 71 for Post 1 (mean 80), ≈ 24.5 for Post 2 (mean 90), ≈ 50 for Post 3 (mean 80). Post 1's spread from 180 down to 20 is the widest.
+!: The slide first printed "Answer: B. Post 2". The TA crossed that out and ticked Post 1, which matches the slide's own working.
+
+Q: In sentiment analysis, what does the valence score primarily represent?
+A: The intensity or activation level of an emotion
+B: Whether the emotional tone is positive, negative, or neutral
+C: The number of emotional words in a sentence
+D: The grammatical complexity of the text
+=: B
+?: Valence is direction; intensity is arousal.
+
+Q: In sentiment analysis, what does the arousal score primarily represent?
+A: Whether the sentiment is positive or negative
+B: The number of positive words in the text
+C: The level of emotional intensity or activation
+D: The linguistic diversity of the sentence
+=: C
+?: "I am extremely excited!" has higher arousal than "I feel okay."
+
+Q: A text has valence −0.85 and arousal 0.90. What does this indicate?
+A: Strongly positive, high intensity
+B: Strongly negative, high intensity
+C: Strongly negative, low intensity
+D: Neutral, moderate intensity
+=: B
+?: Like an angry or distressed statement.
+
+Q: Text A: valence +0.75, arousal 0.30. Text B: valence +0.75, arousal 0.85. What is the main difference?
+A: Text A is more positive than Text B
+B: Text B is more positive than Text A
+C: Both have the same positivity, but Text B has greater emotional intensity
+D: Both have the same intensity, but Text A is more positive
+=: C
+?: Same valence means same positivity; B's higher arousal means stronger emotion.
+
+Q: Which statement correctly distinguishes valence from arousal?
+A: Valence measures intensity; arousal measures positivity or negativity.
+B: Valence measures positivity or negativity; arousal measures emotional intensity.
+C: Both measure only positive sentiment.
+D: Both count emotional words.
+=: B
+?: Valence = direction, arousal = strength.
+
+Q: Foursquare Attribution measures the real-world impact of digital ads. How does it calculate "visit uplift"?
+A: Credit card transactions near the store.
+B: Matching IP addresses of banner clickers to store registers.
+C: Comparing foot traffic of a control group (not exposed to the ad) against an exposed group over a measurement window.
+D: Self-reported Swarm check-ins only.
+=: C
+?: The difference between exposed and comparable unexposed users is the incremental visits caused by the ad.
+
+Q: A Foursquare user checks in at an airport. An attacker combines this with past check-ins to infer the user's home will be empty for days. What type of privacy risk is this?
+A: Behavioral inference
+B: Buffer overflow
+C: Password spraying
+D: Traffic analysis of encrypted packets
+=: A
+?: Harmless location data is aggregated to deduce a private routine.
+
+Q: Trace A has exact timestamps and coordinates; Trace B has only daily city-level aggregates. Which statement is most accurate?
+A: Trace A generally provides stronger utility and greater re-identification risk
+B: Trace B always provides greater utility and greater privacy risk
+C: Both provide identical privacy guarantees
+D: Exact timestamps have no impact on re-identification
+=: A
+?: Finer granularity means more useful data and more identifiable movement patterns.
+
+Q: In 2014 Foursquare split its original app into two. What was the rationale, and what was the new check-in app called?
+A: To leave B2B; "Foursquare Enterprise".
+B: To merge with Yelp; "Foursquare Yelp Connect".
+C: To separate social check-ins from local search; the new check-in app was Swarm, and Foursquare kept discovery.
+D: To add gaming; "Foursquare City Builder".
+=: C
+?: Swarm handles check-ins and location sharing; Foursquare focuses on discovery and recommendations.
+
+Q: Which police department among these was the earliest to establish its Twitter/X presence?
+A: Boston Police Department
+B: West Midlands Police
+C: New York Police Department (NYPD)
+D: Delhi Traffic Police
+=: C
+?: The slide gives NYPD, November 2008.
+
+Q: Which statements are supported by the privacy material? 1. A user need not publish their home address for it to be inferable. 2. Location-sharing can reveal privacy-relevant information. 3. Public information is necessarily non-sensitive. 4. Aggregating observations may increase the ability to infer sensitive attributes.
+A: 1 and 2 only
+B: 1, 2 and 4 only
+C: 2 and 3 only
+D: 1, 2, 3 and 4
+=: B
+?: Statement 3 is wrong: public data can be sensitive once combined.
+
+Q: Which sequence best represents the analytical pipeline described in Week 5.2?
+A: Data collection → filtering → thematic inductive analysis → lexical analysis/word trees → interpretation
+B: Encryption → compression → database normalization → clustering
+C: Image acquisition → CNN → object detection → geolocation
+D: Random sampling → cryptographic hashing → password recovery
+=: A
+?: Categories covered content, style and engagement type.
+
+Q: The study collected public posts from 21 July to 21 August 2014 and filtered them to posts from citizens to police (255 posts, 1,600 comments). Which design feature matters most when interpreting the results?
+A: The dataset represents all social-media activity in India.
+B: The sample specifically represents citizen-to-police interactions within the collection and filtering criteria.
+C: The data consist only of police-authored content.
+D: The data were generated experimentally.
+=: B
+?: Results can't be generalized beyond that filtered sample.
+
+Q: A system reports Foursquare venue statistics after adding calibrated random noise so one person's check-in has limited influence. Which privacy principle is this?
+A: Differential privacy
+B: Role-based access control
+C: Public-key encryption
+D: CAPTCHA verification
+=: A
+?: Noise hides whether any one individual contributed. RBAC controls access by role.
+
+Q: A venue recommender ranks venues using past check-ins, venue popularity, distance and time of day. Which problem matters most when checking whether it unfairly favours already-popular venues?
+A: Popularity bias
+B: Buffer overflow
+C: Encryption downgrade
+D: Packet fragmentation
+=: A
+?: Popular venues keep getting recommended and get more popular — a rich-get-richer effect.
+
+Q: An adversary with anonymized Foursquare trajectories and geotagged tweets matches users by rare combinations of location and time. Which sequence describes the attack?
+A: Encryption → hashing → brute force
+B: Anonymization → differential privacy → encryption
+C: Auxiliary-data matching → trajectory linkage → re-identification
+D: Authentication → authorization → accounting
+=: C
+?: Rare place-time patterns act like a fingerprint across datasets.
+
+Q: A user never checked in at a hospital, but frequently visits nearby pharmacies and clinics. A model predicts a chronic medical condition. What is the main privacy issue?
+A: Identity theft
+B: Sensitive attribute inference
+C: Network congestion
+D: Session hijacking
+=: B
+?: Harmless-looking visits are combined to infer a private health attribute.
+
+Q: Which best distinguishes direct and indirect citizen reporting in the Week 5.2 examples?
+A: Direct reporting involves police officers; indirect involves citizens.
+B: Direct reporting describes an individual's own incident, whereas indirect reporting communicates a problem observed or learned through a broader community context.
+C: Direct reporting is always false; indirect always true.
+D: Direct is textual; indirect must be graphical.
+=: B
+?: A stolen-vehicle report is direct; knowledge of a recurring neighbourhood problem is indirect.
+
+Q: Response times: mean 30.53 h, maximum 211.16 h, minimum 4 min, standard deviation 41.26 h. Which inference is most defensible?
+A: Response times are tightly concentrated around the mean.
+B: The large standard deviation relative to the mean suggests substantial variability.
+C: Every complaint was answered within 30.53 h.
+D: The median must equal 30.53 h.
+=: B
+?: SD larger than the mean means wide dispersion; nothing tells us the median.
+
+Q: A post says: "My vehicle was stolen from location X between 6:30 and 7:45 PM. Please help trace it." What makes it especially actionable?
+A: Only emotional sentiment
+B: Spatial and temporal specificity
+C: Number of followers of the author
+D: Length of the author's profile
+=: B
+?: Exact place and time help operational decisions.
+
+Q: Why would reporting the minimum response time as "4 minutes" without dispersion be misleading?
+A: It makes the system look faster than the mean alone.
+B: A minimum represents only the fastest case and does not characterize the distribution.
+C: Four minutes cannot be measured on social media.
+D: The minimum equals the median.
+=: B
+?: The mean was 30.53 h with SD 41.26 h; 4 minutes is a boundary value, not typical.
+
+Q: Which is NOT one of the four "Generic Text Features" used in content-based fake news detection?
+A: Lexicon
+B: Syntax
+C: Discourse
+D: Cryptographic Hash
+=: D
+?: The four are lexicon (n-grams), syntax (POS tags, CFG parse trees), semantics (embeddings) and discourse (Rhetorical Structure Theory).
+
+Q: A police department responds formally to a frustrated citizen, asks for precise landmark details, and forwards the complaint to the right station. Which Week 5.2 principle does this illustrate?
+A: Mutual accountability and instrumental communication
+B: Complete automation of policing
+C: Removal of citizen participation
+D: Anonymization of police communication
+=: A
+?: Police keep a formal, task-focused style and act on the complaint.
+
+Q: Police-citizen discussions have fewer comments than citizen-only discussions. Which conclusion should a researcher avoid?
+A: The discussion may have closed earlier after a police response.
+B: The police response may have changed the interaction.
+C: Lower comment count automatically proves that citizens were dissatisfied.
+D: Engagement should be read together with the nature of the response.
+=: C
+?: An appropriate police reply can end a thread early, so fewer comments isn't dissatisfaction.
+
+Q: Which concept captures citizens accepting responsibility for helping keep the city safe?
+A: Mutual accountability
+B: Sentiment polarity
+C: K-means initialization
+D: Identity resolution
+=: A
+?: The lecture pairs citizen accountability with police accountability.
+
+Q: A researcher wants a system that marks OSN posts as needing a reply, follow-up or acknowledgement. Which limitation from Week 5.2 motivates this?
+A: Existing tools did not provide mechanisms to mark posts as follow-up, reply, etc.
+B: Police could not access the Internet.
+C: Social media contained no complaints.
+D: Police never interacted with citizens.
+=: A
+?: The "way forward" slide names this gap.
+
+Q: The study used both N-gram analysis and K-means clustering for topics. What is the basic difference?
+A: N-grams characterize lexical patterns, whereas K-means groups observations based on feature similarity.
+B: N-grams are supervised classifiers; K-means is cryptographic.
+C: They are the same algorithm with different names.
+D: K-means measures emotional valence directly.
+=: A
+?: N-grams find frequent word sequences; K-means is unsupervised clustering of documents by features such as TF-IDF.
+
+Q: A citizen-post corpus has high frequencies of "please", "take" and "action". What is the most reasonable interpretation?
+A: Citizens frequently write posts as requests for police intervention.
+B: Citizens mainly discuss machine learning.
+C: Citizens mainly express positive sentiment.
+D: The corpus is entirely police-authored.
+=: A
+?: These words reflect requests, not sentiment or authorship.
+
+Q: Police-initiated discussions were described as more focused than citizen-initiated ones. Which interpretation fits the examples?
+A: Police discussions focused on themes like safety campaigns, advisories and action-taken reports.
+B: Citizen discussions contained no meaningful information.
+C: Police posts were necessarily shorter.
+D: Clustering proves police are always more credible.
+=: A
+?: Citizen clusters covered tips, complaints, neighbourhood problems and missing persons.

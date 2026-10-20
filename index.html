@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>PSOSM MCQ Guide</title>
+    <meta name="description" content="Learn and exam practice for every week of the NPTEL course Privacy and Security in Online Social Media: 600+ MCQs with all options, answers and explanations.">
+    <meta property="og:title" content="PSOSM MCQ Guide">
+    <meta property="og:description" content="Learn and exam practice for every week of NPTEL's Privacy and Security in Online Social Media.">
+    <meta property="og:type" content="website">
+    <meta name="theme-color" content="#2c45c9">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:wght@400;500;600&display=swap">
+  </head>
+  <body>
+    <header class="mast">
+      <div>
+        <div class="code">NPTEL · noc26-cs141</div>
+        <h1>Privacy &amp; Security in Online Social Media — MCQ Guide</h1>
+        <p>Every question from the weekly tutorial sessions, with all options. Learn each set with the answers and reasons, then sit it as an exam.</p>
+      </div>
+    </header>
+
+    <div class="wrap">
+      <nav class="rail" id="rail" aria-label="Question sets"></nav>
+      <main>
+        <div class="picker"><label for="setSelect">Question set</label><select id="setSelect"></select></div>
+        <section class="sethead" id="sethead"></section>
+        <div class="bar" id="bar">
+          <div class="tabs" role="tablist" aria-label="Mode">
+            <button role="tab" id="tabLearn" aria-selected="true">Learn</button>
+            <button role="tab" id="tabExam" aria-selected="false">Exam</button>
+          </div>
+          <div class="toggles" id="toggles"></div>
+        </div>
+        <div id="view"></div>
+      </main>
+    </div>
+
+    <footer class="foot">
+      <span>Questions come from the course's weekly tutorial sessions. Answers follow the TA's keys and in-class marks.</span>
+      <span>Unofficial study aid · not affiliated with NPTEL</span>
+    </footer>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

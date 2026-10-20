@@ -1,0 +1,384 @@
+@ w07a | Week 7 · Part 1 | Session of 4 September — recap: centrality, PageRank, spam and phishing, policing study statistics, Faking Sandy
+N: High out-degree + low in-degree = broadcaster or possible spammer. PageRank weighs who links to you, not only how many.
+N: Policing study, citizen-police threads (CP&C) vs citizen-only (CC): comments 3.34 vs 3.69 (9.49% lower), likes 9.4 vs 13.38 (29.75% lower), negative affect 0.021 vs 0.018 (16.67% higher in CP&C), anxiety 0.001 vs 0.003 (200% higher in CC), arousal 4.4 vs 3.9 (12.82% higher in CP&C), "I" 0.008 vs 0.014. Valence and arousal are emotional measures; interpersonal focus, social orientation and cognition are social/cognitive (LIWC).
+N: Faking Sandy (2012): 10,350 unique fake-image tweets; 86% were retweets; top 30 users (0.3%) caused 90% of retweets; follower links explained only 11% of spread; Decision Tree 97%, tweet features beat user features.
+
+Q: In a directed network, an account has very high out-degree but very low in-degree. Which interpretation is most appropriate?
+A: The account is necessarily the most influential node.
+B: The account broadcasts information widely but receives relatively little attention from other nodes.
+C: The account must have the highest betweenness.
+D: The account must have the highest eigenvector centrality.
+=: B
+?: This fits a broadcaster, promoter or spam account; it implies nothing about betweenness or eigenvector centrality.
+
+Q: User A has 100 followers, mostly ordinary users. User B has only 30 followers, but they are highly influential accounts. Which user can have higher eigenvector centrality?
+A: A, because 100 is greater than 30.
+B: B, because eigenvector centrality considers the importance of connected neighbors.
+C: A, because eigenvector centrality is identical to degree centrality.
+D: Neither, because it only applies to undirected networks.
+=: B
+?: Eigenvector centrality measures the quality of connections, not just their number.
+
+Q: Two dense communities are connected by a single user X with four connections. Another user has 150 connections entirely inside one community. Which statement is most defensible?
+A: The second user must have higher betweenness because degree is higher.
+B: X may have substantially higher betweenness because many shortest paths between communities pass through X.
+C: X must have higher eigenvector centrality.
+D: Betweenness depends only on the number of followers.
+=: B
+?: Removing X could disconnect the two communities; the 150-link user is only central locally.
+
+Q: In a connected network, user P has the smallest average shortest-path distance to all other users. Which conclusion follows most directly?
+A: P necessarily has the highest degree.
+B: P necessarily has the highest betweenness.
+C: P has high closeness centrality.
+D: P necessarily has the highest eigenvector centrality.
+=: C
+?: Minimum distance to everyone is the definition of closeness.
+
+Q: A node has the highest degree, betweenness and closeness centrality in a network. Which statement is logically valid?
+A: It must also have the highest eigenvector centrality.
+B: It must have the lowest PageRank.
+C: It is structurally important according to several different notions of centrality.
+D: It must be a spammer.
+=: C
+?: Eigenvector also depends on neighbours' importance, and legitimate hubs can be highly central.
+
+Q: Two web pages each have 100 incoming links. Page A's come from 100 obscure pages; Page B's from five extremely authoritative pages. Which statement is most plausible?
+A: Page A necessarily has higher PageRank.
+B: Page B can have higher PageRank because PageRank incorporates the importance of linking pages.
+C: Both must have identical PageRank.
+D: PageRank ignores incoming links.
+=: B
+?: A link from an authoritative page transfers far more ranking value.
+
+Q: A group of websites creates thousands of reciprocal hyperlinks mainly to manipulate search rankings without providing real information. Which phenomenon is this?
+A: Semantic phishing
+B: Link farming
+C: Closeness optimization
+D: Sentiment nudging
+=: B
+?: Semantic phishing exploits meaning and context; closeness optimization adds links to shorten distances; sentiment nudging steers emotions through design.
+
+Q: Suspected link farmers have unusually high in-degree compared with random users. Which interpretation is strongest?
+A: Their pages are receiving links from many other pages.
+B: They necessarily have high betweenness.
+C: They necessarily produce more outgoing than incoming links.
+D: They must have low degree.
+=: A
+?: High in-degree just means many incoming links; it doesn't prove malice or determine betweenness.
+
+Q: An account posts thousands of messages, follows thousands of accounts, gets very few responses and repeatedly shares nearly identical links. Which combination most strongly supports a spam label?
+A: High activity combined with low reciprocal engagement and repetitive content
+B: High eigenvector centrality alone
+C: High closeness centrality alone
+D: High emotional valence alone
+=: A
+?: Several behavioural and network signals together are stronger evidence than any single metric.
+
+Q: A network has a diameter of 12. What does this represent?
+A: The network has 12 nodes.
+B: The maximum degree of any node is 12.
+C: The maximum shortest-path distance between any pair of nodes is 12.
+D: There are exactly 12 communities.
+=: C
+?: Diameter is the longest of all shortest paths.
+
+Q: Consider the directed edges A → B, C → B, B → D, B → E, B → B. What are the in-degree and out-degree of B, respectively, if the self-loop contributes one to both?
+A: 2 and 2
+B: 3 and 3
+C: 3 and 4
+D: 4 and 3
+=: B
+?: In: A → B, C → B and the self-loop = 3. Out: B → D, B → E and the self-loop = 3.
+!: The slide printed "A" as the key, but the TA ticked B in class and the slide's own working gives 3 and 3.
+
+Q: A malicious message is carefully written using the victim's job, recent activities, colleagues and organizational terminology so that it appears highly relevant and trustworthy. What is the central principle being exploited?
+A: Human-perceived context
+B: Network diameter
+C: Degree normalization
+D: Random graph generation
+=: A
+?: The attack works on how people judge context and relevance — a semantic attack, as in spear phishing.
+!: The slide printed "B" as the key, but the TA ticked A in class and the slide's explanation describes A.
+
+Q: Which scenario best represents spear phishing rather than generic phishing?
+A: Sending the same fake banking email to ten million random users
+B: Sending a personalized fraudulent message to a specific researcher using details about their current project
+C: Posting a generic advertisement on a website
+D: Creating a legitimate organizational newsletter
+=: B
+?: Spear phishing targets a specific person with personal context.
+
+Q: Which case most clearly constitutes social-media impersonation?
+A: An unofficial fan account that clearly says it is unofficial
+B: Using your own account from a new smartphone
+C: Creating a fake profile using another person's name, photographs and biographical details to deceive others
+D: Changing your profile picture with an image filter
+=: C
+?: The key is deceptively presenting yourself as someone else.
+
+Q: Which statement best captures the main informational function of a privacy policy?
+A: It guarantees users will never experience a privacy breach.
+B: It helps users understand data practices so they can make more informed decisions.
+C: It automatically prevents users from disclosing personal information.
+D: It eliminates all risks of online disclosure.
+=: B
+?: It explains collection, use and sharing; it can't guarantee privacy.
+
+Q: A platform shows "Only 2 minutes left to claim this offer" even though the user could buy later. What type of nudge is this?
+A: Timer nudge
+B: Eigenvector nudge
+C: Degree nudge
+D: Graph-structure nudge
+=: A
+?: A countdown creates a sense of urgency to speed up the decision.
+
+Q: Sentence: "The researchers analyzed the network and identified several influential users." Which group contains words most likely to be treated as stopwords?
+A: researchers, analyzed, network
+B: the, and, the
+C: network, influential, users
+D: analyzed, identified, influential
+=: B
+?: Articles and conjunctions are standard stopwords, though removing them depends on the task.
+
+Q: `x = [2, 1, 3, 4, 5, 2]`, `tokens = ['social','media','nptel','nltk','python','tutorial']`, `pairs = Counter(dict(zip(tokens, x))).most_common(2)`. Which statement is correct?
+A: It returns the two smallest-frequency pairs in ascending order.
+B: It returns the two highest-frequency (token, count) pairs in descending count order.
+C: It randomly selects two tokens because dictionaries are unordered.
+D: It raises an error because Counter can't process dictionaries.
+=: B
+?: Result: [('python', 5), ('nltk', 4)].
+
+Q: Account A has 10,000 followers from a coordinated link farm. Account B has 500 followers, including highly authoritative, independently connected accounts. Which conclusion is most justified?
+A: A must have greater PageRank because its in-degree is larger.
+B: B can outrank A under a PageRank-like algorithm despite fewer incoming links.
+C: PageRank is identical to follower count.
+D: PageRank isn't affected by neighbouring nodes.
+=: B
+?: Low-quality mutually reinforcing links add less value than their count suggests.
+
+Q: A user has extremely high out-degree, extremely low in-degree, low eigenvector centrality, moderate betweenness, highly repetitive posts, thousands of external links, and messages tailored to selected victims. Which interpretation is most comprehensive?
+A: It is necessarily the most influential legitimate authority.
+B: It most likely acts as a broadcaster or malicious/spam account, with contextual targeting suggesting spear-phishing or semantic-attack behaviour.
+C: It must have maximum eigenvector centrality because of high out-degree.
+D: It must be legitimate because low in-degree proves authenticity.
+=: B
+?: Structural, behavioural and semantic signals all point the same way.
+
+Q: In the topic analysis, police-oriented content has frequent unigrams such as "rules", "safety", "violations", "challans" and "prosecuted". What is the most appropriate inference?
+A: Police-oriented discussion contains lexical evidence of regulatory, advisory and enforcement-oriented themes.
+B: These words prove police posts are emotionally neutral.
+C: These words prove every police action succeeded.
+D: Unigram frequencies directly measure causal effects of policing.
+=: A
+?: Word frequency shows topic emphasis, not causality or effectiveness.
+
+Q: The study reports content-generator counts for Police + Citizens and Citizens-only discussions separately. What is the most appropriate interpretation of this kind of analysis?
+A: The study distinguishes interaction/content-generator categories rather than treating all posts as one group.
+B: Every citizen produced exactly one post.
+C: The figures prove police users are more trustworthy.
+D: The numbers represent emotional valence.
+=: A
+?: It separates different interaction structures.
+
+Q: Which measures are explicitly associated with emotional expression rather than social/cognitive orientation? A. Valence B. Arousal C. Interpersonal focus D. Social orientation
+A: A and B only
+B: B and C only
+C: A, B, C and D
+D: C and D only
+=: A
+?: The lecture groups valence and arousal as emotional; interpersonal focus, social orientation and cognition as social/cognitive.
+
+Q: A Mann–Whitney-type test comparing lexical characteristics reports U = 700, p < 0.05, z = −3.57. What is the safest interpretation?
+A: There is statistical evidence that the compared distributions differ under the test used.
+B: The null hypothesis is proven false with certainty.
+C: The result establishes causation.
+D: 700 observations were collected.
+=: A
+?: p < 0.05 rejects "same distribution"; it isn't proof or causation, and U isn't the sample size.
+
+Q: Police-citizen discussions average 3.34 comments; citizen-only discussions 3.69. Which percentage difference does the lecture report for comments?
+A: 9.49% lower
+B: 16.67% higher
+C: 29.75% lower
+D: 75% higher
+=: A
+?: (3.69 − 3.34) / 3.69 ≈ 9.49%. The 29.75% figure is for likes.
+
+Q: Average likes are 9.4 for police-citizen discussions and 13.38 for citizen-only. Which statement is correct?
+A: Police-citizen interactions had approximately 29.75% fewer likes.
+B: They had approximately 29.75% more likes.
+C: They had exactly 9.4% fewer likes.
+D: Like counts were identical.
+=: A
+?: (13.38 − 9.4) / 13.38 ≈ 29.75%.
+
+Q: Which is the most defensible conclusion from the lower interaction observed in police-citizen threads?
+A: Lower engagement necessarily means the police department failed.
+B: Lower engagement can result from early closure after an appropriate police response, so it should not be read without context.
+C: Lower engagement proves citizens dislike police.
+D: Engagement metrics are statistically meaningless.
+=: B
+?: A police reply suggesting action can end a discussion early.
+
+Q: The study reports negative affect of 0.021 for CP&C and 0.018 for CC. Which conclusion is directly supported?
+A: Negative affect was approximately 16.67% higher in CP&C.
+B: Negative affect was approximately 16.67% higher in CC.
+C: Anxiety was zero in both groups.
+D: Arousal was identical.
+=: A
+?: (0.021 − 0.018) / 0.018 ≈ 16.67%.
+
+Q: Anxiety is 0.001 in CP&C and 0.003 in CC. Which interpretation is correct?
+A: Anxiety is approximately 200% higher in CC.
+B: Anxiety is approximately 200% lower in CC.
+C: Anxiety is equal between groups.
+D: Anxiety cannot be compared.
+=: A
+?: 0.003 is three times 0.001, i.e., 200% higher. Not every negative-emotion measure moves the same way.
+
+Q: Tweets from Delhi Traffic Police, Bangalore Traffic Police and Chennai Police contain many traffic alerts, while other departments post more crime-prevention content. What is the most appropriate explanation?
+A: Traffic-police accounts may have a different operational communication mandate
+B: Traffic accounts are necessarily more popular
+C: Crime-prevention accounts can't post traffic information
+D: Twitter/X assigns topics by geography
+=: A
+?: Each department's role shapes what it posts.
+
+Q: A researcher compares raw retweet counts of police departments in the USA, UK and India. Why could this mislead?
+A: Retweets are unrelated to communication
+B: Departments may differ greatly in follower base, posting volume and population served
+C: Only verified accounts can generate retweets
+D: Retweets contain no temporal information
+=: B
+?: Bigger or more active accounts naturally collect more retweets; normalize first.
+
+Q: Which normalization is most appropriate when comparing engagement across police accounts with very different audience sizes?
+A: Engagement per follower
+B: Engagement per police officer only
+C: Engagement per geographic area only
+D: Total tweets divided by account age only
+=: A
+?: It adjusts for how many people could see the posts.
+
+Q: The London police account often replies to citizens, while another police account mainly posts announcements. Which dimension is being compared?
+A: Network topology
+B: Broadcast versus interactive communication
+C: Cryptographic security
+D: Image compression
+=: B
+?: One-way announcements versus two-way engagement.
+
+Q: Arousal is 4.4 in CP&C and 3.9 in CC (12.82% higher in CP&C). What broader interpretation does the lecture link to higher arousal and negative affect?
+A: They may act as markers of sensitisation because of crime.
+B: They prove police caused crime.
+C: They show citizens are anonymous.
+D: They show K-means failed.
+=: A
+?: It's an association, not proof that crime caused the emotion.
+
+Q: Which statement is the most scientifically cautious interpretation of the emotional results?
+A: Higher negative affect proves citizens experienced more crime.
+B: Higher arousal proves police interactions cause anxiety.
+C: Differences in affective measures indicate group-level linguistic/emotional differences but do not by themselves establish causal mechanisms.
+D: Emotional measures have no analytical value.
+=: C
+?: Avoid causal claims from correlational language measures.
+
+Q: Citizen-only discussion threads are highly self-attention focused. Which linguistic pattern most directly supports this?
+A: Higher use of first-person pronouns such as "I"
+B: Higher use of geographic coordinates
+C: Lower frequency of all pronouns
+D: Exclusive use of police terminology
+=: A
+?: First-person pronouns show focus on one's own experience.
+
+Q: The table reports "I" values of 0.008 for CP&C and 0.014 for CC. Why is the conclusion of stronger self-attention in CC plausible?
+A: The "I" proportion is higher in citizen-only discussions.
+B: The "I" proportion is higher in police-citizen discussions.
+C: "I" is absent from both groups.
+D: The value measures anger, not pronoun use.
+=: A
+?: 0.014 > 0.008.
+
+Q: Which is an example of a social/cognitive linguistic measure rather than an emotional measure?
+A: Arousal
+B: Valence
+C: Cognition
+D: Negative affect
+=: C
+?: Cognition reflects thinking and reasoning in language; the others are emotional.
+
+Q: Why is LIWC (Linguistic Inquiry and Word Count) particularly relevant to the Week 5.3 lectures?
+A: It provides linguistic categories that can operationalize cognitive, social and emotional characteristics of text.
+B: It determines whether a police account is genuine.
+C: It replaces all statistical analysis.
+D: It encrypts Facebook data.
+=: A
+?: It turns language into measurable variables such as pronouns, emotion words and cognitive terms.
+
+Q: Two groups have different average numbers of comments. What extra information matters most before concluding they differ substantially?
+A: Variance/standard deviation and sample size
+B: Font size in the presentation
+C: Number of colours in the graph
+D: Profile-picture dimensions
+=: A
+?: Averages alone don't show spread or precision.
+
+Q: The standard deviation of police-citizen comments is 19.19 while the mean is only 3.34. What does this suggest?
+A: The distribution may be highly dispersed and skewed by a small number of very interactive threads.
+B: Every thread had exactly 3.34 comments.
+C: The mean must equal the median.
+D: There is no variation.
+=: A
+?: An SD far above the mean signals a long tail.
+
+Q: An adversary has anonymized Foursquare trajectories and geotagged tweets, and matches users by rare location-time combinations. Which sequence describes the attack?
+A: Encryption → hashing → brute force
+B: Anonymization → differential privacy → encryption
+C: Auxiliary-data matching → trajectory linkage → re-identification
+D: Authentication → authorization → accounting
+=: C
+?: Distinctive location-time patterns act like a fingerprint.
+
+Q: "Police-citizen discussions have fewer comments; therefore police communication is ineffective." Why is this conclusion weak?
+A: Comment volume alone does not distinguish successful resolution from disengagement.
+B: Comments can never measure engagement.
+C: Police-citizen discussions always have more comments.
+D: Every complaint was resolved.
+=: A
+?: Effectiveness needs resolution, sentiment, response time and other measures too.
+
+Q: Which statement best synthesizes the methodological insight across Weeks 5.1–5.3?
+A: Social-media data remove the need for human interpretation.
+B: OSN data can support privacy inference, actionable policing, engagement analysis and behavioural sensing, but interpretation needs care about context, measurement, uncertainty and ethics.
+C: Social-media data are objective because users generate them.
+D: OSN analysis is mainly about counting followers.
+=: B
+?: User-generated data is valuable but incomplete and biased.
+
+Q: Check-ins are anonymized by removing the username, but the sequence Home-area → University → Café → Laboratory → Home-area is unique enough to match the same person in another dataset. Why does removing the username fail?
+A: The username is not the only identifying feature
+B: Usernames can't be removed from databases
+C: Location data are always encrypted
+D: Check-ins can't be linked
+=: A
+?: A trajectory acts as a behavioural fingerprint.
+!: Only three options were printed; option D was added for the exam.
+
+Q: A mechanism publishes Foursquare venue statistics after adding calibrated random noise so one person's check-in has limited influence. Which principle is this?
+A: Differential privacy
+B: Role-based access control
+C: Public-key encryption
+D: CAPTCHA verification
+=: A
+?: It limits how much any one person changes the published result.
+
+Q: Which statements are supported by the "Faking Sandy" study? 1. 10,350 unique tweets with fake images were identified. 2. About 14% of tweets spreading fake images were retweets. 3. The top 30 users (0.3%) generated 90% of retweets of fake images. 4. Follower relationships contributed only 5% to the spread. 5. A Decision Tree reached 97% accuracy, and tweet-based features beat user-based ones.
+A: 1, 3 and 5 only
+B: 1, 2, 4 and 5 only
+C: 1, 2, 3, 4 and 5
+D: 3 and 5 only
+=: A
+?: The paper says 86% were retweets (not 14%) and follower links contributed 11% (not 5%).
+!: Key not printed on the slide; checked against the paper's abstract shown on the slide.

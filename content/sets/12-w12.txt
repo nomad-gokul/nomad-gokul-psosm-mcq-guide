@@ -1,0 +1,392 @@
+@ w12 | Week 12 | Session of 10 October — MongoDB and SQL, centrality and communities, anomaly detection, location privacy, nudges vs dark patterns, coordinated activity
+N: The first four questions of this session repeat Week 11 (rate limiting, dynamic JS content, use the authorized API, tweet-ID overflow), so they appear only there.
+N: MongoDB vs SQL: documents (JSON-like BSON) vs tables · flexible vs fixed schema · scale out by adding servers vs scale up a bigger server · MQL vs SQL · real-time/IoT/fast-changing data vs transactions, finance, ERP, reporting. Indexes speed up queries but cost storage and slow writes. Aggregation pipeline: $match → $group → $project → $sort.
+N: SQL: WHERE filters rows before grouping; HAVING filters groups after GROUP BY. To find rows with no match, LEFT JOIN and test IS NULL (never "= NULL").
+N: Centrality: Degree = most connected · Betweenness = bridge / gatekeeper on shortest paths · Closeness = quickest reach to everyone · Eigenvector = connected to influential nodes · PageRank = important incoming links · Subgraph centrality = part of many closed walks. Clustering coefficient = how tightly a node's neighbours interconnect; participation coefficient = how spread a node's links are across communities. Louvain finds communities by maximizing modularity.
+N: Privacy: data minimization (collect only what the purpose needs) and purpose limitation. Repeated night-time locations → inference of home. Removing usernames is not anonymization: timestamps, coordinates and graph structure can re-identify. Coarsening location trades analytical precision for privacy.
+N: A privacy nudge informs at the decision point ("This post will reveal your location. Continue?"); a dark pattern steers deceptively (big "Share publicly", hidden private option). Semantic = what posts mean; behavioural = when and how often accounts act. Anomalies are evidence, not proof.
+
+Q: Which statement best describes a MongoDB document?
+A: It must always contain exactly the same columns as every other document
+B: It is a JSON-like BSON object containing fields
+C: It can contain only numeric values
+D: It must always be normalized into third normal form
+=: B
+?: BSON is binary JSON with extra types. Documents in one collection can have different fields.
+
+Q: Which MongoDB operation is most appropriate for retrieving documents where age > 30?
+A: db.users.find({age: {$gt: 30}})
+B: db.users.select(age > 30)
+C: SELECT * FROM users WHERE age > 30
+D: db.users.where(age => 30)
+=: A
+?: $gt means "greater than". C is SQL, not MongoDB; B and D aren't real MongoDB methods.
+
+Q: What is the primary purpose of an index in MongoDB?
+A: Increase document size
+B: Speed up suitable queries
+C: Encrypt every document automatically
+D: Remove duplicate collections
+=: B
+?: Without an index MongoDB may scan every document. The cost: extra storage and slower writes.
+
+Q: Which MongoDB feature is most appropriate for grouping documents and computing aggregate values?
+A: Aggregation pipeline
+B: HTML parser
+C: Foreign-key constraint
+D: CSS selector
+=: A
+?: Stages like $match, $group, $project and $sort transform and summarize data, e.g. counts, sums, averages.
+
+Q: Tables: Users(user_id, name) and Posts(post_id, user_id, text). Which query returns users who have no posts?
+A: SELECT * FROM Users WHERE user_id = NULL;
+B: SELECT * FROM Users u LEFT JOIN Posts p ON u.user_id = p.user_id WHERE p.post_id IS NULL;
+C: SELECT * FROM Users u INNER JOIN Posts p ON u.user_id = p.user_id;
+D: SELECT * FROM Posts WHERE post_id IS NULL;
+=: B
+?: LEFT JOIN keeps every user; users without posts get NULL post columns, caught by IS NULL. INNER JOIN drops them, and "= NULL" never matches.
+!: The slide's two-column layout scrambled the option letters. The TA's key "B" and explanation both point to the LEFT JOIN query, labelled B here.
+
+Q: Which SQL clause is evaluated conceptually after GROUP BY to filter groups?
+A: WHERE
+B: HAVING
+C: FROM
+D: SELECT
+=: B
+?: WHERE filters rows before grouping; HAVING filters the groups, so it can use aggregates like COUNT(*).
+
+Q: What does this query return? SELECT user_id, COUNT(*) FROM Posts GROUP BY user_id HAVING COUNT(*) > 100;
+A: Every post with more than 100 characters
+B: Users having more than 100 posts
+C: Users whose ID exceeds 100
+D: Exactly 100 posts per user
+=: B
+?: Posts are grouped per user, counted, and only users with a count over 100 are kept.
+
+Q: Which statement correctly describes the difference between WHERE and HAVING?
+A: WHERE filters groups and HAVING filters rows
+B: WHERE is used only with DELETE
+C: WHERE normally filters rows before grouping, while HAVING filters groups
+D: WHERE and HAVING are always interchangeable
+=: C
+?: For example, WHERE created_at >= … restricts rows, then HAVING COUNT(*) > 10 restricts groups.
+
+Q: In a social-media graph, a user has very high degree centrality but very low betweenness centrality. What is the most appropriate interpretation?
+A: The user necessarily controls information flow between all communities
+B: The user has many direct connections but may not act as a bridge between communities
+C: The user has very few connections but lies on many shortest paths
+D: The user must be a bot
+=: B
+?: Many links, but all inside one group, so they rarely sit on paths between other nodes.
+
+Q: Which situation would most strongly indicate that a node has high betweenness centrality?
+A: It has the largest number of followers in the entire network
+B: It has many connections exclusively within one tightly connected group
+C: It frequently lies on shortest paths connecting otherwise weakly connected communities
+D: It has the highest clustering coefficient
+=: C
+?: That is the definition of a bridge. Many followers means high degree, not betweenness.
+
+Q: A social network contains three tightly connected communities with only a few links between them. Which technique is most directly suited to discovering these communities?
+A: Louvain community detection
+B: Linear regression
+C: Sentiment classification
+D: SQL normalization
+=: A
+?: Louvain repeatedly moves nodes between groups to maximize modularity.
+
+Q: A social-media account has an unusually high posting frequency, extremely repetitive content and connections to many recently created accounts. Which data-mining technique is particularly appropriate for identifying this?
+A: Anomaly detection
+B: PageRank calculation only
+C: K-means image compression
+D: Ordinary database normalization
+=: A
+?: Several unusual behavioural and network features combine into an anomaly score.
+
+Q: A researcher wants to identify users who connect two otherwise separate ideological communities. Which combination of methods would be most informative?
+A: Betweenness centrality and community detection
+B: Sentiment analysis and K-means on word frequency only
+C: Degree centrality and image classification only
+D: SQL aggregation and sentiment analysis only
+=: A
+?: First find the communities, then find the nodes on paths between them. Degree can't tell within-group links from cross-group links.
+
+Q: In a network, every member of a small group is connected to almost every other member. Which measure most directly captures this local structural property?
+A: Clustering coefficient
+B: Betweenness centrality
+C: Global degree only
+D: Sentiment polarity
+=: A
+?: Clustering measures whether a node's neighbours are connected to each other.
+
+Q: A model predicts whether a post will go viral using early engagement, author centrality, posting time and historical engagement. What type of data-mining task is this?
+A: Classification or prediction
+B: Community detection only
+C: Graph traversal only
+D: Database normalization
+=: A
+?: A viral / not-viral label predicted from features is classification (e.g., logistic regression, random forest).
+
+Q: Which scenario represents an anomaly more clearly than normal community structure?
+A: Users discussing the same topic repeatedly
+B: A densely interconnected group with similar interests
+C: A small set of accounts exhibiting synchronized activity at unusual frequencies
+D: Users forming clusters based on common interests
+=: C
+?: Communities of like-minded users are normal; synchronized high-frequency activity deviates from the usual pattern.
+
+Q: Two users have identical numbers of followers, but User A's followers are spread across many communities while User B's are concentrated in one. Which conclusion is most defensible?
+A: User A necessarily has higher degree centrality
+B: User B necessarily has higher betweenness centrality
+C: Their degree may be similar, while their structural positions in the network can differ substantially
+D: User A must have higher sentiment polarity
+=: C
+?: Same count, different roles: A may be a bridge, but exact betweenness can't be read from follower counts.
+
+Q: A researcher combines graph structure, sentiment and behavioural features to identify potentially automated accounts. Why is this multimodal approach generally useful?
+A: A single feature always perfectly identifies bots
+B: Different feature types capture complementary characteristics of account behaviour
+C: Graph features cannot be used with machine learning
+D: Sentiment analysis automatically proves that an account is automated
+=: B
+?: A bot may look human in one dimension but not another. The model gives evidence, not proof.
+
+Q: A researcher runs Gephi's Modularity algorithm on a Twitter/X interaction network and gets a high modularity value. Which interpretation is most appropriate?
+A: Every node has approximately the same degree
+B: The graph contains communities with relatively dense internal connections and comparatively fewer connections between communities
+C: Every community contains exactly the same number of nodes
+D: The network necessarily contains no isolated nodes
+=: B
+?: High modularity = strong community structure; communities need not be equal in size.
+
+Q: In Gephi, User A has the highest degree centrality and User B the highest betweenness centrality. Which statement is most accurate?
+A: User A necessarily controls information flow more than User B
+B: User B necessarily has more followers than User A
+C: User A has many direct connections, while User B occupies an important position on shortest paths
+D: Both users must belong to the same community
+=: C
+?: The two measures capture different things; neither alone decides influence or community.
+
+Q: A user has relatively modest degree but connections to several highly important nodes. Which measure could rank this user highly despite the low degree?
+A: PageRank
+B: Clustering coefficient only
+C: Number of connected components
+D: Average path length
+=: A
+?: PageRank (like eigenvector centrality) weights links by the importance of whoever they come from.
+
+Q: In a weighted Twitter reply network (weight = number of replies), User A has 100 connections of weight 1 and User B has 10 connections of weight 50. What is the major methodological issue?
+A: Degree alone may give a misleading picture of interaction strength
+B: Weighted graphs cannot be visualized in Gephi
+C: Edge weights cannot represent interactions
+D: User B must have greater betweenness
+=: A
+?: Degree: A = 100, B = 10. Weighted degree (strength): A = 100, B = 500.
+
+Q: A mobile social-media app requests continuous GPS access although its main function is posting text. Which privacy principle is most directly relevant?
+A: Data minimization
+B: Referential integrity
+C: Modularity maximization
+D: Query optimization
+=: A
+?: Collect only what the purpose needs; continuous location reveals home, work and routines.
+
+Q: A user never publishes their home address, but their location-tagged posts consistently appear overnight at the same coordinates. What privacy threat does this show?
+A: Direct disclosure only
+B: Inference attack
+C: SQL injection
+D: Link farming
+=: B
+?: Harmless-looking observations combine to reveal something never stated — where the user lives.
+
+Q: A dataset removes usernames but keeps precise timestamps and geographic coordinates for millions of users. Why might anonymization still fail?
+A: Coordinates and temporal patterns can potentially re-identify individuals
+B: Removing usernames always guarantees anonymity
+C: Geographic coordinates contain no identifying information
+D: Timestamps cannot be analysed computationally
+=: A
+?: Movement trajectories are highly distinctive and can be linked to outside data.
+
+Q: A platform replaces exact GPS coordinates with a larger geographic region before sharing data with researchers. What is the primary trade-off?
+A: Increased precision and reduced privacy
+B: Reduced privacy and reduced utility
+C: Improved privacy at the possible cost of analytical precision
+D: Elimination of all inference attacks
+=: C
+?: Spatial generalization is a privacy–utility trade-off; it doesn't stop every inference.
+
+Q: Before a user posts a location publicly, the interface shows: "This post will reveal your current location. Continue?" What is this primarily an example of?
+A: Privacy nudge
+B: Differential privacy
+C: Data normalization
+D: Graph partitioning
+=: A
+?: It makes the consequence visible at the decision point without blocking the choice.
+
+Q: Which design most clearly represents a potentially manipulative dark pattern rather than a neutral privacy nudge?
+A: Clearly explaining that a post contains location information
+B: Providing equally visible "Share" and "Cancel" options
+C: Making "Share publicly" visually dominant while hiding the privacy-preserving option
+D: Showing the audience before publication
+=: C
+?: Hiding the alternative steers the user deceptively; the others inform neutrally.
+
+Q: A researcher examines the meaning, topics, sentiment and linguistic content of posts. This analysis is primarily concerned with:
+A: Semantic behaviour
+B: Physical network topology only
+C: Database indexing
+D: Geographic triangulation
+=: A
+?: Semantic = what is being said. Network structure alone doesn't capture meaning.
+
+Q: Which observation is most closely associated with behavioural or activity-level patterns rather than semantic content?
+A: A user's posts express negative sentiment about a product
+B: A user's messages contain many political keywords
+C: A user posts at unusually regular intervals throughout the day
+D: A user's text contains positive emotional language
+=: C
+?: Timing is about how the user acts, not what the posts mean; A, B and D are semantic.
+
+Q: A bot-detection system uses both repetitive text and highly regular posting intervals. Why is this combination potentially stronger than either feature alone?
+A: Semantic and behavioural features capture complementary dimensions of activity
+B: Repetition alone proves that an account is automated
+C: Temporal information cannot be used in machine learning
+D: Textual information automatically determines network centrality
+=: A
+?: Each feature can occur in real humans; together they discriminate better.
+
+Q: 500 accounts created within a short period repeatedly post the same URLs within seconds of one another. Which approach is most appropriate for initially identifying this pattern?
+A: Anomaly and coordination detection
+B: Simple sentiment analysis only
+C: SQL normalization only
+D: Image segmentation
+=: A
+?: Compare posting times, shared URLs, creation dates and interactions, then check for a suspicious subnetwork.
+
+Q: Which statement about anomaly detection in social media is most accurate?
+A: Every anomaly is automatically malicious
+B: Every malicious account is necessarily statistically anomalous
+C: Anomalous behaviour may have legitimate explanations and requires contextual interpretation
+D: Anomaly detection eliminates the need for human analysis
+=: C
+?: Breaking news or viral content looks anomalous too, and skilled attackers mimic normal behaviour.
+
+Q: 10,000 websites create reciprocal links among themselves despite little topical relevance. What is the principal SEO concern?
+A: Artificial manipulation of backlink-based ranking signals
+B: Improved semantic understanding
+C: Reduced database redundancy
+D: Increased encryption strength
+=: A
+?: Irrelevant reciprocal links inflate authority signals — link spam / link farming.
+
+Q: A Graph API returns a user object and lets the client request that user's posts, followers and interactions through relationships. What is the principal advantage?
+A: It represents relationships as first-class data structures
+B: It eliminates authentication
+C: It guarantees unlimited API requests
+D: It requires SQL joins on the client
+=: A
+?: You navigate edges from one object to related ones; auth and rate limits still apply.
+
+Q: An API allows 100 requests per minute and returns HTTP 429 when the limit is exceeded. Which client-side strategy is most appropriate?
+A: Increase request frequency
+B: Implement throttling and retry with backoff
+C: Disable all authentication
+D: Repeatedly send the same request immediately
+=: B
+?: Slow down, respect Retry-After, and back off exponentially; hammering makes it worse.
+
+Q: A scraper downloads a social-media page's HTML but cannot find posts that are visible in a normal browser. What is a likely explanation?
+A: The content may be dynamically generated or loaded after the initial HTML response
+B: HTML cannot contain text
+C: HTTP cannot transfer social-media data
+D: CSS permanently encrypts the page
+=: A
+?: The first HTML is often just the app shell; JavaScript fetches the posts afterwards.
+
+Q: A MongoDB collection holds documents like { user: "A", likes: 120, sentiment: "positive" }. Which query finds documents with more than 100 likes and positive sentiment?
+A: db.posts.find({likes: {$gt: 100}, sentiment: "positive"})
+B: db.posts.select(likes > 100 AND sentiment = positive)
+C: SELECT * FROM posts WHERE likes > 100;
+D: db.posts.find(likes > 100 OR sentiment = positive)
+=: A
+?: Several fields in one query document are ANDed together.
+
+Q: What does this query identify? SELECT user_id, COUNT(*) AS n FROM Posts WHERE sentiment = 'negative' GROUP BY user_id HAVING COUNT(*) > 50;
+A: Users with more than 50 posts of any sentiment
+B: Users having more than 50 negative posts
+C: Negative posts written by users with IDs greater than 50
+D: Users with exactly 50 negative posts
+=: B
+?: WHERE keeps only negative posts, GROUP BY user counts them, HAVING keeps counts over 50.
+
+Q: Two dense communities are connected by only three bridge nodes, and information from Community A reaches Community B mainly through them. Which metric is particularly useful for identifying these bridge nodes?
+A: Betweenness centrality
+B: Sentiment polarity
+C: Document frequency
+D: SQL primary-key density
+=: A
+?: Bridges lie on many shortest paths; removing them would cut the communities apart.
+
+Q: Several accounts coordinate the distribution of fraudulent links, communicate through private messages and repeatedly redirect victims to the same external infrastructure. Which combination gives the strongest analytical framework?
+A: Network analysis, content analysis and temporal analysis
+B: Sentiment analysis alone
+C: SEO analysis alone
+D: Image compression alone
+=: A
+?: Network shows relationships and shared infrastructure; content shows messages and URLs; timing shows synchronization.
+
+Q: Why is preserving original social-media evidence particularly important in a cybercrime investigation?
+A: Screenshots always preserve every technical property
+B: Original evidence can provide metadata, timestamps, identifiers and contextual information that may be lost during transformation
+C: Social-media evidence cannot be copied
+D: Metadata is irrelevant to investigations
+=: B
+?: Screenshots drop metadata; originals help establish provenance and reconstruct events.
+
+Q: A researcher publishes a social-network graph after removing usernames, but it keeps exact connections, timestamps and geographic coordinates. Why might users still be identifiable?
+A: Graph structure and auxiliary information can enable re-identification
+B: Removing usernames guarantees complete anonymity
+C: Edges have no privacy implications
+D: Geographic information cannot be correlated with networks
+=: A
+?: Distinctive network patterns plus quasi-identifiers can be matched to outside datasets.
+
+Q: A company creates thousands of low-quality websites linking to its main site and to each other, while generating social posts pointing to them. What is the principal concern?
+A: The activity may constitute an artificial link network designed to manipulate visibility or ranking signals
+B: It necessarily improves search quality
+C: It is equivalent to database normalization
+D: It guarantees higher PageRank legitimately
+=: A
+?: It is link farming; coordinated social posts don't make the links organic.
+
+Q: A Graph API lets third-party apps retrieve users' locations, friend networks and activity history. Which principle is most important when deciding whether an app should get all these fields?
+A: Data minimization and purpose limitation
+B: Maximum data collection
+C: Degree centrality
+D: Link farming
+=: A
+?: Give each app only what its stated purpose needs, and use it only for that purpose.
+
+Q: A large community of normal users contains a small densely interconnected group that suddenly starts posting identical content at synchronized times. Which approach gives the strongest initial investigation?
+A: Community detection followed by temporal and behavioural anomaly analysis
+B: Sentiment analysis alone
+C: SQL ORDER BY alone
+D: PageRank alone
+=: A
+?: Find the dense group, then check its timing and behaviour against the norm; content similarity adds a further signal.
+
+Q: 200 accounts use nearly identical language, post at highly regular intervals and interact mainly with one another. Investigators suspect coordinated malicious activity. Which combination of evidence is strongest?
+A: Semantic similarity, temporal behaviour and network structure
+B: Number of followers only
+C: Sentiment score only
+D: Profile-picture similarity only
+=: A
+?: No single signal proves malice; three independent dimensions give much richer evidence.
+
+Q: A researcher analyses a 5-million-user network to identify communities, influential users, suspicious coordinated accounts and location-privacy risks. Which workflow is most methodologically appropriate?
+A: Calculate only degree centrality and classify every high-degree user as suspicious
+B: Perform graph construction and cleaning, community detection, centrality analysis, behavioural/content anomaly detection, and privacy-risk analysis while validating interpretations against context
+C: Use sentiment analysis alone because all social-media information is textual
+D: Remove usernames and assume the resulting dataset is automatically anonymous
+=: B
+?: No single metric captures everything; clean the graph first, combine methods, and interpret anomalies in context.

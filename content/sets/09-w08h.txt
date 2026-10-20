@@ -1,0 +1,328 @@
+@ w08h | Week 9 · Hard set | TA's 40 hard MCQs on Week 8.1 (cross-OSN profile linking via username history) and Week 8.2 (Whisper anonymous network)
+N: "Other Times, Other Values": link profiles across OSNs using username history, not only current values. Usernames chosen because they are unique, public, homogeneous and easy to track over time.
+N: Features: Username Creation Behaviour (Static: similar length/characters/arrangement; Temporal: their evolution) and Username Reuse Behaviour (Occasional: common username, best/second-best similarity; Frequent: common username set, temporal ordering).
+N: Frameworks: Independent (one classifier on set features) vs Cascaded (exact/substring match first, classifier only if negative). Best: Cascaded b2 → linear SVM, accuracy 76.84%, FNR 45.16%, FPR 1.25%; without Twitter–Tumblr pairs 91.20%. Notation: U_S seed username set, U_C candidate set, u_C candidate's current username.
+N: Whisper (Feb 6 – May 1 2014): 9.34M whispers, 15.27M replies, 1,038,364 GUIDs (removed June 2014). Average degree 9.47, clustering 0.033, path length 4.28, assortativity −0.011 (Facebook 1.78/0.059/+0.116; Twitter −0.025).
+N: Whisper behaviour: 18% of content deleted vs 4% on Twitter, top deleted category sexting; deletions peak 3–9 h after posting. 55% of whispers get no reply; most replies arrive within a day. ~80K new users a week but flat activity → users disengage. 90% of interacting pairs are in the same state, 75% within 40 miles.
+
+Q: In the paper "Other Times, Other Values," the authors deliberately move away from comparing only the current value of an attribute across two OSN profiles. What is the core epistemological flaw in the traditional "current-value-only" matching approach that motivates this shift?
+A: It assumes usernames are case-sensitive across platforms
+B: It falsely concludes non-identity when a user has evolved dissimilar current values, even though the underlying individual is the same
+C: It ignores the profile picture attribute entirely
+D: It cannot be computed using syntactic similarity measures
+=: B
+?: Current-value matching misses users whose attributes evolved apart; the paper uses the attribute history to recover the match (the @nitinsgr → @logicalIndian example).
+
+Q: Which of the following best explains why the authors chose username (rather than name, location, or profile picture) as the primary attribute for cross-network identity linkage?
+A: Usernames are always identical to the person's legal name
+B: Usernames are unique, universally/publicly available, homogeneous in character/length restrictions, and easier to collect a temporal history for than other attributes
+C: Usernames cannot be changed once set, unlike names
+D: Usernames are encrypted and hence more secure to process
+=: B
+?: The "Why only usernames?" slide: unique, publicly available on almost every OSN, homogeneous in length/character rules, and easiest to collect a history for.
+
+Q: The "Values change" slide reports the percentage of users with multiple distinct values across attributes over a mere 2-month tracking window using an 8-million-user sample. Which attribute shows the highest proportion of users with multiple (2–5) values in that short window?
+A: Username
+B: Location
+C: Description
+D: ProfilePic
+=: D
+?: In the 2-month, 8-million-user sample, about 60%+ of users had several profile pictures, vs ~53% description, ~15% location and ~6% username.
+!: Based on the bar chart on the slide; the percentages are from the TA's explanation.
+
+Q: In the "Reality!" illustration, @nitinsgr is the Twitter registration-time (t1) username. On Facebook, the username remains @nitinsgr across all three observation times (t1, t2, t3), but on Twitter it evolves to @explorer_nitin and later @logicalIndian. What conceptual category does this exemplify, and what would a naive "current value" matcher incorrectly conclude?
+A: This exemplifies "Static Behavioral Patterns" and the matcher would correctly conclude same-user
+B: This exemplifies "Attribute Evolution" and a naive current-value matcher would incorrectly conclude the two profiles belong to different individuals
+C: This exemplifies "Frequent Reuse Patterns" and the matcher would correctly identify a common username set
+D: This exemplifies "Occasional Reuse Patterns" and the matcher would find the best similarity score is maximal
+=: B
+?: The slide sits under "Attribute Evolution": Twitter changed, Facebook didn't, so comparing only t3 values wrongly says "different people".
+
+Q: The methodology diagram splits behavioral pattern features into two branches: "Username Creation Behavior" and "Username Reuse Behavior." Which of the following correctly pairs a sub-branch with its constituent feature type as shown in the "Features" slide?
+A: Username Creation Behavior → Occasional Reuse Patterns (Common username, similarity scores)
+B: Username Reuse Behavior → Static Behavioral Patterns (Similar length, choice, arrangement of characters)
+C: Username Creation Behavior → Temporal Behavioral Patterns (Evolution of length, choice, arrangement of characters)
+D: Username Reuse Behavior → Temporal Behavioral Patterns (Evolution of length of characters)
+=: C
+?: Username Creation Behaviour splits into Static patterns (similar length/characters/arrangement) and Temporal patterns (their evolution). Reuse Behaviour splits into Occasional and Frequent reuse.
+
+Q: In the Supervised Classification section, two frameworks are proposed: "Independent" and "Cascaded." What is the key structural/algorithmic distinction between them?
+A: Independent framework uses only unsupervised clustering, while Cascaded uses supervised classifiers exclusively
+B: Independent framework directly feeds Username Set Features into a single classifier; Cascaded framework first applies rule-based exact/substring matching on current usernames, and only escalates to a supervised classifier (Naive Bayes/SVM/etc.) on set-difference features if the first stage returns negative
+C: Independent framework only works on Twitter-Facebook pairs; Cascaded only works on Twitter-Tumblr pairs
+D: Independent framework requires GUIDs while Cascaded framework requires WhisperIDs
+=: B
+?: Cascaded = rule-based exact/substring match on current usernames first, then a supervised classifier on set-difference features only if that fails. Independent = one classifier straight away.
+
+Q: From the "Prediction" results table, the best-performing configuration is "Cascaded [b2 → SVM [Linear]]" with Accuracy = 76.84%, FNR = 45.16%, FPR = 1.25%. What does the combination of a relatively high FNR alongside a very low FPR most plausibly indicate about the classifier's error behavior?
+A: The classifier is equally likely to make both types of errors
+B: The classifier is conservative — it rarely mislabels a truly different-user pair as the same, but frequently fails to recognize genuine same-user pairs, likely due to substantial username evolution obscuring true matches
+C: The classifier has zero total error since accuracy exceeds 75%
+D: FNR and FPR values indicate the dataset is perfectly balanced with no noise
+=: B
+?: FNR 45% means about half the true same-user pairs are missed; FPR 1.25% means almost no false matches. The classifier is conservative.
+
+Q: The second "Prediction" table compares the Cascaded framework's accuracy "with" and "without" Twitter-Tumblr instances. Accuracy jumps from 76.74% (all networks) to 91.20% (without Tumblr), with FNR dropping from 45.16% to 16.60%. What is the most defensible inference from this comparison?
+A: Tumblr users never change their usernames
+B: The Twitter-Tumblr pairing is disproportionately responsible for classification difficulty, likely because Tumblr usernames/behavior patterns diverge more from Twitter's creation/reuse conventions than other network pairs (e.g., Instagram, Facebook) do
+C: The exact match baseline performs identically regardless of which networks are included
+D: Removing Tumblr instances increases the total size of the dataset
+=: B
+?: Removing Twitter–Tumblr pairs lifts accuracy from 76.74% to 91.20%, so Tumblr's blog-style usernames cause most of the errors.
+
+Q: How was ground truth (i.e., confirmed same-user profile pairs) primarily collected for this study, and what selection bias does this method likely introduce?
+A: Via government ID verification, introducing no bias since IDs are authoritative
+B: Via self-identification behavior such as cross-referencing one's own OSN accounts (e.g., listing a Tumblr URL in a Twitter bio); this likely biases the sample toward more "extrovert" or openly self-linking users, who may not represent the general population's linking difficulty
+C: Via random sampling of all Twitter users regardless of activity, eliminating bias
+D: Via manual expert annotation with no reliance on user-provided data
+=: B
+?: Ground truth came from self-identification (e.g., a Tumblr link in a Twitter bio), which over-represents "extrovert" users who openly link accounts.
+
+Q: The "Past Usernames Collection" slide describes two distinct mechanisms for collecting historical usernames. What are they?
+A: Web scraping public archive.org snapshots, and manual user surveys
+B: An "Automated Tracker of user identities" polling every 14 days, and detecting "URL Changes on Twitter" (i.e., when a user's bio URL pointing to another platform's account changes, e.g., from badluckgurl.tumblr.com to hazzyonthesun.tumblr.com)
+C: Direct API access granted by Twitter's developer partnership program
+D: Crowdsourced labeling via Amazon Mechanical Turk
+=: B
+?: An automated tracker polling profiles every 14 days, plus detecting changes to the cross-platform URL in Twitter bios.
+
+Q: Consider the dataset statistics: "Past usernames available for both profiles: 21,446 positive pairs, 21,449 negative pairs" versus "Past usernames available only on Twitter but current username available on other profile: 112,451 positive pairs, 112,451 negative pairs." What does the existence of this second, much larger category reveal about a key practical constraint of the methodology?
+A: It reveals that history collection is symmetric and equally easy across all networks
+B: It reveals that historical username data is far more abundant/collectible for the seed network (Twitter) than for many target networks, forcing the framework to also handle asymmetric cases where only current (not historical) values exist on the second platform
+C: It reveals that Instagram history is always more available than Twitter history
+D: It reveals that negative pairs are impossible to construct at scale
+=: B
+?: Full history exists for both profiles in only ~21K pairs, but for ~112K pairs history exists only on Twitter, so the method must handle that asymmetric case.
+
+Q: The lecture states the Twitter Gardenhose dataset tracked 376 million (random) users' usernames over 4 years, finding the percentage with multiple screen names spiked sharply around Jan-2010 and Jan-2011 (reaching ~5.4% and ~7%) before gradually declining toward ~1.5% by Jan-2014. What is a plausible explanation for these early spikes rather than a steady baseline rate throughout?
+A: Twitter's character limit changed permanently in 2010
+B: These spikes likely correspond to platform-level events (e.g., feature changes, promotional pushes, or policy changes around handles) that triggered mass username changes in specific periods, rather than reflecting a constant per-user churn rate
+C: The measurement methodology was broken only during those two months
+D: All 376 million users changed their names simultaneously due to a server migration
+=: B
+?: Sharp spikes at two points (not steady churn) point to platform-wide triggers rather than constant individual behaviour.
+
+Q: Which statement about "Static Behavioral Patterns" versus "Temporal Behavioral Patterns" (both under Username Creation Behavior) is most accurate?
+A: Static patterns compare two current usernames' similarity at one point in time (e.g., length, character choice, arrangement); temporal patterns instead compare the trajectory of how these properties evolved across the historical username sequence on each network
+B: Static patterns require GUID tracking while temporal patterns do not
+C: Static patterns are only computable for Twitter-Instagram pairs
+D: Temporal patterns ignore character arrangement entirely
+=: A
+?: Static = a snapshot comparison of usernames' length, characters and arrangement. Temporal = how those properties change across the username history.
+
+Q: Why might the "Common username set" feature (highlighted in yellow under Frequent Reuse Patterns) be a particularly strong signal compared to "Common username?" (under Occasional Reuse Patterns)?
+A: They are mathematically identical and redundant
+B: "Common username?" only checks whether at least one shared value exists (a binary occasional-overlap signal), whereas "Common username set" captures the degree of overlap between the full historical sets, which is far less likely to occur by chance for two unrelated users given the space of possible usernames
+C: "Common username set" only applies to profile pictures
+D: "Common username?" is only used in the Independent framework, never in Cascaded
+=: B
+?: "Common username?" is a yes/no overlap that can happen by chance; "Common username set" measures how much the whole histories overlap.
+
+Q: In the "Datasets" slide, profile linking is evaluated across three network pairs: Twitter–Instagram, Twitter–Tumblr, and Twitter–Facebook. What methodological role does Twitter consistently play across all three pairings?
+A: Twitter is always the target/candidate network being verified
+B: Twitter serves as the common "seed" or anchor network (SN_A in the methodology diagram) from which the initial username set U_S is drawn, against which candidate profiles on other networks are compared
+C: Twitter is excluded from all pairings and used only for validation
+D: Each pairing uses a different anchor network, never Twitter
+=: B
+?: Twitter is always the seed network (SN_A) supplying the username history U_S; Instagram, Tumblr and Facebook are the candidate networks.
+
+Q: The "Challenges" slide places OSNs along a "Degree of Details" spectrum from Twitter/YouTube/Tinder (little personal information, descriptive opinions) to LinkedIn/Facebook (quality/descriptive personal and professional information). What downstream consequence does this heterogeneity have for the profile-linking task, beyond the attribute evolution problem?
+A: It has no effect since usernames are unaffected by content richness
+B: It means that even syntactically identical usernames may carry different confidence weights depending on which network pairing is involved, since networks with sparse personal disclosure (e.g., Twitter, dating apps) yield fewer corroborating attributes to cross-validate a username match, unlike information-rich networks like LinkedIn
+C: It means Tinder profiles cannot be linked under any circumstances
+D: It implies that only profile pictures should be used for opinion-oriented networks
+=: B
+?: Networks disclose different amounts of detail, so the same username match deserves different confidence depending on the network pair.
+
+Q: The "De-duplicating audience" slide poses the arithmetic problem: is total social audience = 437,632 (FB likes) + 153,000 (Twitter followers) + 805,097 (LinkedIn followers), "or less"? What is the correct conceptual resolution, and how does it connect to the broader lecture theme?
+A: The sum is always exactly correct because each platform has mutually exclusive users
+B: The true unique audience size is less than or equal to the naive sum, because the same individual may follow/like the brand/person across multiple platforms; accurately estimating this requires solving the underlying profile-linking (identity resolution) problem across networks
+C: The sum should be multiplied by 3 to account for undercounting
+D: LinkedIn followers should be excluded from any audience calculation
+=: B
+?: The same person can follow on several platforms, so the true unique audience is at most the naive sum; finding it requires cross-OSN profile linking.
+
+Q: Suppose a follow-up study proposes to only use "Static Behavioral Patterns" (ignoring Temporal and Reuse patterns entirely) to link profiles. Based on the lecture's findings, what is the most likely consequence?
+A: Accuracy would improve dramatically because static features are simpler
+B: Accuracy would likely degrade substantially for users showing significant attribute evolution (as documented in the "But the values change!" and "Reality!" slides), since static, single-snapshot comparisons cannot capture identity signals that only emerge from comparing historical trajectories or reused values across time
+C: FPR would increase to 100% since static features guarantee false positives
+D: The framework would become equivalent to the Cascaded framework automatically
+=: B
+?: Static-only features fall back to current-value matching and miss users whose usernames evolved — the failure the paper set out to fix.
+
+Q: Which pair of terms from the Methodology diagram legend correctly represents the seed network's username set and the candidate network's current-only username, respectively?
+A: SN_A and U_S
+B: U_S and u_C
+C: SN_B and U_C
+D: Feature:1 and Feature:n
+=: B
+?: U_S = the seed profile's (historical) username set; u_C = the candidate's current username only (U_C is the candidate's full set).
+
+Q: The lecture's concluding "Activity" slide asks students to take two of their own real accounts across different networks and (i) find ways to link them, (ii) list the features used, and (iii) list what they would change to make the accounts look unlinked. Pedagogically, what dual purpose does step (iii) serve in the context of privacy and security?
+A: It has no pedagogical purpose beyond busywork
+B: It reframes the linking methodology as a dual-use tool — understanding what signals enable linking (steps i–ii) simultaneously reveals what a privacy-conscious user must actively obscure or diversify (step iii) to resist unwanted cross-network identity resolution, connecting the technical content to the course's stated privacy/security theme
+C: It is designed exclusively to help companies improve targeted advertising
+D: It only tests whether students can change their profile picture
+=: B
+?: Learning which signals link accounts (i–ii) also shows what to change to stay unlinked (iii): the method is dual-use.
+
+Q: The Whisper study collected 1,038,364 GUIDs (Global Universal Identifiers), which the lecture notes "makes it possible to track user, but was removed in June 2014." What is the primary methodological implication of this removal for researchers attempting to replicate or extend this specific network/user-level analysis?
+A: None — GUIDs were never actually used in any part of the analysis
+B: Studies of user-level behavior, network structure, and engagement (e.g., degree distribution, clustering coefficient, assortativity) that depend on linking multiple posts/replies to the same underlying anonymous user become impossible to replicate on data collected after the removal, since post-removal data cannot be reliably attributed to consistent user identities
+C: GUID removal only affected the deletion-ratio content moderation analysis
+D: GUID removal increased the total volume of whispers collected
+=: B
+?: GUIDs linked posts to the same anonymous user. Without them, user-level and network analyses can't be redone on later data.
+
+Q: Whisper's content deletion rate is reported as approximately 18%, compared to approximately 4% on Twitter. What is the most defensible, non-speculative interpretation of this stark difference, grounded strictly in what the lecture presents?
+A: Whisper's moderators are less competent than Twitter's
+B: The anonymity and disinhibition afforded by Whisper's design likely encourages posting of content (as evidenced by the top deletion-related keyword category "Sexting" comprising the largest cluster of most-deleted-content keywords) that more frequently violates platform policy, resulting in a much higher deletion rate than an identity-linked network like Twitter
+C: Twitter has no content moderation policy at all
+D: The 18% vs 4% comparison is not meaningful because the two platforms have different total user bases
+=: B
+?: Whisper deletes ~18% of content vs ~4% on Twitter, and the top deleted-keyword cluster is sexting: anonymity invites more policy-breaking posts.
+
+Q: The Network Analysis table reports assortativity coefficients of approximately −0.011 (Whisper), +0.116 (Facebook), and −0.025 (Twitter). Based on the definition given ("Assortativity measures the probability for nodes in a graph to link to other nodes of similar degrees... Close to zero → random graph"), what does the sign and magnitude comparison across these three networks suggest about Whisper's structural character relative to Facebook specifically?
+A: Whisper is strongly assortative like Facebook, meaning high-degree "hub" users mostly interact with other high-degree users
+B: Whisper's near-zero, slightly negative assortativity (like Twitter's) suggests a comparatively random/disassortative mixing pattern, in contrast to Facebook's clearly positive assortativity, which indicates Facebook's graph (built on offline social ties) has popular users clustering with other popular users, a structural regularity absent in Whisper's stranger-interaction-driven graph
+C: All three networks have identical assortativity, so no distinction can be drawn
+D: Negative assortativity always indicates a "small world" network structure
+=: B
+?: Facebook +0.116 is mildly assortative; Whisper −0.011 and Twitter −0.025 are near zero, i.e. close to random mixing.
+
+Q: The lecture states Whisper's clustering coefficient (0.033) is notably lower than both Facebook's (0.059) and Twitter's (0.048), while Whisper's average degree (9.47) is markedly higher than both Facebook's (1.78) and Twitter's (3.93). What joint interpretation of these two metrics does the lecture explicitly draw?
+A: Whisper users interact with a large sample of other users (high degree), but these interaction partners are highly unlikely to also interact with each other — i.e., Whisper users predominantly encounter complete strangers rather than forming tightly-knit, mutually-connected friend groups (low clustering)
+B: High degree and low clustering together indicate Whisper has the strongest community structure of the three networks
+C: The two metrics are unrelated and cannot be jointly interpreted
+D: Low clustering coefficient in Whisper indicates most whispers receive replies from the same small clique of users
+=: A
+?: The lecture's own words: high average degree (many partners) + low clustering (partners don't know each other) = interacting with complete strangers.
+
+Q: Why does the lecture specifically caution that the average path length calculation involved sampling "100 random nodes... Shortest average path among 3" networks, rather than computing the exact path length across the full graph?
+A: Because exact all-pairs shortest path computation is computationally prohibitive (typically O(V·E) or worse) on graphs with hundreds of thousands to millions of nodes (690K–4,317K nodes here), so researchers commonly estimate average path length via random node sampling as a tractable approximation
+B: Because Whisper's terms of service prohibit computing exact path lengths
+C: Because only 100 total users existed on each platform during the study period
+D: Because path length is undefined for anonymous networks
+=: A
+?: Exact all-pairs shortest paths is too expensive on 690K–4.3M-node graphs, so the path length was estimated from 100 random nodes.
+
+Q: The content moderation methodology involves computing a "deletion ratio" per keyword defined as "(# of deleted whispers with this word) / (all whispers with this keyword)." Suppose a keyword X appears in 10,000 whispers total, of which 3,600 were later deleted. According to the process described, and consistent with the observed "Sexting" category deletion behavior, which range would most plausibly place keyword X near the top of the "most deleted" ranking (assuming ranking reflects deletion ratio magnitude)?
+A: A deletion ratio of 0.36 is inherently too low to appear anywhere near the top-ranked keywords, since top sexting-related terms would show near-100% deletion
+B: A deletion ratio of 0.36 (36%) is a moderately high ratio; whether it ranks near the top depends entirely on the deletion ratios of other keywords in the full ranked list of 2,324 keywords — the lecture does not provide a numeric threshold, so no definitive top/bottom classification can be made from the ratio alone without the comparative distribution
+C: Deletion ratio calculations are impossible without knowing the exact date of each whisper
+D: The example is invalid because deletion ratios can only be computed for exactly 50 keywords
+=: B
+?: The lecture gives the ratio's formula and ranks 2,324 keywords but no threshold, so 0.36 alone can't be placed at the top or bottom.
+
+Q: Deletion delay analysis shows that when re-crawling 200K "latest" whispers, "peak deletion" occurs between 3–9 hours after posting, and "majority deletes within 24 hrs." How does this fine-grained (hourly) finding relate to, and refine, the coarser weekly-granularity finding that "70% of deleted whispers are 'deleted' within one week after posting"?
+A: The two findings are contradictory and cannot both be true
+B: The hourly analysis is a strict refinement/decomposition of the weekly finding: it shows that within that "one week" bucket, deletion activity is heavily front-loaded into the first 24 hours (with a peak specifically at 3–9 hours), rather than being spread evenly across the full week — revealing that moderation response is fast for most flagged content rather than merely "eventually happening within 7 days"
+C: The hourly analysis applies to different whispers than the weekly analysis
+D: The 3-9 hour peak means moderators work exactly one shift per day
+=: B
+?: About 70% of deletions happen within the first week; the hourly re-crawl shows they peak at 3–9 hours and mostly finish within 24 hours.
+
+Q: Reply response-time data shows 2.1% arrive in under 1 minute, 51.7% arrive within [1 min, 1 hour), 40.3% within [1 hour, 1 day), 4.6% within [1 day, 1 week), and 1.3% arrive a week or more later. The lecture concludes: "If a whisper does not get attention shortly after posting, it is unlikely to get attention later." Which single computed statistic from this distribution most directly and quantitatively supports that specific conclusion?
+A: The 40.3% figure for [1h, 1d) alone, since it is the second-largest bucket
+B: The combined 93.4% of replies (2.1% + 51.7% + 40.3%) arriving within the first 24 hours, contrasted sharply with only 5.9% (4.6% + 1.3%) arriving after that — demonstrating that attention overwhelmingly concentrates in the first day, with a steep drop-off (roughly a 16x ratio) for anything beyond it
+C: The 2.1% figure alone, since it represents the fastest replies
+D: No single statistic supports the conclusion; it is purely a qualitative claim unsupported by the histogram
+=: B
+?: 2.1 + 51.7 + 40.3 = 94.1% (the option says 93.4%) of replies come within a day vs 5.9% later — attention is decided early.
+!: The three figures actually add to 94.1%, not 93.4% as printed in option B. B is still the intended answer.
+
+Q: User engagement data shows accumulated users growing steadily (~80K new users/week over 11 weeks) while total daily whispers-and-replies volume remains roughly stable (~2000K per week, per the second engagement chart) rather than growing proportionally. What does the lecture explicitly conclude from this combination, and what is the underlying behavioral mechanism implied?
+A: It concludes that new users are more active than existing users
+B: It concludes that users "disengage" over time — since total platform-wide activity remains flat despite the accumulated user base growing substantially, this implies that a significant fraction of previously-active (existing) users must be reducing or ceasing their contributions, effectively being replaced (in terms of raw output) by newly joining users rather than adding incrementally to total volume
+C: It concludes that Whisper's server infrastructure caps total daily posts regardless of demand
+D: It concludes that new users contribute the majority (over 50%) of all content
+=: B
+?: Users grow by ~80K a week but total activity stays flat, so existing users must be dropping off: users "disengage".
+
+Q: In the "User interactions" geo-distance analysis (503K user pairs), it was found that 90% of interacting user pairs were co-located within the same "State," and 75% had distances under 40 miles. How does this finding interact with the earlier network-structural finding that Whisper users predominantly interact with "complete strangers" (low clustering coefficient)?
+A: These two findings are contradictory — strangers cannot be geographically close
+B: These findings are complementary rather than contradictory: users interact with people they have never socially connected to before (strangers, hence low clustering/no persistent ties) but who are nonetheless geographically proximate, consistent with Whisper's location-based "nearby" feed design surfacing physically local, socially unfamiliar users to one another
+C: The geo-distance finding contradicts the claim that Whisper does not archive user history
+D: The 90% co-location figure means Whisper users must be verified via GPS-linked government ID
+=: B
+?: "Stranger" means no prior social tie, not physical distance. Whisper's nearby feed puts local strangers in touch (90% same state, 75% within 40 miles).
+
+Q: The "Posts per user" CDF shows that roughly 80% of users post fewer than 10 total whispers/replies, while 15% of users post only replies (no original whispers) and 30% post only whispers (no replies). What combined inference about Whisper's user base can be drawn from these three statistics together?
+A: The user base is homogeneous, with nearly all users behaving identically
+B: Whisper exhibits a highly skewed, long-tailed engagement distribution (heavy-tailed CDF) typical of many UGC platforms, with a large majority of low-activity/casual users, and a further behavioral split between passive "repliers" and content-originating "posters," suggesting distinct engagement roles rather than a single uniform usage pattern
+C: 30% of users never post anything at all
+D: The data implies exactly 55% of users are perfectly balanced between whispers and replies
+=: B
+?: ~80% post fewer than 10 times (heavy-tailed), and the reply-only (15%) vs whisper-only (30%) split shows distinct user roles.
+
+Q: Given the explicitly stated study goals — "How do whisper users interact in an anonymous environment?", "Do users form communities similar to those in traditional social networks?", "Does whisper's lack of identities eliminate strong ties between users?", "Does it eliminate stickiness critical to long term engagement?" — which single combination of empirical findings from the lecture most directly and jointly answers all four goals in the same direction (i.e., mutually reinforcing a coherent overall narrative)?
+A: High clustering coefficient, high assortativity, long average path length, and high new-user content share
+B: Low clustering coefficient (no communities), near-zero/random assortativity (no strong preferential ties), predominance of low-frequency stranger interactions (2 interactions being most common in user pairs), and evidence of user disengagement over time (stable content volume despite growing user base) — together painting a coherent picture of a fundamentally different, weakly-tied, low-retention structure compared to traditional social networks
+C: High GUID retention rates and increasing average path length over time
+D: 100% of whispers receiving replies within one minute
+=: B
+?: Low clustering, near-zero assortativity, mostly one-off stranger interactions and user disengagement all point the same way: weak ties, low stickiness.
+
+Q: The lecture cites several socio-political motivations for the rise of anonymous networks: "Increasing awareness of privacy," "Snowden disclosures," "PRISM Surveillance program," and the "Bal Thackeray incident." What is the most defensible way to characterize what these four items collectively represent within the argument structure of the slide?
+A: Four unrelated, coincidental events with no thematic connection
+B: A set of illustrative real-world catalysts/triggers — spanning a general privacy-awareness trend, a landmark global surveillance-disclosure event (Snowden/PRISM), and a specific national incident illustrating consequences of non-anonymous speech (Bal Thackeray, referencing the 2012 Indian case where individuals faced legal action for social media posts) — collectively used to explain rising user demand for anonymity-preserving platforms
+C: Four separate anonymous social networks, listed alongside 4chan and Whisper
+D: Four regulatory bodies responsible for approving anonymous apps
+=: B
+?: The slide lists the causes behind demand for anonymity: rising privacy awareness, Snowden/PRISM, and the 2012 Bal Thackeray Facebook-post arrests.
+
+Q: Whisper's own "Terminology / Claims" state it "Does not archive any user history" and "Does not support persistent social links between users." Yet the researchers were still able to conduct a longitudinal (Feb 6 – May 1, 2014) study tracking 1,038,364 distinct users and computing user-level network/engagement statistics. What does this apparent tension reveal about the epistemic status of platform self-reported privacy claims in empirical OSN research?
+A: It proves Whisper's claims were entirely false in every respect
+B: It illustrates that platform-level privacy claims about not persistently linking user activity can be operationally circumvented by researchers (or potentially adversaries) exploiting incidental technical artifacts (here, GUIDs present in the collected data but not intended as a user-facing persistent-identity feature) — meaning stated privacy design intentions do not automatically guarantee the practical absence of de-anonymizing/linking capability in the underlying data or infrastructure
+C: It proves that GUIDs were a user-facing feature Whisper openly advertised for account continuity
+D: There is no tension at all, since GUIDs and "persistent social links" refer to the same concept and the claims are perfectly consistent
+=: B
+?: Whisper's "no history, no persistent links" describes the user-facing app; backend GUIDs still let researchers link activity over time.
+
+Q: The lecture reports that 55% of whispers receive no replies at all, while 25% have "a chain of at least 2 replies." Combined with the response-time distribution (Q28), what does this jointly suggest about the overall attention/engagement economy on Whisper?
+A: Attention is evenly and predictably distributed across all posted whispers
+B: Whisper's engagement economy is winner-take-most: the majority (55%) of content receives zero engagement, only a minority develops into extended reply chains, and — per the response-time finding — whatever engagement does occur is front-loaded almost entirely into the first 24 hours, meaning both whether a whisper gets attention and how much is decided quickly and unevenly
+C: The 55% figure refers to whispers that were deleted, not whispers lacking replies
+D: 25% of whispers eventually accumulate more than 100 replies each
+=: B
+?: 55% of whispers get no reply and only 25% build a chain of 2+, and replies come within a day: a few posts take most of the attention, decided quickly.
+
+Q: In the "User interactions" section, the finding "smaller user population in same nearby area, higher chance of encounter" and "more whispers 2 users post, more likely they encounter each other" are both presented from separate charts (population-in-nearby-region and combined-posts-of-paired-users, respectively). What underlying statistical/probabilistic principle unifies both findings?
+A: Both findings are coincidental and share no common underlying principle
+B: Both findings reflect a basic "exposure/opportunity" principle common to random-mixing models: the probability of two specific individuals repeatedly encountering one another in a large, weakly-tied, effectively random interaction pool increases when either (a) the pool of competing "other" users nearby is smaller (less dilution of encounter probability), or (b) the individuals themselves generate more total interaction "opportunities" (posts) — both of which raise the base rate at which any two specific users cross paths, consistent with the earlier finding that the overall interaction graph behaves more like a random graph than a highly structured community network
+C: Both findings only apply to users who have mutually "friended" each other
+D: Both findings contradict the earlier claim that Whisper users mostly interact with complete strangers
+=: B
+?: Fewer nearby users or more posts mean more chances to meet — simple exposure, consistent with near-random mixing.
+
+Q: The data collection window for the Whisper study spans February 6 to May 1, 2014 (roughly 12 weeks), during which 9,343,590 whispers and 15,268,964 replies were collected by scraping the "Latest" list. What potential sampling bias could this specific collection method ("Latest" list scraping) introduce into the resulting dataset, relative to the true population of all whispers ever posted?
+A: No bias whatsoever, since "Latest" captures every whisper posted during the window with perfect fidelity regardless of deletion timing or scraping frequency
+B: Whispers that were deleted very quickly (e.g., within minutes, before the scraper's next crawl cycle could capture them) may be systematically underrepresented or entirely missed in the collected dataset, potentially causing the reported deletion statistics (e.g., 18% deletion rate, peak deletion at 3–9 hours) to understate the true prevalence and speed of moderation/deletion activity
+C: The "Latest" list only shows whispers from verified celebrity accounts
+D: Scraping the "Latest" list guarantees replies are always captured before whispers
+=: B
+?: Whispers deleted before the next crawl are never seen, so measured deletion rates and speeds may be understated.
+
+Q: Considering both PDFs together: the profile-linking paper (Week 8.1) treats username reuse and evolution as a positive identity signal to be exploited for linking, whereas the Whisper study (Week 8.2) documents a platform explicitly designed around the absence of persistent, linkable identity. What overarching tension in OSM (Online Social Media) privacy/security does juxtaposing these two lectures reveal?
+A: There is no meaningful connection between the two lectures; they address entirely unrelated topics
+B: The two lectures jointly illustrate a fundamental privacy-security dialectic: the same technical capability that enables useful applications when identity persistence is present (de-duplicated audience measurement, cross-platform personalization, fraud detection via profile linking) simultaneously represents the core privacy threat that anonymity-oriented platforms like Whisper are designed to resist — meaning "identity linkability" is simultaneously a desired feature (Week 8.1's use cases) and the primary threat model (Week 8.2's design goal) depending on the stakeholder's perspective
+C: Both lectures conclude that anonymity is technically impossible to achieve on any platform
+D: Both lectures recommend that all OSN platforms should adopt GUID-based tracking permanently
+=: B
+?: Linkability helps marketers and investigators (8.1) but threatens anonymous users (8.2): the same capability cuts both ways.
+
+Q: Suppose a critic argues: "The Whisper study's network-structural conclusions (low clustering, near-zero assortativity, random-graph-like structure) cannot be trusted because they were derived entirely from GUID-linked data collected before Whisper removed GUIDs, and therefore describe a data-collection artifact of that specific window rather than a stable, generalizable property of anonymous social networks." Evaluate this critique using only what is presented in the lecture.
+A: The critique is entirely invalid because GUIDs were never used for the network analysis section
+B: The critique raises a legitimate and unaddressed limitation: since the network-analysis conclusions rest on a single ~12-week data collection window (Feb–May 2014) using a since-discontinued identifier, the lecture provides no evidence of temporal stability or replication using a different method/window, so generalizing these specific structural findings (exact clustering coefficients, assortativity values) beyond that window and platform should be done cautiously
+C: The critique is invalid because the lecture explicitly demonstrates the same clustering coefficient was reproduced in a completely independent follow-up study after GUID removal
+D: The critique is irrelevant because clustering coefficient does not depend on having consistent user identifiers at all
+=: B
+?: All network numbers come from one ~12-week window using a now-removed identifier, and the lecture shows no replication, so generalize cautiously.
+
+Q: Taken together, which single statement most accurately synthesizes the combined methodological lesson both lectures teach about researching identity, linkage, and privacy on online social media platforms?
+A: Both studies show that platform self-description (whether about attribute stability or anonymity guarantees) should be taken at face value by researchers without independent empirical verification
+B: Both studies converge on the lesson that platform-stated identity/privacy properties (whether "current username = stable identity" assumed by naive profile matchers, or "no persistent user linkage" claimed by Whisper) are frequently inaccurate or incomplete descriptions of the underlying data reality, and that rigorous empirical measurement — leveraging historical attribute trajectories in one case, and incidental backend identifiers (GUIDs) in the other — is required to reveal the true, more complex picture beneath surface-level platform claims or naive assumptions
+C: Both studies conclude that all social media platforms should be regulated identically regardless of their stated privacy models
+D: Both studies find that anonymous and identity-linked platforms produce statistically identical network structures
+=: B
+?: In both studies, platform claims or naive assumptions about identity were incomplete; only careful measurement (username history, GUIDs) revealed the real picture.

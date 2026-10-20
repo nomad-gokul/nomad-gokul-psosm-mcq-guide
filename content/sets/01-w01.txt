@@ -1,0 +1,336 @@
+@ w01 | Week 1 | Session of 25 July — Big Data, privacy basics, Git, Python, security
+N: Domo "Every Minute 2025" (5.52B internet users): Google 5.9M searches · Snapchat 3.3M snaps · Teams 229M meeting minutes · LinkedIn 9,000 job applications · TikTok 16,000 uploads · Netflix 362,962 streaming hours · YouTube 3,472,222 views · Siri 1,041,666 questions.
+N: Centrality: Degree = number of direct links. Betweenness = how often a node sits on shortest paths between others (a bridge). Closeness = short average distance to everyone. An OSN is a graph: person = node, connection = edge.
+N: JSON types: string, number, boolean, object, array, null. No functions.
+
+Q: Match each platform with its per-minute activity. A. Google Search, B. Snapchat, C. Microsoft Teams, D. LinkedIn | 1. 3.3 million snaps sent, 2. 229 million meeting minutes, 3. 5.9 million searches, 4. 9,000 job applications
+A: A-3, B-1, C-2, D-4
+B: A-2, B-3, C-1, D-4
+C: A-1, B-4, C-2, D-3
+D: A-4, B-2, C-3, D-1
+=: A
+?: Google ≈ 5.9M searches, Snapchat ≈ 3.3M snaps, Teams ≈ 229M meeting minutes and LinkedIn ≈ 9,000 job applications every minute.
+
+Q: Match each platform with its per-minute activity. A. TikTok, B. Netflix, C. YouTube, D. Siri | 1. 362,962 streaming hours, 2. 16,000 videos uploaded, 3. 3,472,222 video views, 4. 1,041,666 questions answered
+A: A-2, B-1, C-3, D-4
+B: A-3, B-2, C-4, D-1
+C: A-1, B-4, C-2, D-3
+D: A-4, B-3, C-1, D-2
+=: A
+?: TikTok users upload ~16,000 videos, Netflix streams ~362,962 hours, YouTube gets ~3.47M views and Siri answers ~1M questions every minute.
+
+Q: The "Every Minute in 2025" infographic is cited in Big Data analytics because it most clearly illustrates which combination of Big Data characteristics?
+A: Volume, Velocity, and Variety
+B: Volume, Value, and Visualization
+C: Veracity, Volume, and Virtualization
+D: Variety, Verification, and Visibility
+=: A
+?: Millions of events (volume), generated continuously in real time (velocity), across text, video, voice and transactions (variety). Value and veracity aren't measured in the infographic.
+
+Q: Assertion (A): The "Every Minute in 2025" infographic demonstrates the velocity characteristic of Big Data. Reason (R): The reported activities are continuously generated and processed in real time.
+A: Both A and R are true, and R is the correct explanation of A.
+B: Both A and R are true, but R is not the correct explanation of A.
+C: A is true, but R is false.
+D: A is false, but R is true.
+=: A
+?: Velocity is the speed at which data is generated and processed; the per-minute counts show exactly that, so R explains A.
+
+Q: Which of the following best describes the Privacy Paradox?
+A: Users never share personal information online.
+B: Users express concern about privacy but still disclose personal information.
+C: Privacy laws are contradictory.
+D: Privacy settings cannot be changed.
+=: B
+?: Users say privacy matters, yet keep sharing photos, locations and relationships because convenience and social interaction win out.
+
+Q: Which type of attack attempts to obtain confidential information by manipulating users?
+A: SQL Injection
+B: Phishing
+C: Buffer Overflow
+D: DDoS
+=: B
+?: Phishing impersonates trusted organizations to trick people into revealing passwords, OTPs or bank details. It exploits human psychology, not software bugs.
+
+Q: A developer initializes a local repository, commits changes, creates a GitHub repository, and wants to upload the local project for the first time. Which sequence is correct?
+A: git clone → git add origin → git push
+B: git remote add origin <URL> → git branch -M main → git push -u origin main
+C: git remote -v → git pull origin main → git push
+D: git fetch origin → git remote add origin → git commit
+=: B
+?: Add the remote, rename the branch to main if needed, then push and set upstream. git clone copies an existing remote; a pull isn't needed before the first push to an empty repo.
+
+Q: After running `git remote add origin https://github.com/user/project.git`, which command verifies that the remote was added correctly?
+A: git status
+B: git log
+C: git remote -v
+D: git fetch
+=: C
+?: git remote -v lists configured remote URLs. git status shows working-tree state, git log shows commits, git fetch downloads changes.
+
+Q: Your collaborator updates the remote repository while you modify your local copy. Which Git command is most appropriate before pushing your changes?
+A: git status
+B: git remote -v
+C: git pull
+D: git init
+=: C
+?: git pull downloads and merges the remote commits so you can resolve conflicts before pushing; otherwise the push is rejected.
+
+Q: Which statement best explains why Python virtual environments improve reproducibility?
+A: They increase execution speed.
+B: They ensure every operating system behaves identically.
+C: They isolate project dependencies so the same package versions can be recreated.
+D: They automatically optimize package installation.
+=: C
+?: Each project keeps its own packages; sharing requirements.txt lets others recreate the same versions.
+
+Q: Which of the following is NOT a valid JSON data type?
+A: String
+B: Boolean
+C: Function
+D: Array
+=: C
+?: JSON supports string, number, boolean, object, array and null. It cannot store functions or executable code.
+
+Q: Which command switches to an existing branch named development?
+A: git branch development
+B: git checkout development
+C: git remote development
+D: git status development
+=: B
+?: git checkout switches branches. git branch development only creates the branch; the other two are invalid usages.
+
+Q: After editing three files, you execute `git add file1.py` and then `git commit -m "Update"`. What happens?
+A: All modified files are committed.
+B: Only file1.py is committed.
+C: No files are committed.
+D: Only tracked files are committed.
+=: B
+?: A commit includes only staged changes. The other two edited files stay modified in the working directory.
+
+Q: Which of the following contribute to misinformation spreading rapidly on social media? (Select all that apply)
+A: Algorithmic recommendation systems
+B: Echo chambers
+C: Confirmation bias
+D: Two-factor authentication
+=: A,B,C
+?: Recommenders amplify engaging (often sensational) content, echo chambers repeat claims unchecked, and confirmation bias makes people believe and share what fits their views. 2FA is a security control.
+
+Q: Which statements about Python virtual environments are correct? (Select all that apply)
+A: Multiple virtual environments can exist for the same project.
+B: Each environment can contain different package versions.
+C: Activating a virtual environment permanently changes the system Python installation.
+D: Virtual environments reduce dependency conflicts.
+=: A,B,D
+?: Environments are isolated and can differ in versions. Activation only affects the current shell; it never changes the system Python.
+!: Key not printed on the slide; the answer follows directly from how virtual environments work.
+
+Q: Which concept explains why misinformation often spreads quickly through highly connected individuals?
+A: Betweenness centrality
+B: Degree centrality
+C: Closeness centrality
+D: Homophily
+=: B
+?: Users with many direct connections reach a large audience instantly. Betweenness matters for bridging communities, not for immediate reach.
+
+Q: Which of the following is NOT necessarily an advantage of anonymous social networks?
+A: Reduced fear of social judgment
+B: Greater freedom of expression
+C: Guaranteed protection against cyberbullying
+D: Enhanced privacy
+=: C
+?: Anonymity can lower inhibitions and even increase bullying, so protection is never guaranteed.
+!: The slide's explanation under "17" actually belongs to Q18; this answer follows from the option wording.
+
+Q: Which practice most effectively reduces the exposure of personal information on social media?
+A: Accept every friend request.
+B: Disable two-factor authentication.
+C: Review privacy settings regularly and limit profile visibility.
+D: Use the same password across all platforms.
+=: C
+?: Controlling who sees your profile limits exposure to strangers, identity theft and stalking.
+
+Q: According to Granovetter's "Strength of Weak Ties" theory, weak ties are valuable because they:
+A: strengthen emotional support.
+B: reduce communication costs.
+C: connect individuals to otherwise disconnected social groups, providing novel information.
+D: eliminate structural holes.
+=: C
+?: Close friends share the same circles and information. Acquaintances bridge different groups and bring new ideas and opportunities, such as job leads.
+
+Q: A developer accidentally stages three files with `git add .` but wants to remove only config.py from the staging area while keeping its modifications. Which command should be used?
+A: git reset --hard config.py
+B: git restore config.py
+C: git restore --staged config.py
+D: git checkout config.py
+=: C
+?: --staged unstages the file but keeps the edits. reset --hard, restore and checkout discard the working-copy changes.
+
+Q: Two developers modify the same line of a file in different branches. Git reports a merge conflict. What should be done next?
+A: Delete the repository and clone again.
+B: Resolve the conflicting code manually, stage the resolved file, and commit the merge.
+C: Execute git push --force.
+D: Run git init again.
+=: B
+?: Edit the file to keep the right changes, git add it, then commit the merge. Force-pushing or re-initializing doesn't resolve anything.
+
+Q: Which statement correctly distinguishes git fetch from git pull?
+A: Both commands are identical.
+B: git fetch downloads remote changes without modifying the local branch, whereas git pull downloads and merges them.
+C: git fetch uploads local commits, while git pull downloads commits.
+D: git pull only works after git clone.
+=: B
+?: fetch lets you inspect incoming changes first; pull is fetch followed by merge (or rebase).
+
+Q: A developer executes `git checkout a5f4d9b`, where a5f4d9b is a commit hash, not a branch name. What is the resulting state?
+A: The repository becomes corrupted.
+B: Git enters a detached HEAD state.
+C: A new branch is automatically created.
+D: The current branch is deleted.
+=: B
+?: Checking out a commit detaches HEAD so you can inspect it. New commits there belong to no branch unless you create one.
+
+Q: `response = requests.get("https://example.com")`, then `print(response.status_code)` and `print(response.ok)`. The server returns HTTP 404. Which statement is correct?
+A: response.ok will be True.
+B: response.status_code will be "404" (string).
+C: response.ok will be False while response.status_code will be 404.
+D: The program automatically raises an exception.
+=: C
+?: status_code is the integer 404, and .ok is True only for codes below 400. requests raises nothing unless you call raise_for_status().
+
+Q: privacy.py, security.py and README.md are all modified. You run `git add privacy.py` and `git commit -m "Updated privacy module"`. Which files are included in the commit?
+A: All modified files
+B: Only privacy.py
+C: privacy.py and README.md
+D: None
+=: B
+?: Only the staged file is committed; the others stay as unstaged changes.
+
+Q: Match each platform with its purpose. i. GitHub, ii. LinkedIn, iii. Reddit, iv. Whisper | 1. Professional networking, 2. Collaborative software development, 3. Anonymous discussion, 4. Community discussion forums
+A: i-2, ii-1, iii-4, iv-3
+B: i-1, ii-2, iii-3, iv-4
+C: i-2, ii-1, iii-3, iv-4
+D: i-4, ii-1, iii-2, iv-3
+=: A
+?: GitHub hosts collaborative code, LinkedIn is professional networking, Reddit runs community forums and Whisper is an anonymous app.
+!: Key not printed on the slide; the answer follows from what each platform is.
+
+Q: An attacker sends an email pretending to be your bank and asks you to verify your password using a provided link. This attack is best classified as:
+A: Shoulder surfing
+B: Tailgating
+C: Phishing
+D: Dumpster diving
+=: C
+?: Impersonating a trusted organization to harvest credentials is phishing. Tailgating means following someone into a restricted area; dumpster diving means searching discarded material.
+
+Q: Which Python libraries are commonly used for data analysis or visualization? (Select all that apply)
+A: NumPy
+B: Pandas
+C: Matplotlib
+D: Requests
+=: A,B,C
+?: NumPy for arrays, Pandas for DataFrames, Matplotlib for plots. Requests is for HTTP calls.
+
+Q: Which strategy is most effective in reducing the effects of both echo chambers and filter bubbles?
+A: Following only verified accounts with similar opinions.
+B: Seeking diverse information sources and engaging with different viewpoints.
+C: Disabling antivirus software.
+D: Increasing internet bandwidth.
+=: B
+?: Exposure to multiple credible sources and opposing views counters both algorithmic personalization and like-minded reinforcement.
+
+Q: What is the primary purpose of an authentication token in an OSN or web application?
+A: To permanently store the user's password on the server.
+B: To verify a user's identity after successful authentication and grant access to protected resources.
+C: To encrypt all data stored in the database.
+D: To increase the speed of internet communication.
+=: B
+?: After login the server issues a token (such as a JWT or OAuth access token) so you don't resend your password; it expires or can be revoked.
+
+Q: Which protocol provides secure communication over the Internet?
+A: FTP
+B: HTTP
+C: TLS/HTTPS
+D: SMTP
+=: C
+?: TLS encrypts traffic and HTTPS verifies the site with certificates. FTP, HTTP and SMTP are plain text by default.
+
+Q: Metadata in social media may include:
+A: Photo pixels only
+B: User password
+C: Location, timestamp, and device information
+D: Encryption key
+=: C
+?: Metadata is data about data: GPS location, upload time, device model, IP address, camera settings.
+
+Q: Which of the following is an example of Personally Identifiable Information (PII)?
+A: Browser cache
+B: IP address
+C: Name and Aadhaar number
+D: CPU usage
+=: C
+?: Name plus Aadhaar uniquely identifies a person. An IP address can count as personal data under GDPR but is not the clearest identifier.
+
+Q: Which attack creates multiple fake identities to influence a social network?
+A: Replay Attack
+B: Sybil Attack
+C: Brute Force
+D: Worm Attack
+=: B
+?: A Sybil attacker controls many fake identities. Replay resends captured data, brute force guesses passwords, a worm self-spreads.
+
+Q: End-to-End Encryption ensures that:
+A: Only the server can read messages.
+B: Anyone with the URL can read messages.
+C: Only the communicating users can read messages.
+D: ISPs decrypt messages.
+=: C
+?: Messages are encrypted on the sender's device and decrypted only on the recipient's; servers and ISPs see ciphertext.
+
+Q: Which principle minimizes the amount of collected user information?
+A: Data Mining
+B: Data Minimization
+C: Data Duplication
+D: Data Expansion
+=: B
+?: Collect only what a purpose needs — a weather app needs location, not contacts. It is a core GDPR principle.
+
+Q: CAPTCHA is mainly used to:
+A: Encrypt data
+B: Detect automated bots
+C: Improve bandwidth
+D: Compress images
+=: B
+?: It separates humans from bots, blocking fake sign-ups, spam, credential stuffing and ticket bots.
+
+Q: Differential Privacy primarily protects against:
+A: Hardware failures
+B: Re-identification of individuals in published datasets
+C: SQL Injection
+D: Password theft
+=: B
+?: Calibrated noise makes it hard to tell whether any one person's data is in the dataset while keeping aggregate statistics useful.
+
+Q: Which statement about blockchain-based social media is TRUE?
+A: Blockchain completely guarantees privacy.
+B: Blockchain eliminates all cyber attacks.
+C: Blockchain provides decentralization but does not automatically ensure user privacy.
+D: Blockchain stores no user information.
+=: C
+?: Decentralization removes a single authority, but public ledgers are visible to anyone; privacy needs extra techniques.
+
+Q: What is the primary characteristic of ephemeral content?
+A: It remains permanently available online.
+B: It is encrypted using blockchain.
+C: It automatically disappears after a specified period.
+D: It cannot be shared with others.
+=: C
+?: Ephemeral content such as Snaps and Stories is removed after a fixed time, though recipients can still screenshot it.
+
+Q: Which of the following is NOT an example of ephemeral content?
+A: Instagram Stories
+B: Snapchat Stories
+C: WhatsApp View Once photos
+D: A permanent Facebook profile picture
+=: D
+?: A profile picture stays until you change it; the others disappear by design.
+!: Key not printed on the slide; the answer follows from the definition in Q40.

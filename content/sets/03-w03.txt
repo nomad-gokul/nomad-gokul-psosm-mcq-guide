@@ -1,0 +1,512 @@
+@ w03 | Week 3 | Session of 8 August — Facebook Inspector, Twitter API, MongoDB, privacy techniques, research metrics
+N: Facebook Inspector (FbI): browser plug-in sends a post ID → backend fetches it via the Graph API → 44 public features (entity, text, metadata, link) → two Random Forest models (one trained on URL-blacklist data, one on human annotation) → post is malicious if either flags it. Zero-hour detection, so no likes/comments/shares.
+N: FbI numbers: cross-dataset accuracy only ~39–43%; ~65% of malicious posts still live months later; URL resolution was the slowest step; parallelizing cut response time 2.635 s → 1.893 s; ~1M posts checked in 9 months.
+N: Cronbach's alpha = internal consistency of a questionnaire. Cohen's kappa = annotator agreement beyond chance. NDCG = ranking quality. A Likert item is ordinal data.
+N: Privacy personas (Westin): Fundamentalist avoids sharing · Pragmatist weighs costs and benefits · Unconcerned shares freely.
+
+Q: Which notation is used to separate a key from its value in JSON?
+A: ; (semicolon)
+B: : (colon)
+C: = (equals)
+D: -> (right arrow)
+=: B
+?: JSON pairs are written "key": value.
+!: Key not printed on the slide.
+
+Q: WOT (Web of Trust) is primarily used to evaluate:
+A: Database performance
+B: Website reputation
+C: Network bandwidth
+D: API response time
+=: B
+?: WOT gives reputation scores showing whether a site is safe; Facebook Inspector used it as one URL blacklist source.
+
+Q: Facebook Inspector uses a "twofold" filtering approach. What is the technical justification for this architecture?
+A: Malicious content identified by URL blacklists and by human annotators showed significant characteristic differences.
+B: To ensure private and public posts are handled by different security protocols.
+C: To separate the analysis of crisis events from non-crisis events.
+D: To let the browser plug-in process requests in parallel and reduce wait times.
+=: A
+?: A model trained on one dataset scored only ~39–43% on the other, so two independent models run side by side and a post is flagged if either catches it.
+
+Q: In Facebook Inspector, what does the browser plug-in send to the back-end RESTful API to analyze a post?
+A: The complete HTML source of the Facebook page
+B: The Facebook post ID (fid) through an HTTP GET request
+C: The extracted feature vector of the post
+D: The user's Facebook login credentials
+=: B
+?: The backend fetches the post from the Graph API, builds features, runs the Random Forest models and returns JSON.
+
+Q: Which MongoDB operator matches values greater than 10?
+A: $lt
+B: $eq
+C: $gt
+D: $ne
+=: C
+?: $gt = greater than; $lt less than, $eq equal, $ne not equal.
+!: Key not printed on the slide.
+
+Q: Which language is primarily used with MySQL?
+A: SQL
+B: HTML
+C: JSON
+D: XML
+=: A
+?: MySQL is a relational database queried with SQL.
+!: Key not printed on the slide.
+
+Q: Which statement about the Twitter API is TRUE?
+A: Twitter API never enforces rate limits.
+B: Authentication is unnecessary.
+C: Twitter API may restrict the number of requests in a given time window.
+D: Every endpoint returns unlimited tweets.
+=: C
+?: Endpoints have rate limits per time window, and protected endpoints need authentication.
+!: Key not printed on the slide; Q37 confirms the same fact.
+
+Q: A disaster monitoring application should use:
+A: Search API
+B: Streaming API
+C: Graph API
+D: SMTP API
+=: B
+?: Streaming pushes new posts continuously in real time. Search queries already-posted data; Graph API is Facebook's object API; SMTP is email.
+
+Q: Which JSON object is valid?
+A: {name="John"}
+B: {"name":"John"}
+C: (name:"John")
+D: [name="John"]
+=: B
+?: Keys are double-quoted strings, followed by a colon and the value, inside braces.
+!: Key not printed on the slide.
+
+Q: A tracked file has been modified but not yet staged. Which Git status will it have?
+A: Modified and unstaged
+B: Tracked and staged
+C: Untracked
+D: Ignored
+=: A
+?: Git already tracks it and sees the edit, but git add hasn't run, so it appears under "Changes not staged for commit".
+!: The slide labels this "B" but the text it explains is the option shown here as A.
+
+Q: A developer runs git add ., git commit -m "Initial commit", git push origin main, and Git says "fatal: 'origin' does not appear to be a git repository". What is the most likely reason?
+A: No files were staged.
+B: The remote repository named origin has not been configured.
+C: The commit message is invalid.
+D: The branch name is incorrect.
+=: B
+?: Add and commit succeeded locally; the push fails because no remote called origin exists.
+
+Q: Cronbach's alpha measures:
+A: Internal consistency
+B: External validity
+C: Construct validity
+D: Predictive accuracy
+=: A
+?: It checks whether survey items measure the same concept consistently. 0.70+ is acceptable; very high values can mean redundant items. It measures reliability, not validity.
+
+Q: Which component was the primary response-time bottleneck in Facebook Inspector's real-time analysis?
+A: Random Forest classification execution
+B: URL resolution and landing page validation
+C: Authenticated requests to the Facebook Graph API
+D: Feature vector generation from raw API data
+=: B
+?: Resolving URLs took longest, then the Graph API calls; classification took about a tenth of a second.
+
+Q: Why did Facebook Inspector achieve higher accuracy on non-crisis events than on crisis events?
+A: Blacklists are updated more often during crises.
+B: Crisis data contained fewer URLs, making link features ineffective.
+C: Crisis events had more verified page posts.
+D: Repetitive advertising campaigns during non-crisis events created low-variance feature distributions.
+=: D
+?: Repeated ad campaigns made malicious posts look alike and easy to learn; crisis events bring varied scams and rumours.
+
+Q: Why did the researchers exclude likes, comments and shares from Facebook Inspector's features?
+A: These attributes build up over time and are unavailable at the moment of post creation.
+B: Malicious entities use fake-like services to manipulate them.
+C: Engagement metrics cause overfitting in SVM models.
+D: These features are private and not in the public Graph API.
+=: A
+?: The goal was zero-hour detection, so only features present the instant a post appears could be used.
+
+Q: Using search engine operators to locate publicly exposed files is known as:
+A: Social Surfing
+B: Shoulder Surfing
+C: Google Surfing (Google Dorking)
+D: Packet Sniffing
+=: C
+?: Operators like filetype:, site: and intitle: find documents or pages that were exposed by mistake.
+
+Q: Which attack is most likely to occur on an unsecured public Wi-Fi network?
+A: Shoulder Surfing
+B: Social Surfing
+C: Network Surfing (Packet Sniffing)
+D: Dumpster Surfing
+=: C
+?: Attackers capture unencrypted packets on open Wi-Fi. HTTPS or a VPN protects against it.
+
+Q: Which statement best distinguishes an echo chamber from a filter bubble?
+A: Echo chambers are created only by algorithms, filter bubbles only by users.
+B: Echo chambers arise mainly through social interactions with like-minded people, while filter bubbles are primarily created by algorithmic personalization.
+C: Both terms have exactly the same meaning.
+D: Filter bubbles occur only on decentralized social media.
+=: B
+?: Both reduce information diversity, but echo chambers are socially driven and filter bubbles are algorithm-driven.
+
+Q: Researchers revisited malicious posts months after collecting them and found many still public with thousands of likes. Which finding most strongly shows Facebook's filtering was incomplete?
+A: Nearly 65% of malicious posts remained active months after publication.
+B: Every malicious post disappeared within one week.
+C: All malicious URLs generated Facebook warning pages.
+D: Facebook blocked all malicious pages automatically.
+=: A
+?: Of 11,000+ malicious posts, only about a third had been removed.
+
+Q: Dataset I came from six URL blacklists and Dataset II from human annotation; cross-testing accuracy dropped sharply. Why did the authors recommend a twofold filtering approach?
+A: Human annotation always produces higher accuracy than machine learning.
+B: Blacklist-based and human-annotated datasets capture different kinds of malicious content that complement each other.
+C: URL blacklists cannot detect malware.
+D: Random Forest requires two datasets to operate.
+=: B
+?: Annotators caught scams, propaganda and malicious apps that never appeared on blacklists.
+
+Q: Earlier Facebook spam detectors used message similarity and engagement features. Why did Facebook Inspector reject them?
+A: Facebook no longer stores likes and comments.
+B: Likes, comments and message similarity become useful only after enough time has passed, making them unsuitable for immediate detection.
+C: These features increase memory usage.
+D: They violate Facebook's privacy policy.
+=: B
+?: New posts have no engagement yet, and similarity needs previously seen campaigns, so neither works at zero hour.
+
+Q: Which factors influence a Web of Trust (WOT) reputation score? i. Community ratings ii. Malware reports iii. Phishing reports iv. Website loading speed
+A: i, ii
+B: i, ii, iii
+C: ii, iii, iv
+D: All
+=: B
+?: Ratings and threat reports drive the score; loading speed says nothing about safety.
+
+Q: A disaster monitoring system must receive tweets within seconds of posting. Which API is most suitable?
+A: Twitter Search API
+B: Twitter Streaming API
+C: Graph API
+D: REST Timeline API
+=: B
+?: The Streaming API delivers tweets continuously as they are posted; Search returns already-posted tweets.
+
+Q: Facebook Inspector tested Entity, Text Content, Metadata and Link features. Link features alone did well, yet all four were combined. Why did combining improve detection?
+A: Link features alone were completely ineffective.
+B: Different feature groups capture complementary characteristics of malicious posts.
+C: Random Forest requires exactly forty-four features.
+D: Metadata features automatically generate link features.
+=: B
+?: Each group sees a different side of a post; the combined set beat every single group, with Random Forest best.
+
+Q: A general spam model did well on ordinary posts but poorly on posts from news events. Which conclusion best explains this?
+A: A single universal spam detector is enough for every post.
+B: Machine learning cannot classify event-related posts.
+C: Event datasets contain fewer malicious posts.
+D: Event-specific malicious posts differ significantly from ordinary spam, requiring specialized detection models.
+=: D
+?: Malicious event posts exploit trending news, so they look different from everyday spam (tested on a 267,000-post non-event set).
+
+Q: Naïve Bayes, Decision Tree, SVM and Random Forest were compared on 44 features with repeated 10-fold cross-validation. Which classifier was chosen for Facebook Inspector?
+A: Naïve Bayes
+B: Decision Tree
+C: Random Forest
+D: Support Vector Machine
+=: C
+?: Random Forest had the best accuracy and recall and is less prone to overfitting than a single tree.
+
+Q: Facebook Inspector analyzed nearly one million unique posts in nine months, most within seconds. What does this deployment show?
+A: The system remained only a laboratory prototype.
+B: Real-time machine-learning detection is practical for large-scale deployment.
+C: The plug-in classified posts only after several hours.
+D: The extension depended entirely on URL blacklists.
+=: B
+?: Fast classification on a large real user base shows the approach works outside the lab.
+
+Q: Verified Facebook Pages, including radio stations and public figures with millions of followers, also posted malicious URLs. What is the significance?
+A: Verified Pages never take part in malicious campaigns.
+B: Facebook Pages can spread malicious content to a much larger audience than ordinary users because of their unlimited reach.
+C: Only individual users posted malicious content.
+D: Pages cannot contain URLs.
+=: B
+?: Pages have no follower cap, so their malicious posts reach far more people; verification doesn't guarantee trust.
+
+Q: A false news story spreads because many users believe previous users have already verified it. This is:
+A: Simpson's paradox
+B: Information cascade
+C: Cronbach effect
+D: Zipf distribution
+=: B
+?: People follow others' actions instead of their own evidence. Simpson's paradox is a statistical reversal; Zipf's law relates frequency to rank.
+
+Q: Which statements are correct? S1. Twitter API requires authentication tokens for protected endpoints. S2. Every Twitter API endpoint allows unlimited requests. S3. The Streaming API delivers tweets continuously as they are published.
+A: Only S1
+B: S1 and S3
+C: S2 and S3
+D: All are correct
+=: B
+?: S2 is false because Twitter enforces rate limits.
+
+Q: Which statement is FALSE?
+A: MongoDB stores data in BSON documents.
+B: MySQL stores data in relational tables.
+C: MongoDB requires every document to contain exactly the same fields.
+D: MySQL supports SQL queries.
+=: C
+?: MongoDB has a flexible schema; documents in one collection can have different fields.
+
+Q: Which of the following are valid JSON values? i. String ii. Number iii. Boolean iv. Function
+A: i, ii
+B: i, ii, iii
+C: ii, iii, iv
+D: All
+=: B
+?: JSON also allows objects, arrays and null, but never functions.
+
+Q: Which statements are true? S1. TweetCred estimates tweet credibility. S2. TweetCred works as a browser extension. S3. TweetCred guarantees every highly scored tweet is true.
+A: S1 only
+B: S1, S2
+C: S2, S3
+D: All
+=: B
+?: A credibility score is an estimate, never proof that a tweet is true.
+
+Q: Which commands correctly insert ONE document? i. collection.insertOne(doc) ii. collection.insert(doc) iii. collection.insert_many([doc]) iv. collection.insert_one(doc)
+A: ii, iv
+B: iv only
+C: ii, iii, iv
+D: i, iv
+=: D
+?: insertOne (shell) and insert_one (PyMongo). insert() is deprecated; insert_many is for lists.
+
+Q: Collection restaurants has documents like {"name":"ABC", "rating":5, "city":"Delhi"}. Which query returns all restaurants rated 4 or higher?
+A: db.restaurants.find({"rating":{"$gte":4}})
+B: db.restaurants.find({"rating":">4"})
+C: db.restaurants.select(rating>=4)
+D: db.restaurants.filter(4)
+=: A
+?: $gte means greater than or equal. MongoDB doesn't accept comparison strings or SQL-style syntax.
+
+Q: A researcher wants to collect tweets mentioning #Olympics continuously for 48 hours. Which sequence is most appropriate?
+A: Developer Account → API Key → Streaming API
+B: Streaming API → API Key
+C: MongoDB → API Key
+D: Graph API → MongoDB
+=: A
+?: You need a developer account to get keys, and the keys to use the Streaming API.
+
+Q: A researcher monitors "earthquake" with the Twitter Streaming API. 100,000 matching tweets are posted, and only 1% are delivered due to sampling. About how many tweets arrive?
+A: 100
+B: 1000
+C: 10,000
+D: 50,000
+=: B
+?: 100,000 × 0.01 = 1,000.
+
+Q: TweetCred estimates:
+A: User age
+B: Tweet credibility
+C: Tweet popularity
+D: Tweet length
+=: B
+?: It scores how credible a tweet is in real time.
+!: Key not printed on the slide; Q40 confirms it.
+
+Q: MongoDB stores data primarily as:
+A: Tables
+B: Rows
+C: Documents
+D: Matrices
+=: C
+?: BSON documents grouped into collections.
+!: Key not printed on the slide.
+
+Q: Which privacy persona is least concerned about sharing personal information?
+A: Fundamentalist
+B: Pragmatist
+C: Unconcerned
+D: Anonymous
+=: C
+?: Unconcerned users share freely; fundamentalists avoid sharing; pragmatists weigh benefits.
+!: Key not printed on the slide; Q26's explanation gives the persona definitions.
+
+Q: A Membership Inference Attack attempts to determine:
+A: Whether a specific record was used to train a machine learning model
+B: User passwords
+C: Encryption keys
+D: Firewall configurations
+=: A
+?: It reveals whether a person's data was in the training set; overfitted models are more vulnerable.
+
+Q: Which privacy model adds carefully calibrated random noise to query results?
+A: RSA
+B: AES
+C: Differential Privacy
+D: SHA-256
+=: C
+?: RSA and AES are encryption; SHA-256 is a hash.
+
+Q: OAuth is primarily used for:
+A: Password hashing
+B: Authorization delegation
+C: Database encryption
+D: Virus scanning
+=: B
+?: A user grants an app limited access with an access token, without sharing the password.
+
+Q: Which statement correctly distinguishes OAuth 1.0 from OAuth 2.0?
+A: OAuth 1.0 primarily uses cryptographic request signatures, whereas OAuth 2.0 mainly relies on HTTPS with access tokens.
+B: OAuth 2.0 requires request signatures for every API call, while OAuth 1.0 does not.
+C: OAuth 1.0 does not support authentication tokens, whereas OAuth 2.0 does.
+D: There is no difference.
+=: A
+?: OAuth 2.0 dropped per-request signatures and relies on TLS, which makes it simpler; it's the current standard.
+!: Only three options were printed; option D was added for the exam.
+
+Q: Which legislation introduced the "Right to be Forgotten"?
+A: HIPAA
+B: GDPR
+C: DMCA
+D: SOX
+=: B
+?: The EU's GDPR gives the right to erasure. HIPAA is US health data, DMCA copyright, SOX corporate financial reporting.
+
+Q: Which statement about blockchain-based social media is TRUE?
+A: Blockchain completely guarantees privacy.
+B: Blockchain eliminates all cyber attacks.
+C: Blockchain provides decentralization but does not automatically ensure user privacy.
+D: Blockchain stores no user information.
+=: C
+?: Public ledgers are visible to anyone; privacy needs extra tools such as encryption or zero-knowledge proofs.
+
+Q: Which best explains Contextual Integrity?
+A: Privacy depends on maintaining appropriate information flows within specific social contexts.
+B: Privacy requires complete anonymity.
+C: Privacy means encrypting all data.
+D: Privacy is impossible on social media.
+=: A
+?: Helen Nissenbaum's theory: sharing that suits one context can violate privacy in another.
+
+Q: Which graph attack attempts to identify anonymous users using network topology?
+A: Graph Coloring
+B: Graph Deanonymization
+C: Graph Traversal
+D: Graph Compression
+=: B
+?: Matching an anonymized graph's structure to a known graph can reveal identities; removing names isn't enough.
+
+Q: In federated learning, user privacy is improved because:
+A: Data are centrally stored.
+B: Raw user data remain on local devices.
+C: Passwords are publicly shared.
+D: Encryption is unnecessary.
+=: B
+?: Only model updates leave the device, not the raw data.
+
+Q: A standard 7-point Likert scale produces data that are:
+A: Nominal
+B: Ordinal
+C: Ratio
+D: Interval by definition
+=: B
+?: Responses are ordered, but the gaps between them aren't guaranteed equal and there is no true zero.
+
+Q: Which MongoDB feature allows documents in the same collection to have different fields?
+A: Foreign Keys
+B: Dynamic Schema
+C: Fixed Schema
+D: Table Constraints
+=: B
+?: No fixed table structure is enforced; foreign keys and constraints belong to relational databases.
+
+Q: Which database is generally preferred for applications with many JOIN operations?
+A: MongoDB
+B: Cassandra
+C: MySQL
+D: Redis
+=: C
+?: Relational databases like MySQL handle joins across tables with primary and foreign keys.
+!: The slide first writes "B." but its explanation concludes "the correct answer is C. MySQL".
+
+Q: Which authentication method is commonly required for protected Twitter API endpoints?
+A: FTP Authentication
+B: OAuth
+C: SMTP Authentication
+D: Telnet Authentication
+=: B
+?: Twitter supports OAuth 1.0a and OAuth 2.0 depending on the endpoint.
+
+Q: Which feature best distinguishes the Twitter Streaming API from the Search API?
+A: Retrieves historical tweets only
+B: Receives tweets continuously as they are posted
+C: Does not require authentication
+D: Only collects tweets from verified users
+=: B
+?: Streaming keeps a connection open and pushes matching tweets live; both need OAuth.
+
+Q: What is the primary risk associated with echo chambers?
+A: Increased storage requirements
+B: Reduced internet speed
+C: Reinforcement of confirmation bias and polarization
+D: Improved cybersecurity
+=: C
+?: Repeated agreement strengthens existing beliefs and divides groups.
+
+Q: Which command retrieves every document from a collection?
+A: db.users.find({})
+B: db.users.select(*)
+C: db.users.get()
+D: db.users.all()
+=: A
+?: An empty filter matches every document.
+!: Key not printed on the slide.
+
+Q: Which statement establishes a connection to the local MongoDB server (in Python)?
+A: MongoDB()
+B: MongoClient("localhost")
+C: MongoConnect()
+D: ConnectMongo()
+=: B
+?: PyMongo's MongoClient opens the connection.
+!: Key not printed on the slide.
+
+Q: True or False: OAuth allows a user to grant one application limited access to another service without sharing their password.
+A: True
+B: False
+=: A
+?: Example: signing into Spotify with Google gives Spotify a token, never your Google password.
+
+Q: A platform wants to publish how many users discuss a sensitive topic while ensuring no individual's participation can be inferred. Which technique is designed for this?
+A: RSA public-key encryption
+B: AES symmetric encryption
+C: Differential Privacy with calibrated random noise
+D: SHA-256 cryptographic hashing
+=: C
+?: Noise added to aggregate outputs protects individuals while keeping the statistics useful.
+
+Q: A research workflow uses a 7-point Likert questionnaire, Cronbach's alpha, Cohen's kappa for annotators and NDCG for search results. Which statement is FALSE?
+A: Cronbach's alpha measures the internal consistency of questionnaire items.
+B: Cohen's kappa accounts for agreement occurring by chance.
+C: NDCG rewards highly relevant documents appearing at higher ranks.
+D: Likert scale responses are ratio-scale measurements.
+=: D
+?: Likert responses are ordinal, not ratio.
+
+Q: Which practice most increases Cronbach's alpha artificially?
+A: Removing unrelated items
+B: Adding redundant questions
+C: Increasing sample diversity
+D: Randomizing question order
+=: B
+?: Near-duplicate questions correlate highly and inflate alpha without improving the questionnaire.
+
+Q: An OSN credibility study uses a 7-point Likert questionnaire, reports Cronbach's α = 0.91, Cohen's κ = 0.84 for annotation, and evaluates its recommender with NDCG. Which statement is correct?
+A: Cronbach's alpha measures annotation agreement, Cohen's kappa evaluates ranking quality, and NDCG measures questionnaire reliability.
+B: Likert scale produces ordinal responses, Cronbach's alpha measures internal consistency, Cohen's kappa measures agreement beyond chance, and NDCG evaluates ranked retrieval quality.
+C: Cronbach's alpha and Cohen's kappa always produce identical values.
+D: NDCG measures the reliability of a Likert questionnaire.
+=: B
+?: Each method measures a different part of the study: survey reliability, annotation quality and ranking performance.

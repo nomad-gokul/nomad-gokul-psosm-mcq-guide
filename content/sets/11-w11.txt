@@ -1,0 +1,201 @@
+@ w11 | Week 11 | Session of 3 October, "Week 11 Content Part 2" — X API pricing, scraping pipelines, SEO and link farming, Graph APIs, REST / SOAP / GraphQL, HTTP
+N: X API (checked on docs.x.com): pay-per-use is the default for new developers since 6 February 2026. A post read costs about $0.005; "Create Post with URL" ($0.20) is the most expensive listed operation.
+N: Scraping: dynamic JavaScript pages need browser automation (Selenium). Scrapers only see public data. A production pipeline has collection → normalization (flatten JSON/HTML to a fixed schema) → export layers, and deduplicates by tweet ID. Store tweet IDs as 64-bit integers or strings.
+N: SEO: link farms manipulate link-based ranking (black hat); white hat = useful content that earns relevant links. PageRank propagates importance through the link graph instead of counting links.
+N: APIs: Graph APIs model nodes + edges (traverse an edge to get connections; "paging.next" = next page). SOAP uses XML envelopes; REST is an architectural style, not a protocol; GraphQL lets clients choose fields. HTTP 429 = Too Many Requests; GET retrieves without changing state.
+
+Q: Roughly how much does the official X API pay-per-use plan charge per post read?
+A: About $0.00015
+B: About $0.005
+C: About $0.15
+D: About $5
+=: B
+?: X's pay-per-use pricing lists Post Read at $0.005 per resource.
+!: Key not printed on the slide; confirmed on docs.x.com.
+
+Q: Under the X API pay-per-use pricing, which operation has the highest cost per individual resource/request?
+A: Post Read
+B: Owned Read
+C: User/Following Read
+D: Create Post with URL
+=: D
+?: Creating a post that contains a URL costs $0.20 per request — far above any read.
+!: The slide says "Check the answer"; the key here is from X's published price list.
+
+Q: Which tool or library is commonly used in Python for browser automation and scraping dynamic web pages like Twitter?
+A: Beautiful Soup
+B: Selenium
+C: Pandas
+D: NumPy
+=: B
+?: Twitter loads content with JavaScript, so a real browser driven by Selenium is needed to render it. Beautiful Soup only parses HTML it is given.
+
+Q: What is the primary advantage of using an official API over direct web scraping for Twitter data?
+A: APIs are completely free for unlimited historical data.
+B: APIs provide structured, reliable data endpoints and reduce the risk of IP blocks.
+C: Web scraping is always faster than API requests.
+D: APIs do not require authentication keys.
+=: B
+?: APIs give documented, structured endpoints within agreed limits. They are not free (A) and do need keys (D).
+!: Key not printed on the slide; the other options are plainly false.
+
+Q: Which of the following data types cannot typically be retrieved from a standard public user profile via scraping?
+A: Follower count
+B: Bio text
+C: Private direct messages (DMs)
+D: Join date
+=: C
+?: Scraping only reaches publicly available pages; DMs are private.
+
+Q: In large-scale data pipelines, what is the role of "deduplication"?
+A: Translating raw HTML to XML
+B: Tracking unique post/tweet IDs to prevent saving duplicate records during reruns
+C: Encrypting user handles for privacy
+D: Deleting old data from the platform
+=: B
+?: Reruns and overlapping queries return the same posts; keying on the unique ID stops duplicates being stored.
+
+Q: Which architectural layer in a production-scale Twitter scraper converts raw, nested JSON or HTML responses into a flat, predictable schema?
+A: Collection layer
+B: Normalization layer
+C: Export layer
+D: Visualization layer
+=: B
+?: Collection fetches the raw data, normalization flattens it into a fixed schema, export writes it out.
+!: Key not printed on the slide; "normalization" is the standard name for this step.
+
+Q: What is the primary reason link farming is considered a black-hat SEO technique?
+A: It reduces page-loading time
+B: It manipulates search-engine link-based ranking signals
+C: It improves accessibility
+D: It increases the crawl budget legitimately
+=: B
+?: Networks of sites exist only to create artificial backlinks, gaming the authority signal; this can lead to penalties.
+
+Q: A website receives thousands of backlinks from unrelated domains using nearly identical anchor text. Which SEO issue is most likely?
+A: Keyword cannibalization
+B: Link-spam / manipulative-link signal
+C: Duplicate metadata
+D: Crawl-depth optimization
+=: B
+?: Natural links vary in anchor text and come from related pages; identical anchors from unrelated domains look artificial.
+
+Q: Which statement best distinguishes PageRank from simple backlink counting?
+A: PageRank counts only links from the homepage
+B: PageRank treats every backlink as having identical value
+C: PageRank propagates importance through the link graph
+D: PageRank ignores outbound links
+=: C
+?: A link from an important page counts for more, and outgoing links shape how importance flows.
+
+Q: Which SEO practice is most likely to be considered legitimate white-hat optimization?
+A: Buying thousands of backlinks
+B: Creating hidden text containing keywords
+C: Producing useful content and earning relevant backlinks
+D: Creating doorway pages for search engines
+=: C
+?: White hat improves real usefulness; bought links, hidden text and doorway pages manipulate rankings.
+
+Q: A Graph API represents data primarily as:
+A: Sequential files
+B: Tables only
+C: Nodes and relationships/edges
+D: Binary memory blocks
+=: C
+?: A user is a node connected to posts, followers and comments by edges, unlike foreign keys and joins in SQL.
+
+Q: In a Graph API, which request concept is most appropriate for retrieving the connections of a particular object?
+A: Traversing an edge/relationship
+B: Dropping a table
+C: Compiling a stored procedure
+D: Creating an index file
+=: A
+?: For example, follow a user node's "posts" edge to get that user's posts.
+
+Q: A Graph API response contains { "data": [...], "paging": { "next": "..." } }. What does the "next" field normally indicate?
+A: Authentication failure
+B: The next page of results
+C: Database deletion
+D: API version expiration
+=: B
+?: APIs return results in batches; the next URL or cursor fetches the following batch.
+
+Q: Which property of a Graph API most directly distinguishes it from a conventional REST resource hierarchy?
+A: It cannot use HTTP
+B: It cannot return JSON
+C: It emphasizes relationships between entities
+D: It cannot support authentication
+=: C
+?: Graph APIs still use HTTP, JSON and auth; what's different is that relationships are first-class.
+
+Q: Which protocol / format is most strongly associated with SOAP-based web services?
+A: XML
+B: CSV
+C: JPEG
+D: DNS
+=: A
+?: The SOAP envelope, header and body are XML. REST commonly uses JSON but doesn't require it.
+
+Q: Which statement about REST is correct?
+A: REST requires XML responses
+B: REST requires SOAP envelopes
+C: REST is an architectural style rather than a wire protocol
+D: REST can only operate over TCP directly
+=: C
+?: REST (Representational State Transfer) is usually implemented over HTTP with GET/POST/PUT/PATCH/DELETE, but it is a style, not a protocol.
+
+Q: Which API technology is particularly associated with allowing clients to specify precisely which fields they want?
+A: GraphQL
+B: FTP
+C: SMTP
+D: Telnet
+=: A
+?: The client's query describes the exact shape of data, avoiding over- and under-fetching.
+
+Q: An API returns HTTP status code 429. What does this most commonly indicate?
+A: Unauthorized request
+B: Resource permanently deleted
+C: Too many requests / rate limiting
+D: Server successfully created an object
+=: C
+?: Clients should back off (often per a Retry-After header). 401 = unauthorized, 201 = created.
+
+Q: Which HTTP method is generally intended to retrieve data without modifying server state?
+A: GET
+B: POST
+C: DELETE
+D: PATCH
+=: A
+?: POST creates or triggers processing, PATCH partially updates, DELETE removes.
+
+Q: A scraper repeatedly requests thousands of Twitter/X pages at a fixed high frequency. Which technical mechanism is most likely to interfere?
+A: Rate limiting
+B: SQL JOIN
+C: DNS zone transfer
+D: HTML compression
+=: A
+?: Platforms cap request rates to control automated traffic and respond with errors or temporary blocks.
+
+Q: Why can scraping a JavaScript-heavy social-media website be harder than scraping static HTML?
+A: JavaScript pages never use HTTP
+B: Important content may be generated dynamically after page load
+C: HTML cannot contain text
+D: CSS prevents all scraping
+=: B
+?: The first HTML response may be an empty shell; the data loads later via scripts and API calls.
+
+Q: Which approach is generally preferable when a platform provides an authorized API for accessing public data?
+A: Ignore the API and bypass restrictions
+B: Use the authorized API according to its terms and limits
+C: Generate thousands of anonymous accounts
+D: Circumvent authentication mechanisms
+=: B
+?: Documented endpoints and quotas are predictable; bypassing controls carries legal, security and account risks.
+
+Q: A scraper stores a tweet ID as an integer in a database. What problem can arise?
+A: Tweet IDs can exceed the safe integer range of some systems
+B: Tweet IDs always contain spaces
+C: Tweet IDs cannot be indexed
+D: Tweet IDs are always negative
+=: A
+?: 64-bit IDs lose precision as floating-point numbers (e.g., in JavaScript), so store them as big integers or strings.

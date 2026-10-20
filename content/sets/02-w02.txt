@@ -1,0 +1,588 @@
+@ w02 | Week 2 | Session of 1 August — ephemeral content, network science, credibility, databases and APIs
+N: Echo chamber = social (like-minded people reinforce each other). Filter bubble = algorithmic (personalized feeds narrow what you see). Filter bubbles often feed echo chambers.
+N: Degree = direct links (local reach). Betweenness = bridges between communities. Closeness = 1 / average distance. Eigenvector / PageRank = links from important nodes count more.
+N: Local clustering coefficient = links among a node's neighbours ÷ k(k−1)/2. Small-world = high clustering + short paths. Scale-free = power-law degree distribution (few hubs).
+N: Hurricane Sandy fake-image study: Decision Tree ~97% accuracy; tweet-based features worked, user-based features were poor.
+
+Q: Which social media platform first popularized ephemeral content?
+A: Facebook
+B: LinkedIn
+C: Snapchat
+D: YouTube
+=: C
+?: Snapchat's disappearing snaps and stories started the trend; Instagram and WhatsApp copied it later.
+!: Key not printed on the slide.
+
+Q: Which of the following are examples of ephemeral content? (Select all that apply)
+A: Instagram Stories
+B: Snapchat Stories
+C: WhatsApp View Once photos
+D: A permanent Facebook profile picture
+=: A,B,C
+?: All three disappear after a time or a single view; a profile picture is permanent.
+!: Key not printed on the slide.
+
+Q: Among the activities in the "one minute in OSN" infographic, which is expected to generate the greatest variety of unstructured data for machine learning?
+A: Google Search queries
+B: LinkedIn job applications
+C: TikTok video uploads
+D: DoorDash food orders
+=: C
+?: TikTok uploads combine video, audio, captions, hashtags and comments. Searches are short text, job applications are structured profiles and food orders are transactional.
+
+Q: Homophily in a social network is best defined as:
+A: The tendency of users to connect with geographically nearby individuals.
+B: The tendency of individuals with similar characteristics, beliefs, or interests to form social ties.
+C: The tendency of influential users to connect with everyone.
+D: The tendency of random users to create temporary links.
+=: B
+?: "Birds of a feather flock together." It shapes communities and recommendations and can drive echo chambers.
+
+Q: Which security risk is associated with ephemeral messaging?
+A: SQL Injection
+B: False sense of privacy leading to oversharing
+C: Improved encryption
+D: Reduced storage requirements
+=: B
+?: Users think disappearing messages can't be saved, so they share sensitive things that can still be screenshotted or recorded.
+
+Q: Which best describes the relationship between ephemeral content and digital footprints?
+A: Ephemeral content completely eliminates digital footprints.
+B: Ephemeral content can reduce visible traces but may still leave metadata or backups.
+C: Ephemeral content is never stored anywhere.
+D: Ephemeral content is always publicly archived.
+=: B
+?: The post vanishes from view, but metadata, server logs, backups and recipient screenshots can remain.
+
+Q: Which privacy principle is most closely aligned with ephemeral content?
+A: Data minimization
+B: Data replication
+C: Data mining
+D: Data warehousing
+=: A
+?: Keeping data only as long and as much as needed is data minimization. Replication copies data, mining finds patterns, warehousing centralizes data for analysis.
+!: The slide explains all four options without printing a letter; data minimization is the one it ties to privacy.
+
+Q: An echo chamber in social media is best defined as:
+A: A platform where all users receive identical information regardless of preferences.
+B: An environment where users are repeatedly exposed to opinions that reinforce their existing beliefs through interactions with like-minded individuals.
+C: A system that encrypts all online communications.
+D: A database that stores user profiles.
+=: B
+?: It is driven by social connections and increases polarization and confirmation bias.
+
+Q: A filter bubble is best described as:
+A: A temporary network failure that blocks access to websites.
+B: An algorithmically created environment in which users receive personalized information based on their previous online behavior, reducing exposure to diverse content.
+C: A security mechanism that filters malicious software.
+D: A cloud storage system for multimedia files.
+=: B
+?: Recommendation algorithms personalize by searches, likes and history, so users miss other perspectives.
+
+Q: From a digital forensics perspective, ephemeral content:
+A: Can never be recovered.
+B: May still be recoverable from device storage, backups, or server logs.
+C: Is automatically encrypted forever.
+D: Cannot be examined during investigations.
+=: B
+?: Investigators may recover cached content, metadata or backups depending on the platform and device.
+
+Q: Which statement best describes ephemeral content from a cybersecurity perspective?
+A: It completely eliminates privacy risks.
+B: It provides stronger privacy by design but does not guarantee confidentiality.
+C: It replaces encryption technologies.
+D: It makes authentication unnecessary.
+=: B
+?: Limited availability reduces exposure, but confidentiality still depends on encryption, access control and what recipients do.
+
+Q: Which of the following is NOT a characteristic of the unidirectional model?
+A: Followers receive updates from the account they follow.
+B: Mutual approval is required before connecting.
+C: Commonly used by celebrities and influencers.
+D: Supports one-way information dissemination.
+=: B
+?: In a unidirectional model you follow without approval. Mutual approval belongs to the bidirectional model.
+
+Q: Which connection model generally offers the highest level of trust between individual users?
+A: Unidirectional
+B: Bidirectional
+C: Multidirectional
+D: Anonymous
+=: B
+?: Both users must accept, which creates a confirmed, more trusted relationship (e.g., Facebook friends).
+
+Q: Which connection model requires mutual acceptance before establishing a relationship?
+A: Unidirectional
+B: Bidirectional
+C: Multidirectional
+D: Hierarchical
+=: B
+?: One user requests, the other accepts — as with Facebook friends or LinkedIn connections.
+
+Q: Which social media platform primarily uses a unidirectional connection model?
+A: Facebook
+B: LinkedIn
+C: X (Twitter)
+D: WhatsApp
+=: C
+?: On X you can follow public accounts without them following back.
+
+Q: Which type of "surfing" involves watching a person enter a password?
+A: Web Surfing
+B: Shoulder Surfing
+C: Social Surfing
+D: Google Surfing
+=: B
+?: Shoulder surfing is physically observing someone type a password or PIN, e.g., at an ATM or café.
+
+Q: Which statement correctly defines the relationship between an echo chamber and a filter bubble?
+A: Both terms refer exclusively to network security protocols.
+B: A filter bubble is created mainly by algorithms, while an echo chamber is reinforced through social interactions among like-minded individuals.
+C: Echo chambers are created only by government regulations.
+D: Filter bubbles occur only in email communication systems.
+=: B
+?: Bubble = algorithm-driven personalization; chamber = socially reinforced opinions. They often occur together.
+
+Q: Why do social media companies frequently use recommendation algorithms?
+A: To reduce server memory usage.
+B: To personalize content and increase user engagement.
+C: To encrypt all messages automatically.
+D: To eliminate fake news completely.
+=: B
+?: Personalized feeds keep users on the platform longer, which helps advertising and retention, but can create filter bubbles.
+
+Q: Which statement about algorithmic personalization is correct?
+A: It guarantees users receive unbiased information.
+B: It presents identical content to every user.
+C: It customizes content based on previous user interactions.
+D: It completely eliminates misinformation.
+=: C
+?: Likes, shares, searches and watch history drive what each user sees, so different users get different feeds.
+
+Q: A researcher wants to study polarization caused by social media. Which phenomenon should be investigated most directly?
+A: Data compression algorithms
+B: Echo chambers among online communities
+C: Hard disk fragmentation
+D: Wireless signal interference
+=: B
+?: Echo chambers reinforce beliefs through repeated like-minded interaction, making opinions more extreme over time.
+
+Q: Which statement best explains the relationship between echo chambers and filter bubbles?
+A: They are unrelated concepts.
+B: Filter bubbles often contribute to the formation of echo chambers by limiting exposure to diverse information.
+C: Echo chambers always eliminate misinformation.
+D: Filter bubbles exist only in email systems.
+=: B
+?: Personalization narrows what users see, they then interact mostly with like-minded people, and an echo chamber forms.
+
+Q: The degree centrality of a node in an undirected social network primarily measures:
+A: The average shortest path from the node to every other node.
+B: The number of direct connections a node has.
+C: The probability that information passes through the node.
+D: The clustering coefficient of the node.
+=: B
+?: Degree counts direct neighbours — local popularity, not global influence.
+
+Q: A node with extremely high degree centrality in a retweet graph most likely represents:
+A: a spam detector
+B: the originator or highly influential spreader
+C: a disconnected user
+D: an inactive account
+=: B
+?: Being retweeted by many users gives high (in-)degree, typical of the source of popular content or an influential spreader.
+
+Q: Which statement regarding degree centrality is FALSE?
+A: High-degree nodes usually have many immediate contacts.
+B: Degree centrality measures local popularity.
+C: Degree centrality always identifies the best bridge between communities.
+D: Degree centrality ignores indirect paths.
+=: C
+?: A high-degree node may sit entirely inside one community. Betweenness is the measure for bridges.
+
+Q: Which node has the highest closeness centrality?
+A: Node with the smallest average shortest-path distance to all other nodes.
+B: Node with the largest degree.
+C: Node connecting two communities.
+D: Node having the highest clustering coefficient.
+=: A
+?: Closeness is the inverse of average shortest-path distance, so the smallest average distance wins.
+
+Q: Which centrality measure is most appropriate for identifying users capable of spreading misinformation rapidly to their immediate followers?
+A: Degree Centrality
+B: Betweenness Centrality
+C: Clustering Coefficient
+D: Network Diameter
+=: A
+?: Many direct connections means instant reach to many followers.
+
+Q: Which centrality measure is most useful for identifying brokers connecting otherwise disconnected communities?
+A: Degree Centrality
+B: Betweenness Centrality
+C: Local Clustering Coefficient
+D: Eigenvalue
+=: B
+?: Betweenness counts how often a node lies on shortest paths between others — the definition of a broker.
+
+Q: During a misinformation campaign, authorities wish to minimize information flow by removing only a few users. Which strategy is generally most effective?
+A: Remove users with the highest local clustering coefficient.
+B: Remove users with the highest betweenness centrality.
+C: Remove randomly selected users.
+D: Remove users with the smallest degree.
+=: B
+?: High-betweenness nodes connect communities; removing them breaks many shortest paths and fragments the network.
+
+Q: Which social media phenomenon is most directly explained by homophily?
+A: Users with similar political opinions frequently follow each other.
+B: Internet bandwidth increases during peak hours.
+C: Encryption improves message security.
+D: Cloud storage automatically synchronizes files.
+=: A
+?: Similar people connect, so like-minded political users follow each other and polarized communities form.
+
+Q: A network where highly connected users preferentially connect to other highly connected users exhibits:
+A: Homophily
+B: Assortative mixing
+C: Preferential attachment
+D: Reciprocity
+=: B
+?: Positive degree assortativity means similar-degree nodes connect. Preferential attachment is about new nodes linking to popular ones.
+
+Q: The Hurricane Sandy misinformation study mainly demonstrated that:
+A: All online information is trustworthy.
+B: False images and rumors can spread rapidly during disasters.
+C: Twitter prevents all misinformation.
+D: Newspapers spread faster than social media.
+=: B
+?: Fake images went viral during the 2012 hurricane; a Decision Tree using tweet features separated fake from real with ~97% accuracy.
+!: Key not printed on the slide.
+
+Q: Which data format is most commonly returned by modern REST APIs?
+A: PDF
+B: JSON
+C: DOCX
+D: EXE
+=: B
+?: JSON is lightweight, easy to parse and supported by nearly every language.
+
+Q: The local clustering coefficient measures:
+A: The fraction of neighbors of a node that are also connected to each other.
+B: The shortest distance between two communities.
+C: The average degree of the network.
+D: The probability that a node receives information.
+=: A
+?: 1 means every neighbour knows every other neighbour; 0 means none do.
+
+Q: A node has 5 neighbors. Among these neighbors there are 6 connections. The local clustering coefficient equals:
+A: 0.30
+B: 0.40
+C: 0.60
+D: 0.80
+=: C
+?: Maximum links among 5 neighbours = 5×4/2 = 10, so C = 6/10 = 0.60.
+
+Q: The global clustering coefficient primarily measures:
+A: Average shortest-path distance.
+B: Overall tendency of nodes in the network to form triangles.
+C: Maximum node degree.
+D: Network diameter.
+=: B
+?: It is the share of connected triples that close into triangles across the whole network.
+
+Q: Which feature can be computed immediately after a tweet is published?
+A: Total retweets after one day
+B: Number of followers
+C: Long-term propagation depth
+D: Final cascade size
+=: B
+?: Follower count belongs to the author's account. The others only exist after the tweet has spread over time.
+
+Q: Comparing retweet graphs at hour n and hour n+1 primarily helps identify:
+A: linguistic sentiment
+B: diffusion dynamics
+C: user demographics
+D: annotation quality
+=: B
+?: Snapshots over time show how the tweet spreads: new retweets, new branches, influential users.
+
+Q: In OSN / Twitter analysis we study "What you post and who you are". This reflects:
+A: Combining content and source features improves ranking
+B: Only metadata matters
+C: Only tweet text matters
+D: Network structure is unnecessary
+=: A
+?: Credibility ranking uses both the tweet's content and the author's (source) features; B, C and D each throw one of them away.
+!: No key was printed; the TA ticked A on the slide.
+
+Q: Which evaluation scenario is most appropriate for Normalized Discounted Cumulative Gain (NDCG)?
+A: Predicting whether a tweet is spam or not
+B: Ranking tweets from most credible to least credible
+C: Counting followers
+D: Clustering users
+=: B
+?: NDCG scores ranked lists, rewarding the most relevant (credible) items placed at the top, with graded relevance.
+
+Q: Which modification would most directly improve confidence in the TweetCred credibility model?
+A: Increase tweet length
+B: Use more annotators and report inter-annotator agreement
+C: Remove cross validation
+D: Reduce the feature set to one feature
+=: B
+?: More annotators reduce individual bias, and agreement measures like Cohen's or Fleiss' kappa show the labels are reliable.
+
+Q: A researcher observes high homophily, a high clustering coefficient and low betweenness between communities. Which phenomenon is most likely to emerge?
+A: Random graph formation
+B: Echo chambers and polarized communities
+C: Uniform information exposure
+D: Complete absence of misinformation
+=: B
+?: Similar people cluster tightly with few bridges between groups, so views go unchallenged.
+
+Q: Eigenvector centrality differs from degree centrality because it considers:
+A: Only the number of direct neighbors.
+B: The shortest path between nodes.
+C: The importance of neighboring nodes as well as the number of neighbors.
+D: The clustering coefficient of the network.
+=: C
+?: A link from an influential node counts more. PageRank uses the same recursive idea.
+
+Q: Which degree distribution is characteristic of a scale-free network?
+A: Uniform distribution.
+B: Gaussian distribution.
+C: Power-law distribution.
+D: Binomial distribution.
+=: C
+?: Most nodes have few links and a few hubs have very many; preferential attachment produces this.
+
+Q: Community detection algorithms primarily aim to:
+A: Encrypt user messages.
+B: Divide a network into densely connected groups with sparse connections between groups.
+C: Increase network bandwidth.
+D: Remove duplicate users.
+=: B
+?: Louvain and Girvan–Newman maximize modularity to find such groups.
+
+Q: Reciprocity in a directed social network measures:
+A: The fraction of mutual connections between users.
+B: The average shortest path.
+C: Network density.
+D: Betweenness centrality.
+=: A
+?: If A follows B and B follows A, the link is reciprocal. Facebook has higher reciprocity than X.
+
+Q: According to Granovetter's Strength of Weak Ties theory, weak ties are important because they:
+A: Reduce network density.
+B: Connect different communities and introduce novel information.
+C: Always produce high clustering coefficients.
+D: Eliminate homophily.
+=: B
+?: Weak ties link different groups, giving access to new ideas and opportunities that close circles don't have.
+
+Q: The PageRank algorithm primarily determines the importance of a webpage or user based on:
+A: The total storage space used.
+B: The number and importance of incoming links.
+C: The number of uploaded images.
+D: Internet bandwidth consumption.
+=: B
+?: A link from a highly ranked node contributes more than one from an unimportant node (random-surfer model).
+
+Q: Why is PageRank generally considered superior to degree centrality when ranking social media influencers?
+A: It ignores incoming links.
+B: It uses only clustering coefficients.
+C: It depends only on geographic location.
+D: It considers both the quantity and quality of incoming connections.
+=: D
+?: Endorsements from influential users weigh more, so many low-quality links can't inflate the score.
+
+Q: Which characteristic is most closely associated with relational databases?
+A: Schema-less storage
+B: Table-based organization with rows and columns
+C: Graph representation
+D: Key-value storage
+=: B
+?: Relational databases store records as rows in tables with a defined schema.
+
+Q: The primary purpose of a primary key is to:
+A: Store duplicate records
+B: Uniquely identify each record in a table
+C: Connect two databases
+D: Encrypt the database
+=: B
+?: No two rows share a primary key and it can't be NULL; foreign keys reference it.
+
+Q: Which of the following is a NoSQL database?
+A: MySQL
+B: PostgreSQL
+C: MongoDB
+D: Oracle SQL
+=: C
+?: MongoDB stores flexible JSON-like documents. The others are relational SQL databases.
+
+Q: Why are NoSQL databases popular for social media applications?
+A: They only store numbers.
+B: They support flexible schemas.
+C: They cannot scale.
+D: They require fixed tables.
+=: B
+?: Users generate varied data, and new fields can be added without redesigning tables; NoSQL also scales horizontally.
+
+Q: A small-world network is characterized by:
+A: High clustering coefficient and short average path length.
+B: Zero clustering coefficient and long paths.
+C: Random degree distribution with isolated nodes.
+D: Equal degree for every node.
+=: A
+?: Dense local neighbourhoods plus short global paths — "six degrees of separation".
+
+Q: Betweenness centrality measures:
+A: Number of neighbors.
+B: Number of shortest paths passing through a node.
+C: Average node degree.
+D: Number of triangles around a node.
+=: B
+?: High-betweenness nodes act as bridges; removing them may fragment the network.
+
+Q: What is the primary purpose of an API?
+A: Store database tables
+B: Allow software applications to communicate
+C: Increase internet speed
+D: Replace operating systems
+=: B
+?: An API is a defined interface for one program to request data or actions from another.
+!: Key not printed on the slide.
+
+Q: Which HTTP method is primarily used to retrieve information from a server?
+A: POST
+B: DELETE
+C: GET
+D: PUT
+=: C
+?: GET reads a resource without changing it. POST creates, PUT updates, DELETE removes.
+
+Q: Table students(student_id, department, cgpa). Which query retrieves departments having more than 50 students?
+A: SELECT department FROM students GROUP BY department HAVING COUNT(*) > 50;
+B: SELECT department FROM students WHERE COUNT(*) > 50;
+C: SELECT department FROM students GROUP BY student_id;
+D: SELECT COUNT(*) FROM students WHERE department > 50;
+=: A
+?: Group by department, then filter groups with HAVING. Aggregates like COUNT can't go in WHERE.
+!: The slide's option letters are scrambled; the four queries are shown here in a clean order.
+
+Q: Which characteristic often causes misinformation to spread rapidly on social media?
+A: Slow internet
+B: Emotional or sensational content
+C: Strong passwords
+D: Database indexing
+=: B
+?: Posts that trigger fear, anger or excitement get more likes and shares, so they spread faster.
+
+Q: What is the primary purpose of database indexing?
+A: To increase database size
+B: To speed up data retrieval operations
+C: To encrypt database records
+D: To reduce the number of tables
+=: B
+?: An index lets the database find records without scanning the whole table, at the cost of storage and slower writes.
+
+Q: Which feature is directly obtained from the content of a tweet?
+A: Account creation date
+B: Tweet text
+C: Number of followers
+D: User ID
+=: B
+?: The text yields keywords, hashtags and sentiment; the others are account metadata.
+
+Q: MongoDB collection "employees" (fields: salary, department, skills[], age, address.city). HR wants employees whose salary is between ₹60,000 and ₹100,000 inclusive.
+A: db.employees.find({salary:{$gt:60000,$lt:100000}})
+B: db.employees.find({salary:{$gte:60000,$lte:100000}})
+C: db.employees.find({salary:{$eq:60000,$eq:100000}})
+D: db.employees.find({salary:[60000,100000]})
+=: B
+?: Inclusive bounds need $gte and $lte; $gt and $lt exclude the endpoints.
+
+Q: Retrieve employees working in either the CSE or ECE department.
+A: db.employees.find({department:{$in:["CSE","ECE"]}})
+B: db.employees.find({department:"CSE","ECE"})
+C: db.employees.find({department:{$all:["CSE","ECE"]}})
+D: db.employees.find({department:{$eq:["CSE","ECE"]}})
+=: A
+?: $in matches any value in the list.
+
+Q: The skills field is an array. Which query retrieves employees who have both Python and MongoDB skills?
+A: db.employees.find({skills:{$all:["Python","MongoDB"]}})
+B: db.employees.find({skills:{$in:["Python","MongoDB"]}})
+C: db.employees.find({skills:"Python","MongoDB"})
+D: db.employees.find({skills:{$eq:"Python","MongoDB"}})
+=: A
+?: $all requires every listed value; $in would match either one.
+
+Q: Retrieve all employees except those who are 40 years old.
+A: db.employees.find({age:{$ne:40}})
+B: db.employees.find({age:{$not:40}})
+C: db.employees.find({age!=40})
+D: db.employees.find({age:40})
+=: A
+?: $ne means "not equal".
+
+Q: Identify employees who earn more than ₹60,000 and are younger than 35.
+A: db.employees.find({salary:{$gt:60000},age:{$lt:35}})
+B: db.employees.find({$or:[{salary:{$gt:60000}},{age:{$lt:35}}]})
+C: db.employees.find({salary:60000,age:35})
+D: db.employees.find({salary:{$lt:60000},age:{$gt:35}})
+=: A
+?: Conditions separated by commas in one filter are combined with AND.
+
+Q: Display only each employee's name and salary, hiding the _id field.
+A: db.employees.find({}, {name:1,salary:1,_id:0})
+B: db.employees.find({name,salary})
+C: db.employees.find({name:1,salary:1})
+D: db.employees.select(name,salary)
+=: A
+?: The second argument of find() is the projection; _id:0 hides the id.
+
+Q: Addresses are embedded documents. Which query retrieves employees whose city is Kanpur?
+A: db.employees.find({"address.city":"Kanpur"})
+B: db.employees.find({address.city:"Kanpur"})
+C: db.employees.find({city:"Kanpur"})
+D: db.employees.find({address=="Kanpur"})
+=: A
+?: Use dot notation, and the dotted key must be quoted.
+
+Q: Some documents may contain an optional field phone_number. Which operator checks whether this field exists?
+A: $defined
+B: $present
+C: $available
+D: $exists
+=: D
+?: {phone_number: {$exists: true}} matches documents that have the field.
+
+Q: List employees from the highest salary to the lowest.
+A: db.employees.find().sort({salary:-1})
+B: db.employees.find().sort({salary:1})
+C: db.employees.sort({salary:-1})
+D: db.employees.find({salary:-1})
+=: A
+?: sort() is applied to the cursor from find(); -1 is descending.
+
+Q: Identify employees who either earn more than ₹70,000 or belong to the HR department.
+A: db.employees.find({$or:[{salary:{$gt:70000}},{department:"HR"}]})
+B: db.employees.find({salary:{$gt:70000},department:"HR"})
+C: db.employees.find({salary||department})
+D: db.employees.find({$and:[{salary:{$gt:70000}},{department:"HR"}]})
+=: A
+?: $or takes an array of conditions; B and D are AND.
+
+Q: Inter-annotator agreement measures:
+A: Internet speed
+B: How consistently different annotators label the same data
+C: Database size
+D: API response time
+=: B
+?: High agreement means clear guidelines and reliable labels; measured with Cohen's kappa, Fleiss' kappa or Krippendorff's alpha.
+
+Q: A Cohen's Kappa value close to 1 indicates:
+A: Poor agreement
+B: Random agreement
+C: Strong agreement beyond chance
+D: Invalid data
+=: C
+?: Kappa ranges from −1 to 1 and corrects for chance agreement, unlike raw accuracy.

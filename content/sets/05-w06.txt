@@ -1,0 +1,385 @@
+@ w06 | Week 6 | Session of 29 August — centrality, e-crime and spam, fake news detection tools
+N: Degree (in-degree = followers, out-degree = following) is the easiest measure to fake with bots. Betweenness marks bridges and brokers — low degree can still mean high betweenness. Closeness = short average distance. Eigenvector = connected to important nodes. A node can be high on several at once; none implies another.
+N: E-crime: clickbait = sensational headlines for clicks · link farming = artificial hyperlink networks to game ranking · spamdexing = deceptive manipulation of search indexing (keyword stuffing, hidden text) · spam followers = fake accounts that follow someone · reciprocity analysis is a measurement, not an attack.
+N: Tools: TweetCred (Twitter, browser plug-in, real-time score) → Facebook Inspector (Facebook) → WhatsFarzi (WhatsApp app). CredEye = web evidence for a claim. Birdwatch = crowd notes shown on diverse consensus; HawkEye tests its robustness.
+N: Multimodal detectors: EANN (adversarial, event-invariant features) · MVAE (variational autoencoder, shared latent space) · SpotFake (BERT text + VGG image).
+
+Q: An undirected network has edges A–B, A–C, B–D, C–D, D–E. Which node has the highest betweenness centrality?
+A: A
+B: B
+C: D
+D: E
+=: C
+?: E reaches A, B and C only through D, and D also sits on paths between B and C.
+
+Q: In a directed network, A→B means A follows B. User X has 250 followers, follows 20 users, and lies on many shortest paths between weakly connected communities. Which statement is most accurate?
+A: X necessarily has the highest out-degree centrality.
+B: X necessarily has the highest in-degree centrality.
+C: X may have high in-degree and betweenness, but relatively low out-degree.
+D: X must have the highest closeness centrality.
+=: C
+?: 250 followers = high in-degree; following 20 = low out-degree; bridging communities = high betweenness.
+
+Q: Node P has degree 20 but its neighbours form one tight community. Node Q has degree 6 but connects two otherwise disconnected communities. Which conclusion is most defensible?
+A: P must have greater betweenness because its degree is larger.
+B: Q can have greater betweenness despite having lower degree.
+C: P and Q must have identical betweenness.
+D: Degree and betweenness are mathematically equivalent.
+=: B
+?: Shortest paths between the two communities must pass through Q, not P.
+
+Q: A node has very short average shortest-path distances to all other nodes in a connected network. What does this primarily indicate?
+A: The node has the largest number of followers.
+B: The node can reach other nodes efficiently through the network.
+C: The node lies on every shortest path.
+D: The node has the highest eigenvector centrality.
+=: B
+?: That is high closeness centrality — good for fast dissemination.
+
+Q: Two users have the same number of connections. User A is connected mostly to low-degree peripheral users; User B to several highly influential users. Who has higher eigenvector centrality?
+A: User A
+B: User B
+C: Both must be equal
+D: Neither can have eigenvector centrality
+=: B
+?: Eigenvector centrality weights each link by the importance of the neighbour.
+
+Q: In a Twitter-like network (A→B means A follows B), user X follows 500 accounts but is followed by only 10. Which statement is correct?
+A: X has high in-degree and low out-degree.
+B: X has low in-degree and high out-degree.
+C: X has high betweenness automatically.
+D: X necessarily has high eigenvector centrality.
+=: B
+?: Following = outgoing edges (500); followers = incoming edges (10).
+
+Q: A spam account S sends follow requests to users A, B, C and D. B is a highly connected, influential legitimate user. Which node is most directly the spam target?
+A: S
+B: B
+C: The users who follow S
+D: None of the above
+=: B
+?: S is the spammer; the legitimate account it targets is the spam target.
+
+Q: A malicious actor creates 5,000 fake accounts to follow a legitimate account X and make it look popular. What is the most appropriate interpretation?
+A: X is necessarily the spammer.
+B: This is exclusively link farming.
+C: X is a spam follower of every fake account.
+D: The fake accounts are spam followers, while X is the potentially targeted account.
+=: D
+?: The spammer, the spam followers and the target can all be different entities.
+
+Q: A group of websites is created mainly to generate many reciprocal hyperlinks among themselves, with little meaningful content, to manipulate search ranking. This is:
+A: Clickbait
+B: Link farming
+C: Reciprocity analysis
+D: Social etiquette
+=: B
+?: Artificial links make sites look more authoritative to search engines.
+
+Q: A website inserts popular but unrelated keywords into hidden page elements so search engines associate it with those queries. Which phenomenon is this?
+A: Spamdexing
+B: Reciprocity
+C: Betweenness manipulation
+D: Closeness attack
+=: A
+?: Keyword stuffing is a classic spamdexing technique.
+
+Q: Which scenario is the strongest example of clickbait rather than search-engine spam?
+A: A website creates thousands of artificial backlinks.
+B: A webpage stuffs unrelated keywords into metadata.
+C: A headline deliberately creates curiosity and exaggerates the content to induce clicks.
+D: A bot generates thousands of fake followers.
+=: C
+?: Backlinks = link farming, keyword stuffing = spamdexing, fake followers = network manipulation.
+
+Q: Directed relationships: A follows B, B follows A, C follows D, D does not follow C, E follows F, F follows E. If reciprocity is the proportion of directed edges that have a reverse edge, what is the global reciprocity?
+A: 1/2
+B: 2/3
+C: 4/5
+D: 1
+=: C
+?: Five directed edges (A→B, B→A, C→D, E→F, F→E); four of them have a reverse edge.
+
+Q: Many fake accounts all connect to one central account, and the fakes have no other meaningful links. Which centrality is most directly inflated?
+A: Degree centrality
+B: Betweenness centrality necessarily
+C: Closeness centrality necessarily
+D: Average path length of the entire network
+=: A
+?: Each fake adds a direct link; it doesn't make the account a bridge.
+
+Q: Node X has moderate degree, connects two otherwise separated communities, is only a few steps from most nodes, and links to several highly influential users. Which measures could all be high for X?
+A: Degree only
+B: Betweenness only
+C: Betweenness, closeness, and eigenvector centrality
+D: None — a node can't be high on several at once
+=: C
+?: Bridge = betweenness, few steps = closeness, influential neighbours = eigenvector.
+
+Q: A campaign creates 1,000 bots that (1) follow high-profile users, (2) link reciprocally to each other, (3) post sensational headlines, (4) create backlinks to misinformation sites, (5) push those sites up search results. Which combination captures the mechanisms?
+A: Clickbait + link farming + fake/spam followers + spamdexing
+B: Betweenness + closeness + eigenvector centrality only
+C: Reciprocity + social etiquette + legitimate engagement
+D: Closeness centrality + encryption + authentication
+=: A
+?: Each step is a different manipulation, across both the social graph and search engines.
+
+Q: Node P has degree 40 inside one dense community. Node Q has degree 8 but is the only bridge between two very large communities. Which statement is most likely?
+A: P must have greater betweenness because 40 > 8.
+B: Q can have greater betweenness despite having much lower degree.
+C: Degree and betweenness are equivalent in undirected networks.
+D: Q can't have high betweenness unless it has the highest degree.
+=: B
+?: All shortest paths between the two big communities pass through Q.
+
+Q: Two users have identical degree. User A follows ten ordinary users; User B follows ten users with extremely high eigenvector centrality. Which statement is most appropriate?
+A: A and B must have identical eigenvector centrality.
+B: B is likely to have greater eigenvector centrality because its neighbours are structurally important.
+C: A must be higher because ordinary users are less likely to be bots.
+D: Eigenvector centrality depends only on direct connections.
+=: B
+?: Equal degree does not mean equal eigenvector centrality.
+
+Q: A malicious actor creates 10,000 fake accounts that all follow legitimate account X to make it look popular. Which measure is most directly and artificially inflated?
+A: Degree / in-degree centrality
+B: Betweenness centrality
+C: Average shortest-path distance
+D: Network diameter
+=: A
+?: Each fake follower adds an incoming edge to X.
+
+Q: A researcher wants users who act as brokers between otherwise disconnected communities, even if they lack many direct connections. Which measure should be prioritized?
+A: Degree centrality
+B: Betweenness centrality
+C: Eigenvector centrality
+D: Reciprocity
+=: B
+?: Betweenness is designed to find bridges.
+
+Q: 500 websites with little original content are created mainly to link to one another and raise the authority of selected sites in search ranking. Which interpretation is most precise?
+A: Link farming intended to manipulate search ranking
+B: Legitimate reciprocal networking
+C: Clickbait, because users are encouraged to click
+D: Closeness-centrality optimization
+=: A
+?: The links exist to inflate ranking, not to inform.
+
+Q: An attacker creates a webpage packed with thousands of repeated popular search terms unrelated to its content. The primary objective is to:
+A: Increase reciprocity among social-media users.
+B: Create legitimate inbound links.
+C: Increase the target user's betweenness centrality.
+D: Manipulate search-engine indexing/ranking using deceptive content.
+=: D
+?: This is spamdexing (keyword stuffing).
+
+Q: A page posts: "Researchers Reveal the ONE Hidden Habit That Guarantees Success—What Happens Next Will Shock You!" with no evidence, using curiosity gaps and emotional framing to drive clicks. Which technique is this?
+A: Eigenvector centrality
+B: Clickbait, because the headline uses sensational and curiosity-inducing claims to attract clicks
+C: Link farming
+D: Spamdexing
+=: B
+?: It prioritizes attention over accurately representing the content.
+
+Q: An attacker (1) creates thousands of bots, (2) uses them to follow a celebrity, (3) creates reciprocal links among the bots, (4) writes sensational headlines, (5) creates artificial backlinks, (6) manipulates page keywords. Which sequence maps the mechanisms?
+A: Spam followers → reciprocity manipulation → clickbait → link farming → spamdexing
+B: Link farming → eigenvector manipulation → clickbait → encryption → authentication
+C: Betweenness attack → closeness attack → social etiquette → spamdexing
+D: Clickbait → authentication → authorization → reciprocity
+=: A
+?: Social-network manipulation first, then search-engine manipulation.
+
+Q: User X has relatively low degree, extremely high betweenness, high closeness, moderate eigenvector centrality, and many shortest paths running through it. Which interpretation is most defensible?
+A: X is necessarily the most popular user because high betweenness implies high degree.
+B: X is likely an important structural broker whose influence comes from connecting communities rather than from having the most direct connections.
+C: X must have the highest eigenvector centrality.
+D: X cannot be influential because its degree is low.
+=: B
+?: Influence can't always be read from follower count.
+
+Q: In image forensics for fake news, comparing EXIF metadata between patches of an image is mainly used to detect:
+A: Whether the image was taken with a flash
+B: Image splicing, where content from two different real source images is combined
+C: Where a tweet was posted
+D: Whether an account is a bot
+=: B
+?: Patches from different source photos carry inconsistent camera and processing traces; the model learns this self-supervised.
+
+Q: Using the network shown (edges A–B, A–C, B–C, B–D, C–D, D–E, E–F, E–G, F–G), which node has the highest betweenness centrality?
+I: w6-q26.webp | Q26 network, as printed on the slide
+A: B
+B: C
+C: D
+D: E
+=: C
+?: D is the only link between the upper triangle (A, B, C) and the lower part (E, F, G), so every shortest path between the halves passes through it. Unnormalized betweenness: D = 9, E = 8, B = C = 2.
+!: The TA ticked C (node D).
+
+Q: In the undirected, unweighted network shown (A–B–C–D–E with a branch C–F–G), which statement is most accurate?
+I: w6-q27.webp | Q27 network, as printed on the slide
+A: C has high betweenness because it connects the left and right portions of the network, while B and D cannot have betweenness.
+B: C has high betweenness, but D may have greater closeness to E and F/G than C.
+C: B necessarily has the highest closeness because it is closer to A.
+D: E has the highest betweenness because it is an endpoint.
+=: B
+?: C sits on the most shortest paths (betweenness 12). High betweenness doesn't automatically mean highest closeness, which depends on distances to every node. A is wrong because B and D also lie on paths; an endpoint like E has zero betweenness.
+!: The TA ticked B.
+
+Q: In the directed social network shown, an arrow X → Y means X follows Y. Which node has the highest in-degree?
+I: w6-q28.webp | Q28 network, as printed on the slide
+A: B
+B: C
+C: G
+D: H
+=: A
+?: In-degree counts arrows pointing in. B is followed by A, D, E and F, more than any other node; C and G each have two incoming arrows and H has one.
+!: The TA ticked A.
+
+Q: In the network shown (two communities joined through X), with all connections undirected, which statement is most defensible?
+I: w6-q29.webp | Q29 network, as printed on the slide
+A: X is likely to have high betweenness because it lies on paths connecting otherwise separated regions.
+B: Z must have the highest betweenness because it is connected to X.
+C: A must have the highest closeness because it is on the boundary of the network.
+D: Y cannot have any betweenness because it has only two major connections.
+=: A
+?: X brokers the paths between Community 1 and Community 2. Z is a peripheral leaf, boundary nodes are usually far from others, and Y still lies on paths.
+!: The TA ticked A.
+
+Q: In the network shown, B and C are both connected to several highly connected nodes, while D, E and F are mostly connected to peripheral nodes. Which node is most likely to have the highest eigenvector centrality?
+I: w6-q30.webp | Q30 network, as printed on the slide
+A: D
+B: F
+C: B or C
+D: H
+=: C
+?: Eigenvector centrality rewards links to important nodes, so B and C in the well-connected core score highest.
+!: The TA ticked C.
+
+Q: Which multimodal fake news detection method explicitly uses an adversarial neural network component to learn event-invariant features?
+A: SpotFake
+B: MVAE
+C: EANN
+D: CredEye
+=: C
+?: EANN's feature extractor is trained to fool an event discriminator so it learns signals that generalize across events.
+
+Q: In the undirected network shown (edges A–B, A–C, B–D, C–D, C–E, D–F, D–G, E–G, F–G), which node has the highest betweenness centrality?
+I: w6-q32.webp | Q32 network, as printed on the slide
+A: C
+B: D
+C: G
+D: A
+=: B
+?: D links the upper part of the graph to the lower part, so many shortest paths cross it. Unnormalized betweenness: D ≈ 6.3, C ≈ 3.8, G ≈ 1.8, A ≈ 0.8.
+!: The TA ticked B (node D).
+
+Q: In the social network shown, X → Y means X follows Y. The directed edges are A → B, C → B, A → D, B → E, C → F, D → E, F → E, E → G, H → G. Which statement is correct?
+I: w6-q33.webp | Q33 network, as printed on the slide
+A: B has the highest in-degree and E has the highest out-degree.
+B: E has the highest in-degree, while A has the highest out-degree.
+C: G has the highest in-degree and E has the highest out-degree.
+D: B and E have identical in-degree.
+=: B
+?: E is followed by B, D and F (in-degree 3); B and G have 2. A follows B and D (out-degree 2), the maximum.
+!: The TA ticked B. Strictly, C also has out-degree 2 (C → B, C → F), so A ties for the highest out-degree; B is still the only option that is not false.
+
+Q: In the network shown, A, D, E, F, G and H are relatively peripheral, while B and C are connected to several nodes that themselves have substantial connectivity. Which statement is most defensible?
+I: w6-q34.webp | Q34 network, as printed on the slide
+A: D must have the highest eigenvector centrality because it connects to F and H.
+B: B and C are strong candidates for high eigenvector centrality because they are connected to structurally important nodes.
+C: F must have the highest eigenvector centrality because it is at the bottom of the graph.
+D: Eigenvector centrality will necessarily be identical to degree centrality.
+=: B
+?: Eigenvector centrality depends on how central a node's neighbours are, so B and C in the connected core lead. Position on the page means nothing, and it isn't the same as degree.
+!: The TA ticked B.
+
+Q: In the undirected network shown (A–B–C–D–E with a branch C–F–G–H), a researcher claims: "Because C connects the upper chain to the lower branch, C must simultaneously have the highest degree, highest closeness and highest betweenness." Which evaluation is most accurate?
+I: w6-q35.webp | Q35 network, as printed on the slide
+A: The claim is necessarily true because a bridge node always maximizes every centrality measure.
+B: C is likely to have high betweenness, but high betweenness alone does not establish that C has the highest degree or eigenvector centrality.
+C: C cannot have high betweenness because it has only three direct neighbors.
+D: C must have the highest eigenvector centrality because it lies on the shortest path between F and G.
+=: B
+?: Being a bridge explains high betweenness, but each centrality measures something different, so "must" is not justified. (In this small graph C happens to top them all, but not because it is a bridge.)
+!: The TA ticked B.
+
+Q: In the undirected network shown (edges A–B, A–C, A–D, B–E, C–F, D–E, D–G, E–H, F–G, G–H, G–I), an analyst claims: 1. A has the highest degree centrality. 2. D may have high betweenness because it connects multiple structural regions. 3. G may have high degree but this does not guarantee the highest betweenness. 4. I is likely to have high betweenness because it is connected to G. Which option correctly evaluates these claims?
+I: w6-q36.webp | Q36 network, as printed on the slide
+A: Only statements 1 and 4 are correct.
+B: Only statements 2 and 3 are correct.
+C: Statements 1, 2 and 3 are correct.
+D: All four statements are correct.
+=: B
+?: G has degree 4, more than A's 3, so claim 1 is false. I is a leaf with zero betweenness, so claim 4 is false. Claims 2 and 3 are cautious and true.
+!: The TA ticked B. The slide's printed explanation for this question repeats Q35's text; the claim-by-claim check above is from the graph itself.
+
+Q: WhatsFarzi, developed at IIIT-Delhi under Prof. Ponnurangam Kumaraguru, is best described as a tool that:
+A: Only detects fake video content
+B: Analyzes text article authenticity using a knowledge graph and detects tampering in images uploaded by users
+C: Is a WhatsApp group management app
+D: Bans WhatsApp accounts that share misinformation
+=: B
+?: It compares entity relationships against a knowledge graph to score articles and highlights tampered regions in images.
+
+Q: CredEye's pipeline, on receiving a textual claim, follows which sequence?
+A: Classify the claim with a pretrained sentiment model only
+B: Search the web for relevant articles, perform stance detection and content analysis, then aggregate credibility scores and extract supporting evidence
+C: Check the claim for banned keywords only
+D: Encrypt the claim and forward it to a human fact-checker
+=: B
+?: It also weighs source trustworthiness and shows the evidence snippets behind its verdict.
+
+Q: Twitter's Birdwatch makes a note visible to the general audience on a tweet only when:
+A: A single contributor submits a note
+B: There is consensus from a broad and diverse set of contributors
+C: Twitter's moderation team approves every note
+D: The tweet has more than one million impressions
+=: B
+?: Notes are first rated by contributors; only diverse consensus makes them public, which limits partisan brigading.
+
+Q: The HawkEye paper primarily investigates Birdwatch's:
+A: Server uptime and latency
+B: Robustness against adversaries who may manipulate ratings to influence note and tweet classification
+C: Readability of notes
+D: Advertising revenue model
+=: B
+?: Coordinated fake ratings could inflate or bury notes; HawkEye proposes a more robust reputation system.
+
+Q: TweetCred was primarily deployed as:
+A: A standalone mobile application only
+B: A browser plug-in / Chrome extension that assigns real-time credibility scores to tweets in a user's timeline
+C: A government surveillance tool
+D: An offline simulation never released to real users
+=: B
+?: Semi-supervised ranking model; 1,127 users and ~5.4M tweets scored in three months, with "Do you agree?" feedback.
+
+Q: Facebook Inspector, extending the TweetCred lineage, primarily works by:
+A: Deleting fake posts automatically
+B: Fetching post data through the Facebook Graph API, generating feature vectors, and applying supervised learning to assign and display a credibility label via a browser extension
+C: Monitoring private messages
+D: Replacing Facebook's News Feed algorithm
+=: B
+?: Light browser-side display, heavy server-side features and inference — the same split as TweetCred.
+
+Q: Research on image-based fake news found the "image-to-tweet ratio" indicates that:
+A: Fake news events contain more images per tweet than real ones
+B: Real news events tend to contain more images than fake news events for the same number of tweets
+C: The ratio has no correlation with veracity
+D: Fake news never contains images
+=: B
+?: Real events are photographed by many independent witnesses; fake news recycles a few images.
+
+Q: In "Latent Text Features" for fake news detection, Rhetorical Structure Theory (RST) is mainly used to model:
+A: Word frequency distributions
+B: Part-of-speech tag sequences
+C: Coherence relations between discourse constituent parts of a text
+D: Character-level n-gram statistics
+=: C
+?: Relations such as elaboration, contrast, cause and evidence link discourse units.
+
+Q: In the "Components of Fake News" framework, an account that alternates between automated posting and manual human posting is a:
+A: Cyborg
+B: Social Bot
+C: Real Human
+D: Sybil Account
+=: A
+?: A social bot is fully automated; a cyborg mixes bot and human activity, which makes it harder to detect.
