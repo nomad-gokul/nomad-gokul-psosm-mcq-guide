@@ -132,6 +132,16 @@ D: Residents' opinions only help marketing
 =: B
 ?: Together they give a fuller picture of how OSNs can support policing.
 
+Q: Match each phishing type (Column I) with its description (Column II). A. Phishing · B. Context-aware / spear phishing · C. Whaling · D. Vishing · E. Smishing · F. Social phishing — 1. Phishing through voice calls · 2. Highly targeted phishing aimed at senior or high-value individuals · 3. Deceptive messages designed to steal information through electronic communication · 4. Targeted phishing customized using information about a specific victim · 5. Phishing through SMS or text messages · 6. Exploiting personal relationships, social information or human trust to make phishing more convincing. Which is the correct matching?
+I: w7b-q15-match.webp | The matching question as shown on the slide
+A: A–3, B–4, C–2, D–1, E–5, F–6
+B: A–4, B–3, C–1, D–2, E–6, F–5
+C: A–3, B–2, C–4, D–5, E–1, F–6
+D: A–6, B–4, C–3, D–1, E–5, F–2
+=: A
+?: Generic phishing steals information electronically (3); spear phishing is tailored to one victim (4); whaling targets executives (2); vishing uses calls (1); smishing uses SMS (5); social phishing exploits trust and relationships (6).
+!: Key not printed; the TA ticked (a).
+
 Q: Scenarios: 1. A fake "security alert" asks a user to reset their password. 2. A fraudulent inheritance offer asks for an advance payment. 3. A program modifies packet fields to exploit a protocol implementation. 4. A fake Amazon login page collects credentials. Which classification is most defensible?
 A: 1, 2 and 4 are semantic; 3 is primarily syntactic
 B: 1 and 3 are semantic; 2 and 4 are syntactic

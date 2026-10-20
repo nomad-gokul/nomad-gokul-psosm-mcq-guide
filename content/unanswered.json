@@ -1,0 +1,594 @@
+{
+ "intro": "These questions are kept out of every exam, custom mix, Mistakes and Starred list because neither the slides nor the TA's pen marks settle the answer. Each one shows the question cropped from the original PDF, so you can work it out yourself, with a link to that week's PDF and a note on what makes it uncertain.",
+ "items": [
+  {
+   "set": "w10",
+   "label": "Q4 (3 Oct)",
+   "kind": "Conflicting key",
+   "q": "Looking at Figure 4 (distance between real and inferred user home city, for INCORRECT inferences only), which dataset shows the largest share of its incorrect inferences falling within 50 km of the true city?",
+   "options": [
+    "Twitter, at roughly 87%",
+    "Foursquare, at roughly 46%",
+    "Google+, at roughly 27%",
+    "All three datasets are statistically indistinguishable"
+   ],
+   "img": "w10-q4",
+   "mark": "The TA ticked A and drew a line at 50 km on the inset.",
+   "why": "In the inset of Fig. 4, the Foursquare curve (solid green) is highest at 50 km, at about 0.46; Google+ and Twitter are both near 0.25. That matches option B, not the printed key A. No curve reaches 0.87 at 50 km."
+  },
+  {
+   "set": "w02",
+   "label": "Q49 (1 Aug)",
+   "kind": "No key",
+   "q": "Data accountability is most closely associated with which Big Data V?",
+   "options": [
+    "Volume",
+    "Velocity",
+    "Variety",
+    "Veracity"
+   ],
+   "img": "w2-q49",
+   "mark": "Q49 is top left. No pen mark on it.",
+   "why": "No key was printed on the slide, and more than one option can be defended."
+  },
+  {
+   "set": "w02",
+   "label": "Q59 (1 Aug)",
+   "kind": "No key",
+   "q": "Collecting personal details from Facebook to launch a phishing attack is an example of:",
+   "options": [
+    "Dumpster Surfing",
+    "Shoulder Surfing",
+    "Social Surfing",
+    "Packet Sniffing"
+   ],
+   "img": "w2-q59",
+   "mark": "Q59 is bottom left. No pen mark on it.",
+   "why": "The TA's own option notes call \"social surfing\" a non-standard term, yet no other option fits."
+  },
+  {
+   "set": "w03",
+   "label": "Q1 (8 Aug)",
+   "kind": "No key",
+   "q": "Which command counts all documents in MongoDB?",
+   "options": [
+    "db.users.find().count()",
+    "db.users.count()",
+    "db.users.length()",
+    "db.users.total()"
+   ],
+   "img": "w3-q1",
+   "mark": "The TA ticked A.",
+   "why": "A and B both worked in the old mongo shell and are both deprecated; the current command is db.users.countDocuments({})."
+  },
+  {
+   "set": "w05",
+   "label": "Q28 (22 Aug)",
+   "kind": "No key",
+   "q": "Which groups correctly identify police departments that were among the earliest Twitter/X adopters in their countries? 1. USA: NYPD, Boston PD · 2. UK: West Midlands Police · 3. India: Delhi Traffic, Bangalore Traffic Police",
+   "options": [
+    "1 and 2 only",
+    "2 and 3 only",
+    "3 only",
+    "2 only"
+   ],
+   "img": "w5-q28",
+   "mark": "Q28 is at the top. The TA ticked and boxed D, \"2 only\".",
+   "why": "No key was printed on the slide, and more than one option can be defended."
+  },
+  {
+   "set": "w11",
+   "label": "Q1 (3 Oct)",
+   "kind": "No key",
+   "q": "What is the status of the official X API's standalone free tier?",
+   "options": [
+    "Available with 10,000 free reads a month",
+    "Discontinued; new developers start on pay-per-use from 2025",
+    "Only for search queries",
+    "Only for enterprise customers"
+   ],
+   "img": "w11-q1",
+   "mark": "Q1 is at the top. The TA ticked B.",
+   "why": "B is the intended idea, but X made pay-per-use the default on 6 Feb 2026, not 2025."
+  },
+  {
+   "set": "w11",
+   "label": "Q3 (3 Oct)",
+   "kind": "No key",
+   "q": "What trial credit does TwitterAPI.io give new accounts?",
+   "options": [
+    "$10, about 60,000 calls, card required",
+    "$1, about 6,000 calls, no card",
+    "$5, about 1,000 calls, no card",
+    "$1, about 100 calls, card required"
+   ],
+   "img": "w11-q3",
+   "mark": "Q3 is on the left. The TA ticked A, which disagrees with what TwitterAPI.io itself publishes.",
+   "why": "TwitterAPI.io's blog says $1 and about 6,000 calls; its homepage and several listings say $0.10."
+  },
+  {
+   "set": "lastclass",
+   "label": "username-change chart",
+   "kind": "No key",
+   "q": "Which inference is correct?",
+   "options": [
+    "80% rarely change and 20% change frequently",
+    "20% frequently change and 80% rarely",
+    "The percentage follows a Pareto distribution",
+    "It does not follow a Pareto distribution"
+   ],
+   "img": "lc-p18",
+   "mark": "Q6 is at the bottom. The TA struck through the first three options; it is unclear which are meant as correct.",
+   "why": "No key was printed on the slide, and more than one option can be defended."
+  },
+  {
+   "set": "lastclass",
+   "label": "Gmail \"To\" field with recipient chips",
+   "kind": "No key",
+   "q": "This is an example of the ideas proposed by Facemail from MIT.",
+   "options": [
+    "True",
+    "False"
+   ],
+   "img": "lc-p32",
+   "mark": "Q3 is at the top. No clear pen mark.",
+   "why": "No key was printed on the slide, and more than one option can be defended."
+  },
+  {
+   "set": "lastclass",
+   "label": "Foursquare mayorships CDF",
+   "kind": "No key",
+   "q": "Look at Figure 1 (cumulative distribution of the number of mayorships, tips and dones per user). \"Majority of the users on Foursquare do not contribute to the Mayorships, Tips or Dones.\" This statement is:",
+   "options": [
+    "True",
+    "False"
+   ],
+   "img": "lc-p15",
+   "mark": "The TA struck through part of the statement and through \"True\"; it is unclear whether that means False.",
+   "why": "The figure only covers users who have at least one mayorship, tip or done, so it cannot show how many contribute nothing."
+  },
+  {
+   "set": "lastclass",
+   "label": "Whisper response time of replies",
+   "kind": "No key",
+   "q": "Observe the graph regarding replies on Whisper. \"If a whisper does not get attention shortly after posting, it is unlikely to get attention later.\" This statement is:",
+   "options": [
+    "True",
+    "False"
+   ],
+   "img": "lc-p36",
+   "mark": "There is a stroke beside \"False\", but the TA also wrote \"Whisper 94% 1 day\".",
+   "why": "The lecture states this exact conclusion, and about 94% of replies arrive within a day, which supports True."
+  },
+  {
+   "set": "lastclass",
+   "label": "GlobalEngagement, second version (Q14)",
+   "kind": "No key",
+   "q": "A second version of \"Calculate the GlobalEngagement for Aditya\" lists the options 0.1, 0.05 and 10.",
+   "options": [
+    "0.1",
+    "0.05",
+    "10"
+   ],
+   "img": "lc-p23",
+   "mark": "0.1 is highlighted on the slide, next to the TA's note \"What to calculate? Q not [clear]\".",
+   "why": "The question text does not say which quantity this version wants. (1,000 favourites ÷ 10,000 statuses = 0.1 is one reading.) The first version, 10.96, is in the Last class set."
+  },
+  {
+   "set": "lastclass",
+   "label": "Practice test Q8",
+   "kind": "No key",
+   "q": "Which are goals of a phishing attack? (multi-select)",
+   "options": [
+    "Stealing personal information",
+    "Stealing financial information",
+    "Stealing your identity",
+    "Attacking your social networking contacts"
+   ],
+   "img": "lc-p45",
+   "mark": "The TA ticked A and B only.",
+   "why": "The TA marked only personal and financial information, although identity theft and attacking your contacts are also common phishing goals."
+  },
+  {
+   "set": "lastclass",
+   "label": "Practice test Q14",
+   "kind": "No key",
+   "q": "Degrees of separation have reduced on social media due to:",
+   "options": [
+    "Connections across locations",
+    "Interconnected networks",
+    "Sharing information globally",
+    "None of the above"
+   ],
+   "img": "lc-p51",
+   "mark": "The TA drew a bracket beside A–C and a stroke at D; it is unclear which is meant.",
+   "why": "No key was printed on the slide, and more than one option can be defended."
+  },
+  {
+   "set": "lastclass",
+   "label": "Practice test Q22",
+   "kind": "No key",
+   "q": "Which method(s) measured similarity between two consecutive usernames?",
+   "options": [
+    "Cosine Similarity",
+    "Cosine Similarity (printed twice)",
+    "Longest Common Substring",
+    "All of the above"
+   ],
+   "img": "lc-p59",
+   "mark": "The TA bracketed the question and wrote \"Check the weekly content\".",
+   "why": "No key was printed on the slide, and more than one option can be defended."
+  },
+  {
+   "set": "lastclass",
+   "label": "Practice test Q28",
+   "kind": "No key",
+   "q": "Social media constitutes:",
+   "options": [
+    "Social networks",
+    "Virtual worlds",
+    "Livecasts",
+    "Content-sharing platforms"
+   ],
+   "img": "lc-p67",
+   "mark": "No pen mark.",
+   "why": "No \"all of the above\" option was printed."
+  },
+  {
+   "set": "lastclass",
+   "label": "Practice test Q33",
+   "kind": "No key",
+   "q": "In which format does an API usually return its response?",
+   "options": [
+    "JSON",
+    "XML",
+    "TSV",
+    "None of the above"
+   ],
+   "img": "lc-p74",
+   "mark": "No pen mark.",
+   "why": "No key was printed on the slide, and more than one option can be defended."
+  },
+  {
+   "set": "lastclass",
+   "label": "Practice test Q39",
+   "kind": "No key",
+   "q": "Which attributes can be inferred from data collected via X (formerly Twitter)?",
+   "options": [
+    "Number of likes of the Tweet",
+    "Number of times the Tweet has been viewed",
+    "Unique identifier of the Tweet's author",
+    "None of the above"
+   ],
+   "img": "pa-q39",
+   "why": "X returns like and view counts and the author ID, so A, B and C all look right, but the slide does not say whether more than one may be chosen."
+  },
+  {
+   "set": "lastclass",
+   "label": "Practice test Q40",
+   "kind": "No key",
+   "q": "Which processes can be used to obtain annotated posts while determining their legitimacy?",
+   "options": [
+    "A group of friends annotating posts",
+    "Crowd-sourcing / Mechanical Turk",
+    "Data from fact-checking / news outlets",
+    "All of the above"
+   ],
+   "img": "pa-q40",
+   "why": "All three are used to label posts in the course (friends in early studies, Mechanical Turk, fact-checkers), pointing to D, but no key is given."
+  },
+  {
+   "set": "lastclass",
+   "label": "Practice test Q50",
+   "kind": "No key",
+   "q": "Which is the correct syntax for labeling the legend of a scatter plot in Highcharts?",
+   "options": [
+    "chart.add_data_set(data1, 'scatter', name='label_name')",
+    "chart.add_data_set(data1, 'scatter', 'label_name')",
+    "chart.add_data_set(data1, 'scatter', label='label_name')",
+    "None of the above"
+   ],
+   "img": "pa-q50",
+   "why": "In the python-highcharts library the third argument of add_data_set is the series name, so both A (name=…) and B (positional) set the legend label."
+  },
+  {
+   "set": "lastclass",
+   "label": "Practice test Q51",
+   "kind": "No key",
+   "q": "What is the difference between Pearson and Spearman rank correlation?",
+   "options": [
+    "Pearson assesses linear relationships; Spearman evaluates monotonic relationships",
+    "Spearman is always between -1 and 1, while Pearson can fall outside this range",
+    "Spearman uses squared rank differences; Pearson is based on the product of z-scores",
+    "All of the above"
+   ],
+   "img": "pa-q51",
+   "why": "A and C are both true and B is false, so \"All of the above\" is wrong, yet the question expects a single option."
+  },
+  {
+   "set": "lastclass",
+   "label": "Practice test Q52",
+   "kind": "No key",
+   "q": "Which features can be used for profile linking between Facebook and X for a boy called Arjun?",
+   "options": [
+    "Profile Picture",
+    "Username",
+    "Similarity between people Arjun follows on both platforms",
+    "Similarity between people who follow Arjun on both platforms"
+   ],
+   "img": "pa-q52",
+   "why": "All four can serve as linking features; the slide does not say how many to pick."
+  },
+  {
+   "set": "lastclass",
+   "label": "Practice test Q56",
+   "kind": "No key",
+   "q": "Which statements are correct about the Web of Trust score?",
+   "options": [
+    "It outputs the reputation of an input website",
+    "Domain Age can be used as a feature",
+    "Domain Owner can be used as a feature",
+    "None of the above"
+   ],
+   "img": "pa-q56",
+   "why": "The lecture names the WOT reputation score but the slides do not list which features it uses."
+  },
+  {
+   "set": "lastclass",
+   "label": "Practice test Q66",
+   "kind": "No key",
+   "q": "Which of the following is/are location-based services?",
+   "options": [
+    "Foursquare",
+    "Ola",
+    "Yelp https://www.yelp.com/",
+    "Uber"
+   ],
+   "img": "pa-q66",
+   "why": "Foursquare, Ola, Yelp and Uber all depend on location; whether ride-hailing apps count as \"location-based services\" in the course is not stated."
+  },
+  {
+   "set": "lastclass",
+   "label": "Practice test Q70",
+   "kind": "No key",
+   "q": "Which methods were used to gather information across India in the report?",
+   "options": [
+    "Surveys",
+    "Focus Group Discussions",
+    "Interviews",
+    "None of the above"
+   ],
+   "img": "pa-q70",
+   "why": "The slide does not say which report this refers to."
+  },
+  {
+   "set": "lastclass",
+   "label": "Practice test Q71",
+   "kind": "No key",
+   "q": "Which method resulted in the largest number of respondents across India?",
+   "options": [
+    "Surveys",
+    "Focus Group Discussions",
+    "Interviews",
+    "None of the above"
+   ],
+   "img": "pa-q71",
+   "why": "The slide does not say which report this refers to."
+  },
+  {
+   "set": "lastclass",
+   "label": "Practice test Q79",
+   "kind": "No key",
+   "q": "What is the purpose of k-anonymity, as discussed in the lecture?",
+   "options": [
+    "Protect PII of re-identified individuals",
+    "Anonymise data without losing utility",
+    "Make datasets larger for analysis",
+    "None of the above"
+   ],
+   "img": "pa-q79",
+   "why": "k-anonymity protects people from re-identification while keeping the data useful; A and B each state half of that."
+  },
+  {
+   "set": "lastclass",
+   "label": "Practice test Q80",
+   "kind": "No key",
+   "q": "Latanya Sweeney's experiments aimed to:",
+   "options": [
+    "Re-identify individuals from Match.com using Facebook profiles",
+    "Identify individuals walking on a campus with Facebook data",
+    "Predict social security numbers from public data",
+    "Study behaviors of individuals aged 14-18 on Instagram"
+   ],
+   "img": "pa-q80",
+   "why": "None of the options describes Sweeney's best-known study (re-identifying a governor's medical records via a voter list). B and C describe work by Acquisti and colleagues."
+  },
+  {
+   "set": "lastclass",
+   "label": "Practice test Q86",
+   "kind": "No key",
+   "q": "What is the output of pd.Series(['A','B','C'], index=[1, 2, 3])?",
+   "options": [
+    "1A/2B/3C",
+    "A1/B2/C3",
+    "AB / C1 / 23",
+    "None of the above 1 A 2 B 3 C dtype: object"
+   ],
+   "img": "pa-q86",
+   "why": "The options were garbled when the slide was made, so the printed series layout cannot be read reliably."
+  },
+  {
+   "set": "lastclass",
+   "label": "Practice test Q87",
+   "kind": "No key",
+   "q": "What are the outcomes of publicizing police interactions on X (formerly Twitter)?",
+   "options": [
+    "Appreciation of the Police by the Public",
+    "Increased Trust in the Police",
+    "Quick Resolutions of Public Grievances",
+    "None of the above"
+   ],
+   "img": "pa-q87",
+   "why": "All three are plausible outcomes; the slide gives no key."
+  },
+  {
+   "set": "lastclass",
+   "label": "Practice test Q88",
+   "kind": "No key",
+   "q": "Which social media campaign to create trust in the police backfired, as discussed in the lectures?",
+   "options": [
+    "#myNYPD",
+    "#myLAPD",
+    "#myDelhiPolice",
+    "All of the above"
+   ],
+   "img": "pa-q88",
+   "why": "#myNYPD (2014) is the well-known backfire; #myLAPD drew similar criticism soon after, so A alone may not be what is wanted."
+  },
+  {
+   "set": "lastclass",
+   "label": "Practice test Q93",
+   "kind": "No key",
+   "q": "Communication of the police with citizens on social media is ………",
+   "options": [
+    "Formal",
+    "Informal"
+   ],
+   "img": "pa-q93",
+   "why": "The lecture discusses both formal and informal tones in police posts; the expected answer is not clear."
+  },
+  {
+   "set": "lastclass",
+   "label": "Practice test Q95",
+   "kind": "No key",
+   "q": "Students of the PSOSM course are divided into groups by Indian state. This is best achieved using:",
+   "options": [
+    "n-gram",
+    "k-means clustering",
+    "LIWC",
+    "None of the above"
+   ],
+   "img": "pa-q95",
+   "why": "Grouping students by a known attribute (their state) needs no clustering, so \"None of the above\" may be intended rather than k-means."
+  },
+  {
+   "set": "lastclass",
+   "label": "Practice test Q96",
+   "kind": "No key",
+   "q": "Which are the most widely used formats to represent node-edge graphs on computers?",
+   "options": [
+    "Adjacency matrix",
+    "CSV",
+    "GraphML",
+    "None of the above"
+   ],
+   "img": "pa-q96",
+   "why": "Adjacency matrices, edge-list CSVs and GraphML are all common; the slide does not say how many to pick."
+  },
+  {
+   "set": "lastclass",
+   "label": "Practice test Q97",
+   "kind": "No key",
+   "q": "Which measures of behavior can be studied when analyzing police–citizen communication on social media?",
+   "options": [
+    "Topic Characteristics",
+    "Engagement Measures",
+    "Emotional Measures",
+    "Social and Cognitive Measures"
+   ],
+   "img": "pa-q97",
+   "why": "All four appear in police–citizen communication studies; no key is given."
+  },
+  {
+   "set": "lastclass",
+   "label": "Practice test Q106",
+   "kind": "No key",
+   "q": "According to the study, which users were most likely to reciprocate links from spammers?",
+   "options": [
+    "Users with fewer than 100 followers",
+    "Users with fewer than 1,000 followers",
+    "Users with more than 10,000 followers",
+    "None of the above"
+   ],
+   "img": "pa-q106",
+   "why": "The link-farming study's exact finding on which users reciprocate is not on the slides."
+  },
+  {
+   "set": "lastclass",
+   "label": "Practice test Q107",
+   "kind": "No key",
+   "q": "According to the study, which users usually engaged in Link Farming?",
+   "options": [
+    "People talking about Business, Internet Marketing, Money etc.",
+    "People promoting their own business or content",
+    "Equally distributed among random Twitter users",
+    "None of the above"
+   ],
+   "img": "pa-q107",
+   "why": "The study found link farmers are mainly \"social capitalists\" promoting themselves; A and B both partly describe them."
+  },
+  {
+   "set": "lastclass",
+   "label": "Practice test Q109",
+   "kind": "No key",
+   "q": "Which nudge is shown in the picture?",
+   "options": [
+    "Sentiment Nudge",
+    "Timer Nudge",
+    "Picture Nudge",
+    "None of the above"
+   ],
+   "img": "pa-q109",
+   "why": "The picture this question refers to is missing from the slide."
+  },
+  {
+   "set": "lastclass",
+   "label": "Practice test Q110",
+   "kind": "No key",
+   "q": "Select the utility of the above type of nudge:",
+   "options": [
+    "Making sure you share content with the intended audience",
+    "Giving you the opportunity to cancel your post within a timeframe",
+    "Making sure your posts are not perceived as negative",
+    "None of the above"
+   ],
+   "img": "pa-q110",
+   "why": "Depends on Q109, whose picture is missing from the slide."
+  },
+  {
+   "set": "w02",
+   "label": "Part 2, Q40 (1 Aug)",
+   "kind": "Text or options missing",
+   "q": "Table orders(order_id PK, customer_id, total_amount, order_date, status). The question sentence is missing; only the four queries survive.",
+   "options": [
+    "... WHERE customer_id = 1001 AND status='Completed' ORDER BY order_date DESC LIMIT 10;",
+    "... WHERE customer_id=1001 ORDER BY order_id DESC LIMIT 10;",
+    "... WHERE status='Completed' ORDER BY order_date ASC LIMIT 10;",
+    "... WHERE customer_id=1001 ORDER BY total_amount DESC;"
+   ],
+   "img": "w2b-q40",
+   "mark": "Q40 is bottom right. The slide has an empty box where the question should be.",
+   "why": "If the question asks for customer 1001's ten most recent completed orders, A is right."
+  },
+  {
+   "set": "w03",
+   "label": "Q26 (8 Aug)",
+   "kind": "Text or options missing",
+   "q": "Privacy personas: i. Fundamentalist – shares everything publicly · ii. Pragmatist – shares only after weighing benefits · iii. Unconcerned – avoids almost all sharing. \"Which one is correct?\"",
+   "options": [],
+   "img": "w3-q26",
+   "mark": "Q26 is bottom right. The TA ticked ii (Pragmatist).",
+   "why": "No options were printed. The slide's answer is \"only ii is correct\"."
+  },
+  {
+   "set": "w08",
+   "label": "Q32 (12 Sep)",
+   "kind": "Conflicting key",
+   "q": "Six tweets T1–T6 have relevance scores 3, 2, 0, 1, 3, 2. A ranking algorithm orders them T4, T1, T6, T3, T5, T2 (relevances 1, 3, 2, 0, 3, 2). Using DCG@k = Σ (2^relᵢ − 1) / log₂(i + 1) and NDCG@k = DCG@k / IDCG@k, what is the approximate NDCG@6?",
+   "options": [],
+   "img": "w8-q32",
+   "mark": "No options were printed. The TA's worked answer on the next slide gives DCG@6 ≈ 11.852, IDCG@6 ≈ 13.735 and NDCG@6 ≈ 0.86.",
+   "why": "The worked answer has arithmetic slips: the 5th term should be 7 / log₂6 ≈ 2.708, not 3.866, and the ideal ranking (3, 3, 2, 2, 1, 0) gives IDCG@6 ≈ 14.595. Recomputed with the stated formula, DCG@6 ≈ 10.693 and NDCG@6 ≈ 0.733."
+  }
+ ]
+}

@@ -1,0 +1,23 @@
+# Cloudflare Pages response headers (static site, no Functions).
+# When several rules match, Cloudflare combines their headers, so the specific rules
+# below first detach the default Cache-Control ("! Cache-Control") and then set their own.
+
+# Default: index.html, favicon and anything else are revalidated, so a new deploy shows at once.
+/*
+  Cache-Control: public, max-age=0, must-revalidate
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+
+# Vite fingerprints every file in /assets, so they never change: cache for a year.
+/assets/*
+  ! Cache-Control
+  Cache-Control: public, max-age=31536000, immutable
+
+# Figures and slide images keep their names when replaced: cache for a week.
+/figures/*
+  ! Cache-Control
+  Cache-Control: public, max-age=604800
+
+/slides/*
+  ! Cache-Control
+  Cache-Control: public, max-age=604800

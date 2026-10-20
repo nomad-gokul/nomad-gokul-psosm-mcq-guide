@@ -71,16 +71,26 @@ for (const s of sets) {
   ids.add(s.id);
 }
 
-const open = JSON.parse(readFileSync(join(root, 'content', 'open-questions.json'), 'utf8'));
-for (const g of open.groups) {
-  for (const it of g.items) {
-    if (it.img && !existsSync(join(root, 'public', 'slides', it.img + '.webp'))) throw new Error(`Open question "${it.where}": slide ${it.img}.webp not found`);
-  }
+const sources = JSON.parse(readFileSync(join(root, 'content', 'sources.json'), 'utf8'));
+for (const s of sets) {
+  const list = sources[s.id];
+  if (!list) console.warn(`No original PDF listed for set "${s.id}" in content/sources.json`);
+  else for (const f of list) if (!/^https:\/\//.test(f.url || '')) throw new Error(`content/sources.json: bad url for "${s.id}"`);
+  s.sources = list || [];
+}
+
+// Questions the slides don't settle: shown in their own section, never in an exam.
+const unanswered = JSON.parse(readFileSync(join(root, 'content', 'unanswered.json'), 'utf8'));
+for (const it of unanswered.items) {
+  const where = `content/unanswered.json "${it.set} ${it.label}"`;
+  if (!ids.has(it.set)) throw new Error(`${where}: unknown set id`);
+  if (!it.img || !existsSync(join(root, 'public', 'slides', it.img + '.webp'))) throw new Error(`${where}: screenshot ${it.img}.webp not found in public/slides`);
+  if (!it.q || !it.why) throw new Error(`${where}: needs "q" and "why"`);
 }
 
 mkdirSync(outDir, { recursive: true });
 writeFileSync(join(outDir, 'sets.json'), JSON.stringify(sets));
-writeFileSync(join(outDir, 'open-questions.json'), JSON.stringify(open));
+writeFileSync(join(outDir, 'unanswered.json'), JSON.stringify(unanswered));
 
 const total = sets.reduce((n, s) => n + s.qs.length, 0);
-console.log(`Built ${sets.length} sets, ${total} questions.`);
+console.log(`Built ${sets.length} sets, ${total} questions, ${unanswered.items.length} unanswered.`);

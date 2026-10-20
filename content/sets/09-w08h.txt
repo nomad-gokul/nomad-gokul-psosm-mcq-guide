@@ -223,6 +223,7 @@ D: The 3-9 hour peak means moderators work exactly one shift per day
 ?: About 70% of deletions happen within the first week; the hourly re-crawl shows they peak at 3–9 hours and mostly finish within 24 hours.
 
 Q: Reply response-time data shows 2.1% arrive in under 1 minute, 51.7% arrive within [1 min, 1 hour), 40.3% within [1 hour, 1 day), 4.6% within [1 day, 1 week), and 1.3% arrive a week or more later. The lecture concludes: "If a whisper does not get attention shortly after posting, it is unlikely to get attention later." Which single computed statistic from this distribution most directly and quantitatively supports that specific conclusion?
+I: w9-reply-time.webp | Whisper: response time of replies (chart from the course slides)
 A: The 40.3% figure for [1h, 1d) alone, since it is the second-largest bucket
 B: The combined 93.4% of replies (2.1% + 51.7% + 40.3%) arriving within the first 24 hours, contrasted sharply with only 5.9% (4.6% + 1.3%) arriving after that — demonstrating that attention overwhelmingly concentrates in the first day, with a steep drop-off (roughly a 16x ratio) for anything beyond it
 C: The 2.1% figure alone, since it represents the fastest replies

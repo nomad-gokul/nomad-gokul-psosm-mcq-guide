@@ -131,7 +131,7 @@ kbd{font-family:var(--f-mono);font-size:11.5px;border:1px solid var(--rule-2);bo
 @media (max-width:560px){.q{padding:14px}.opt{grid-template-columns:24px minmax(0,1fr);}.opt .mk{grid-column:2}.score .acts{margin-left:0}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 
-/* open-questions view */
+/* unanswered questions view */
 .setbtn.open .nm{color:var(--flag)}
 .oq-group{display:flex;flex-direction:column;gap:12px}
 .oq-group > h3{font-family:var(--f-display);font-size:19px;margin:6px 0 0;font-weight:600}
@@ -187,3 +187,24 @@ td:first-child{white-space:nowrap;color:var(--ink-2)}
 .linkbtn{align-self:flex-start;border:0;background:none;color:var(--pen);padding:0;font-size:14px}
 .linkbtn:hover{text-decoration:underline}
 .empty p{margin:0}
+.sources{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+.pdfbtn{display:inline-flex;align-items:center;gap:8px;text-decoration:none;color:var(--ink);background:var(--sheet);border:1px solid var(--rule-2);border-radius:8px;padding:7px 12px;font-size:14px;font-weight:500}
+.pdfbtn:hover{border-color:var(--pen);color:var(--pen)}
+.pdfico{font-family:var(--f-mono);font-size:10.5px;font-weight:600;letter-spacing:.04em;color:var(--pen-ink);background:var(--bad);border-radius:3px;padding:1px 5px}
+.pdfbtn .ext{color:var(--ink-3)}
+.sources.compact .pdfbtn{padding:4px 10px;font-size:13px}
+.unhead{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between}
+.kind{font-family:var(--f-mono);font-size:11px;letter-spacing:.04em;text-transform:uppercase;border-radius:999px;padding:2px 9px;border:1px solid var(--rule-2);color:var(--ink-2)}
+.kind.k-conflicting{color:var(--bad);border-color:var(--bad);background:var(--bad-soft)}
+.kind.k-no{color:var(--flag);border-color:var(--flag);background:var(--flag-soft)}
+.kind.k-text{color:var(--pen);border-color:var(--pen);background:var(--pen-soft)}
+.q.un .flag b,.q.un .why b{font-weight:600}
+.slide img{aspect-ratio:auto;object-fit:initial;height:auto}
+.slide a{max-height:80vh;overflow:auto}
+.slide figcaption::before{content:none}
+.slide figcaption{color:var(--ink-3);font-weight:400;font-size:12.5px}
+.jump{display:flex;flex-wrap:wrap;gap:6px}
+.jump a{font-size:13px;text-decoration:none;color:var(--ink-2);border:1px solid var(--rule-2);border-radius:999px;padding:4px 11px;background:var(--sheet)}
+.jump a:hover{border-color:var(--pen);color:var(--pen)}
+.oq-group{scroll-margin-top:16px}
+#view{display:flex;flex-direction:column;gap:16px}

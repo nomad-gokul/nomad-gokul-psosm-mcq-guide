@@ -30,6 +30,7 @@ D: To let the browser plug-in process requests in parallel and reduce wait times
 ?: A model trained on one dataset scored only ~39–43% on the other, so two independent models run side by side and a post is flagged if either catches it.
 
 Q: In Facebook Inspector, what does the browser plug-in send to the back-end RESTful API to analyze a post?
+I: w3-fbi-method.webp | Facebook Inspector (FBI) methodology diagram from the slide
 A: The complete HTML source of the Facebook page
 B: The Facebook post ID (fid) through an HTTP GET request
 C: The extracted feature vector of the post

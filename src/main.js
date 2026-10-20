@@ -1,11 +1,12 @@
 import './styles.css';
 import SETS from './data/sets.json';
-import OPEN from './data/open-questions.json';
+import UNANSWERED from './data/unanswered.json';
 import { el, button, shortName, shuffle } from './util.js';
 import { store, bestScore, bestLabel, mistakeIds, mistakeInfo, starIds } from './store.js';
 import { renderLearn, resetLearn } from './views/learn.js';
 import { renderExam, resetExam, startExam, examRunning, examKey } from './views/exam.js';
-import { renderOpen, openCount } from './views/open.js';
+import { renderUnanswered, unansweredCount } from './views/unanswered.js';
+import { sourceLinks } from './views/common.js';
 import { renderCustomBuilder, customSelection, customPool } from './views/custom.js';
 
 // Every question by id, with the name of the set it belongs to.
@@ -40,15 +41,20 @@ const VIRTUAL = {
     personal: true,
     qs: lookup(starIds()).sort(bySetOrder),
   }),
-  open: () => ({
-    id: 'open',
-    name: 'Open questions',
-    sub: "Questions the slides don't settle, shown with the original slide so you can read them in full.",
+  unanswered: () => ({
+    id: 'unanswered',
+    name: 'Unanswered questions',
+    sub: "Questions the slides don't settle, grouped by week, each cropped from the original PDF so you can work them out yourself.",
     open: true,
     qs: [],
   }),
 };
-const getSet = (id) => SETS.find((s) => s.id === id) || (VIRTUAL[id] ? VIRTUAL[id]() : null);
+// Old links used #open for the unanswered section.
+const ALIASES = { open: 'unanswered' };
+const getSet = (id) => {
+  id = ALIASES[id] || id;
+  return SETS.find((s) => s.id === id) || (VIRTUAL[id] ? VIRTUAL[id]() : null);
+};
 
 const app = {
   sets: SETS,
@@ -69,7 +75,8 @@ const app = {
 
 // The URL hash names the open set (#w08, #mistakes, #custom …), so any view can be linked to.
 function setFromHash() {
-  const id = decodeURIComponent(location.hash.slice(1));
+  let id = decodeURIComponent(location.hash.slice(1));
+  id = ALIASES[id] || id;
   return getSet(id) ? id : null;
 }
 app.state.set = setFromHash() || store.get('set', SETS[0].id);
@@ -92,13 +99,13 @@ window.addEventListener('hashchange', () => {
 
 function countLabel(s) {
   if (s.custom) return '';
-  if (s.open) return String(openCount(OPEN));
+  if (s.open) return String(unansweredCount(UNANSWERED));
   return String(s.qs.length);
 }
 
 function subLabel(s) {
   if (s.custom) return 'Pick weeks, shuffle together';
-  if (s.open) return 'Unsettled, with slide images';
+  if (s.open) return 'Unsettled · kept out of exams';
   if (s.id === 'mistakes') return s.qs.length ? 'Answered wrong, not yet fixed' : 'Nothing yet';
   if (s.id === 'starred') return s.qs.length ? 'Saved for another look' : 'Nothing starred yet';
   return bestLabel(s.id);
@@ -113,7 +120,7 @@ function renderRail() {
     ['My practice', ['custom', 'mistakes', 'starred'].map((id) => VIRTUAL[id]())],
     ['Weekly sessions', SETS.filter((s) => /^Week/.test(s.name))],
     ['Extra practice', SETS.filter((s) => !/^Week/.test(s.name))],
-    ['To check yourself', [VIRTUAL.open()]],
+    ['To check yourself', [VIRTUAL.unanswered()]],
   ];
   groups.forEach(([title, list]) => {
     rail.append(el('h2', null, title));
@@ -149,9 +156,11 @@ function renderHead(set) {
   h.textContent = '';
   let eyebrow = `${set.qs.length} question${set.qs.length === 1 ? '' : 's'}`;
   if (set.custom) eyebrow = `From ${SETS.reduce((n, s) => n + s.qs.length, 0)} questions`;
-  if (set.open) eyebrow = `${openCount(OPEN)} questions`;
+  if (set.open) eyebrow = `${unansweredCount(UNANSWERED)} questions · kept out of all exams`;
   h.append(el('div', 'eyebrow', eyebrow), el('h2', null, shortName(set.name)), el('p', null, set.sub));
+  if (set.sources?.length) h.append(sourceLinks(set.sources));
 }
+
 
 function setMode(mode) {
   app.setPref('mode', mode);
@@ -212,7 +221,7 @@ function render() {
   bar.hidden = !!set.open;
 
   if (set.open) {
-    renderOpen(view, OPEN);
+    renderUnanswered(view, UNANSWERED, SETS);
     return;
   }
   if (set.personal && !set.qs.length && !examRunning(set.id)) {

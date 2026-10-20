@@ -117,3 +117,19 @@ export function figures(q) {
   });
   return frag;
 }
+
+/** "View original PDF" link(s) to the Drive file(s) the set was transcribed from. */
+export function sourceLinks(sources, compact = false) {
+  const row = el('div', 'sources' + (compact ? ' compact' : ''));
+  sources.forEach((src, i) => {
+    const a = el('a', 'pdfbtn');
+    a.href = src.url;
+    a.target = '_blank';
+    a.rel = 'noopener noreferrer';
+    const label = sources.length === 1 ? 'View original PDF' : i === 0 && !compact ? `View original PDF · ${src.label}` : src.label;
+    a.append(el('span', 'pdfico', 'PDF'), el('span', null, label), el('span', 'ext', '↗'));
+    a.title = `${src.label} — opens Google Drive in a new tab`;
+    row.append(a);
+  });
+  return row;
+}

@@ -5,6 +5,7 @@ N: SEO: link farms manipulate link-based ranking (black hat); white hat = useful
 N: APIs: Graph APIs model nodes + edges (traverse an edge to get connections; "paging.next" = next page). SOAP uses XML envelopes; REST is an architectural style, not a protocol; GraphQL lets clients choose fields. HTTP 429 = Too Many Requests; GET retrieves without changing state.
 
 Q: Roughly how much does the official X API pay-per-use plan charge per post read?
+I: w11-x-pricing.webp | X API pay-per-use price list shown on the slide
 A: About $0.00015
 B: About $0.005
 C: About $0.15

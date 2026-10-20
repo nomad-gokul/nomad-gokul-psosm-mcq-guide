@@ -23,6 +23,7 @@ D: A permanent Facebook profile picture
 !: Key not printed on the slide.
 
 Q: Among the activities in the "one minute in OSN" infographic, which is expected to generate the greatest variety of unstructured data for machine learning?
+I: w1-every-minute.webp | The "Every Minute" (one minute in OSN) infographic from Week 1
 A: Google Search queries
 B: LinkedIn job applications
 C: TikTok video uploads
@@ -297,6 +298,7 @@ D: Final cascade size
 ?: Follower count belongs to the author's account. The others only exist after the tweet has spread over time.
 
 Q: Comparing retweet graphs at hour n and hour n+1 primarily helps identify:
+I: w2-retweet-graphs.webp | Retweet graphs of the same event at successive hours, from the slide
 A: linguistic sentiment
 B: diffusion dynamics
 C: user demographics

@@ -4,6 +4,7 @@ N: Centrality: Degree = number of direct links. Betweenness = how often a node s
 N: JSON types: string, number, boolean, object, array, null. No functions.
 
 Q: Match each platform with its per-minute activity. A. Google Search, B. Snapchat, C. Microsoft Teams, D. LinkedIn | 1. 3.3 million snaps sent, 2. 229 million meeting minutes, 3. 5.9 million searches, 4. 9,000 job applications
+I: w1-every-minute.webp | The "Every Minute in 2025" infographic from the slide
 A: A-3, B-1, C-2, D-4
 B: A-2, B-3, C-1, D-4
 C: A-1, B-4, C-2, D-3
@@ -12,6 +13,7 @@ D: A-4, B-2, C-3, D-1
 ?: Google ≈ 5.9M searches, Snapchat ≈ 3.3M snaps, Teams ≈ 229M meeting minutes and LinkedIn ≈ 9,000 job applications every minute.
 
 Q: Match each platform with its per-minute activity. A. TikTok, B. Netflix, C. YouTube, D. Siri | 1. 362,962 streaming hours, 2. 16,000 videos uploaded, 3. 3,472,222 video views, 4. 1,041,666 questions answered
+I: w1-every-minute.webp | The "Every Minute in 2025" infographic from the slide
 A: A-2, B-1, C-3, D-4
 B: A-3, B-2, C-4, D-1
 C: A-1, B-4, C-2, D-3
@@ -20,6 +22,7 @@ D: A-4, B-3, C-1, D-2
 ?: TikTok users upload ~16,000 videos, Netflix streams ~362,962 hours, YouTube gets ~3.47M views and Siri answers ~1M questions every minute.
 
 Q: The "Every Minute in 2025" infographic is cited in Big Data analytics because it most clearly illustrates which combination of Big Data characteristics?
+I: w1-every-minute.webp | The "Every Minute in 2025" infographic from the slide
 A: Volume, Velocity, and Variety
 B: Volume, Value, and Visualization
 C: Veracity, Volume, and Virtualization
@@ -28,6 +31,7 @@ D: Variety, Verification, and Visibility
 ?: Millions of events (volume), generated continuously in real time (velocity), across text, video, voice and transactions (variety). Value and veracity aren't measured in the infographic.
 
 Q: Assertion (A): The "Every Minute in 2025" infographic demonstrates the velocity characteristic of Big Data. Reason (R): The reported activities are continuously generated and processed in real time.
+I: w1-every-minute.webp | The "Every Minute in 2025" infographic from the slide
 A: Both A and R are true, and R is the correct explanation of A.
 B: Both A and R are true, but R is not the correct explanation of A.
 C: A is true, but R is false.

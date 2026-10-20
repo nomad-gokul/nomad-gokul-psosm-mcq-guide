@@ -198,6 +198,7 @@ D: 700 observations were collected.
 ?: p < 0.05 rejects "same distribution"; it isn't proof or causation, and U isn't the sample size.
 
 Q: Police-citizen discussions average 3.34 comments; citizen-only discussions 3.69. Which percentage difference does the lecture report for comments?
+I: w7a-engagement.webp | Engagement table: comments and likes, police-citizen (Cp&c) vs citizen-only (Cc) threads
 A: 9.49% lower
 B: 16.67% higher
 C: 29.75% lower
@@ -206,6 +207,7 @@ D: 75% higher
 ?: (3.69 − 3.34) / 3.69 ≈ 9.49%. The 29.75% figure is for likes.
 
 Q: Average likes are 9.4 for police-citizen discussions and 13.38 for citizen-only. Which statement is correct?
+I: w7a-engagement.webp | Engagement table: comments and likes, police-citizen (Cp&c) vs citizen-only (Cc) threads
 A: Police-citizen interactions had approximately 29.75% fewer likes.
 B: They had approximately 29.75% more likes.
 C: They had exactly 9.4% fewer likes.
@@ -222,6 +224,7 @@ D: Engagement metrics are statistically meaningless.
 ?: A police reply suggesting action can end a discussion early.
 
 Q: The study reports negative affect of 0.021 for CP&C and 0.018 for CC. Which conclusion is directly supported?
+I: w7a-negaffect.webp | Emotional expressions table (negative affect highlighted)
 A: Negative affect was approximately 16.67% higher in CP&C.
 B: Negative affect was approximately 16.67% higher in CC.
 C: Anxiety was zero in both groups.
@@ -230,6 +233,7 @@ D: Arousal was identical.
 ?: (0.021 − 0.018) / 0.018 ≈ 16.67%.
 
 Q: Anxiety is 0.001 in CP&C and 0.003 in CC. Which interpretation is correct?
+I: w7a-anx-arousal.webp | Emotional expressions table (anxiety and arousal)
 A: Anxiety is approximately 200% higher in CC.
 B: Anxiety is approximately 200% lower in CC.
 C: Anxiety is equal between groups.
@@ -270,6 +274,7 @@ D: Image compression
 ?: One-way announcements versus two-way engagement.
 
 Q: Arousal is 4.4 in CP&C and 3.9 in CC (12.82% higher in CP&C). What broader interpretation does the lecture link to higher arousal and negative affect?
+I: w7a-anx-arousal.webp | Emotional expressions table (anxiety and arousal)
 A: They may act as markers of sensitisation because of crime.
 B: They prove police caused crime.
 C: They show citizens are anonymous.
@@ -326,6 +331,7 @@ D: Profile-picture dimensions
 ?: Averages alone don't show spread or precision.
 
 Q: The standard deviation of police-citizen comments is 19.19 while the mean is only 3.34. What does this suggest?
+I: w7a-engagement.webp | Engagement table: comments and likes, police-citizen (Cp&c) vs citizen-only (Cc) threads
 A: The distribution may be highly dispersed and skewed by a small number of very interactive threads.
 B: Every thread had exactly 3.34 comments.
 C: The mean must equal the median.

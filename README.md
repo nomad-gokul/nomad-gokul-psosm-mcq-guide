@@ -1,6 +1,6 @@
 # PSOSM MCQ Guide
 
-A study and exam-practice web app for the NPTEL course **Privacy and Security in Online Social Media** (noc26-cs141). It has 710 multiple-choice questions from the course's weekly tutorial sessions, with every option, the answer, and a short explanation for each. Questions that depend on a table, chart or network diagram show that figure with the question.
+A study and exam-practice web app for the NPTEL course **Privacy and Security in Online Social Media** (noc26-cs141). It has 712 multiple-choice questions from the course's weekly tutorial sessions, with every option, the answer, and a short explanation for each. Questions that depend on a table, chart or network diagram show that figure with the question.
 
 ## Features
 
@@ -10,7 +10,8 @@ A study and exam-practice web app for the NPTEL course **Privacy and Security in
 - **Starred questions.** Star any question while learning or during an exam, then practise only the starred ones.
 - **Custom exam.** Tick any combination of weeks, choose 10, 20, 30, 50 or all questions, and get one shuffled exam across them.
 - **Figures in questions.** Paper tables, CDF plots, adjacency matrices and network graphs are attached where a question needs them.
-- **Open questions.** Questions the source slides don't settle (conflicting keys, no key, missing text) are kept out of the exams. Each one is listed with an image of the original slide and a note on what makes it uncertain.
+- **View original PDF.** Every set opens with a button to the Google Drive PDF its questions were taken from. The links live in one file, `content/sources.json`.
+- **Unanswered questions.** Questions the source slides don't settle (conflicting keys, no key, missing text) are kept out of every exam. They are listed by week, each with the question cropped from the original PDF, that week's PDF link and a note on what makes it uncertain.
 - **Progress stays in your browser.** Best scores, mistakes and stars are kept in `localStorage`. There is no account and no server.
 - **Works on any screen.** The layout is responsive and has light and dark themes.
 
@@ -25,15 +26,17 @@ A study and exam-practice web app for the NPTEL course **Privacy and Security in
   - an unknown figure
   - duplicate question text
 - It gives each question a stable ID (a hash of its text), so saved mistakes and stars survive edits.
-- Static output, so it deploys anywhere. It is configured for Vercel.
+- Fully static output (HTML, JS, CSS, images) with no server code or API calls, so it runs on Cloudflare Pages' free plan. Cache rules are in `public/_headers`.
 
 ```
 content/
   sets/01-w01.txt …        question sets, one file per week or extra set
-  open-questions.json      unsettled questions shown with their slide images
+  sources.json             set id → Google Drive link(s) of the original PDF
+  unanswered.json          unsettled questions, by week, with their screenshots
 public/
   figures/                 tables, charts and diagrams attached to questions
-  slides/                  slide images for the open questions
+  slides/                  question screenshots for the unanswered section
+  _headers                 Cloudflare Pages cache rules
 scripts/build-data.mjs     compiles and validates the question bank
 src/
   main.js                  routing, sidebar, set switching
@@ -41,7 +44,7 @@ src/
   views/learn.js           Learn mode
   views/exam.js            Exam mode and results
   views/custom.js          multi-week exam builder
-  views/open.js            open questions
+  views/unanswered.js      unanswered questions by week
   views/common.js          question card, options, figures, star button
 ```
 
@@ -77,16 +80,22 @@ npm run build     # outputs dist/
 npm run preview   # serve the production build
 ```
 
-## Deploy to Vercel
+## Deploy to Cloudflare Pages
 
+**Drag and drop (no Git needed)**
+1. Run `npm install && npm run build`, or use the prebuilt `dist` zip.
+2. In the Cloudflare dashboard go to **Workers & Pages → Create → Pages → Upload assets**.
+3. Name the project, drop in the contents of `dist/` (or the zip), and click **Deploy site**.
+
+**From GitHub (deploys on every push)**
 1. Push this folder to a GitHub repository.
-2. In Vercel, choose **Add New → Project** and import the repository.
-3. Vercel reads `vercel.json` (framework: Vite, build: `npm run build`, output: `dist`). Click **Deploy**.
+2. In **Workers & Pages → Create → Pages → Connect to Git**, pick the repository.
+3. Set framework preset **Vite** (or *None*), build command `npm run build`, output directory `dist`. Under environment variables add `NODE_VERSION = 20`. Then **Save and Deploy**.
 
-Or deploy from the terminal with the Vercel CLI: `npm i -g vercel`, then run `vercel` and later `vercel --prod` from this folder.
+The site is fully static: no Functions, no server and no API calls, so it stays on the free plan. `public/_headers` is copied into `dist/` and sets long caching for `/assets/*`, a week for figures and screenshots, and revalidation for everything else.
 
 ## Sources and accuracy
 
-The questions come from the TA-led weekly tutorial sessions of the NPTEL course. Answers follow the keys printed on the slides and the TA's in-class pen marks. Where a slide printed no key, the answer is a plain fact from the course material, and the question says so. Anything still in doubt goes to **Open questions** rather than into an exam.
+The questions come from the TA-led weekly tutorial sessions of the NPTEL course. Answers follow the keys printed on the slides and the TA's in-class pen marks. Where a slide printed no key, the answer is a plain fact from the course material, and the question says so. Anything still in doubt goes to **Unanswered questions** rather than into an exam.
 
 This is an unofficial study aid and is not affiliated with NPTEL or IIT.

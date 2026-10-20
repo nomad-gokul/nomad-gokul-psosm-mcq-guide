@@ -1,0 +1,97 @@
+{
+  "_readme": "Original PDF (or slide deck) for each question set, shown as the \"View original PDF\" button. Keys are set ids from the first line of content/sets/*.txt. Each set can list one or more files; label is the button text when there is more than one. Replace a url to point at a different copy. Links only open for people the Drive file is shared with.",
+  "w01": [
+    {
+      "label": "Week 1 deck",
+      "url": "https://docs.google.com/presentation/d/1XHH2z6pjx21-MjSBYG1qxIRZR9PGtuhVHItOax-joBk/view"
+    }
+  ],
+  "w02": [
+    {
+      "label": "Part 1 PDF",
+      "url": "https://drive.google.com/file/d/1h7JyOS4mBoVHw8C6vn_zo_2F6cSdTe3K/view"
+    },
+    {
+      "label": "Part 2 PDF",
+      "url": "https://drive.google.com/file/d/17KqVlcozz7ZZenghms_n-I9O0GpVafVs/view"
+    }
+  ],
+  "w03": [
+    {
+      "label": "Week 3 PDF",
+      "url": "https://drive.google.com/file/d/1ckgKkzae0GCeybMKJK_aok2Gf6zYrOSU/view"
+    }
+  ],
+  "w05": [
+    {
+      "label": "Week 5 PDF",
+      "url": "https://drive.google.com/file/d/1Ue3yJb_OgyaqO1r5uvo3pjP3LObOUAqY/view"
+    }
+  ],
+  "w06": [
+    {
+      "label": "Week 6 PDF",
+      "url": "https://drive.google.com/file/d/1Y0T2qUMKx4psBI4YqU6aSpyYPKh33yCp/view"
+    }
+  ],
+  "w07a": [
+    {
+      "label": "Week 7 recap PDF (4 Sep)",
+      "url": "https://drive.google.com/file/d/1US9ZS7Sf-Nim_NRWbGoTRLAdPcVR8NiC/view"
+    }
+  ],
+  "w07b": [
+    {
+      "label": "Week 7 lecture PDF (5 Sep)",
+      "url": "https://drive.google.com/file/d/1dYcxKNdlFxjPQihi6_CH_cIy48xvm-hL/view"
+    }
+  ],
+  "w08": [
+    {
+      "label": "Week 8 PDF",
+      "url": "https://drive.google.com/file/d/1RrCEHQnlsvoBbkkG6LY6y782uPDGPgUh/view"
+    }
+  ],
+  "w08h": [
+    {
+      "label": "Week 9 hard set (Markdown)",
+      "url": "https://drive.google.com/file/d/1QuI9Jpg1i96PbjbliptW16nrSu7HGlPU/view"
+    }
+  ],
+  "w10": [
+    {
+      "label": "Week 10 PDF",
+      "url": "https://drive.google.com/file/d/1ERV3sIgQqRkXT2U7O8BkJwRRhTOtzPDb/view"
+    }
+  ],
+  "w11": [
+    {
+      "label": "Week 11 PDF",
+      "url": "https://drive.google.com/file/d/1X37QHHxnEq_-qs5IX853CF1EO_6ctE2W/view"
+    }
+  ],
+  "w12": [
+    {
+      "label": "Week 12 PDF",
+      "url": "https://drive.google.com/file/d/1DyztjaUaiKqskyVq7MVHq6__hAk6LhUZ/view"
+    }
+  ],
+  "hardsql": [
+    {
+      "label": "Scraping, MongoDB & SQL PDF",
+      "url": "https://drive.google.com/file/d/1JnoElEOyJB4TAWjxjHyOFZEVlbCFeneb/view"
+    }
+  ],
+  "fnbank": [
+    {
+      "label": "Fake-news MCQ bank",
+      "url": "https://drive.google.com/file/d/19CqDbulNs3qZNCCqGPuraWcDvHQVY3_u/view"
+    }
+  ],
+  "lastclass": [
+    {
+      "label": "Last class & practice test PDF",
+      "url": "https://drive.google.com/file/d/1CQWoVrzFEQb0sTOytgxdFNTtYq93r8tc/view"
+    }
+  ]
+}

@@ -222,6 +222,17 @@ D: WeChat
 =: A,B,D
 ?: Snack Video, DingTalk and WeChat were blocked by MeitY under Section 69A of the IT Act. Moj is an Indian app.
 
+Q: Match List-I (social media platform) with List-II (maximum username length) using the restrictions given in the table. A. Twitter (X) · B. Facebook · C. Reddit · D. Instagram — 1. 20 characters · 2. 30 characters · 3. 50 characters · 4. 15 characters. Which is the correct matching?
+I: w8-q26-match.webp | The question as shown on the slide
+I: w8-username-table.webp | Username length rules per platform, from the slide
+A: A–4, B–3, C–1, D–2
+B: A–4, B–1, C–3, D–2
+C: A–2, B–3, C–4, D–1
+D: A–4, B–2, C–1, D–3
+=: A
+?: From the table: X allows at most 15 characters, Facebook 50, Reddit 20 and Instagram 30.
+!: Key not printed; the TA drew the A–4, B–3, C–1, D–2 lines on the slide.
+
 Q: Which of the following is NOT typically considered one of the four "Generic Text Features" used in content-based fake news detection?
 A: Lexicon
 B: Syntax
