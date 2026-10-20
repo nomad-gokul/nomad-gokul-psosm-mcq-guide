@@ -1,6 +1,6 @@
 import { el, button, LETTERS, keepOrder, shuffle, sameSet } from '../util.js';
 import { bestLabel, recordScore, recordAnswers } from '../store.js';
-import { questionHead, answeredOptions, optionButton, explanation, toggle, figures } from './common.js';
+import { questionHead, answeredOptions, optionButton, optionRow, explanation, toggle, figures } from './common.js';
 
 // One exam in progress at a time, tied to the set it was started from.
 let exam = null;
@@ -34,12 +34,46 @@ export function startExam(setId, questions, prefs, opts = {}) {
 
 const grade = (it) => (it.pick.length ? (sameSet(it.pick, it.q.a) ? 'r' : 'w') : 's');
 
+// With instant feedback on, a single-answer question is marked as soon as an option is
+// picked; a multi-answer question is marked when the reader presses "Check answer".
+// A marked answer is locked so the score can't be gamed by re-picking.
 function choose(oi, app) {
   const it = exam.items[exam.i];
+  if (app.state.instant && it.checked) return;
   if (it.q.a.length > 1) it.pick = it.pick.includes(oi) ? it.pick.filter((x) => x !== oi) : [...it.pick, oi];
-  else it.pick = [oi];
+  else {
+    it.pick = [oi];
+    if (app.state.instant) it.checked = true;
+  }
   exam.confirm = false;
   app.render();
+}
+
+function check(app) {
+  const it = exam.items[exam.i];
+  if (!it.pick.length || it.checked) return;
+  it.checked = true;
+  app.render();
+}
+
+/** The current question's options after it has been marked, in the order they were shown. */
+function markedOptions(it) {
+  const ul = el('ul', 'opts');
+  it.order.forEach((oi, pos) => {
+    const right = it.q.a.includes(oi);
+    const mine = it.pick.includes(oi);
+    let cls = '';
+    let mark = '';
+    if (right) {
+      cls = 'right';
+      mark = mine ? '✓ your answer' : '✓ correct answer';
+    } else if (mine) {
+      cls = 'wrong';
+      mark = '✗ your answer';
+    }
+    ul.append(optionRow(it.q.o[oi], LETTERS[pos], cls, mark));
+  });
+  return ul;
 }
 
 function finish(app) {
@@ -73,6 +107,10 @@ export function renderExam(view, toggles, set, app, restart) {
     app.render();
   };
   toggles.append(
+    toggle('instant', 'Show right / wrong as I answer', app.state.instant, (on) => {
+      app.setPref('instant', on);
+      app.render();
+    }),
     toggle('shufQ', 'Shuffle questions', app.state.shufQ, changed('shufQ')),
     toggle('shufO', 'Shuffle options', app.state.shufO, changed('shufO')),
   );
@@ -81,20 +119,25 @@ export function renderExam(view, toggles, set, app, restart) {
   const n = exam.items.length;
   const it = exam.items[exam.i];
   const answered = exam.items.filter((x) => x.pick.length).length;
+  const instant = app.state.instant;
+  const marked = exam.items.filter((x) => x.checked);
+  const nRight = marked.filter((x) => grade(x) === 'r').length;
 
   const prog = el('div', 'prog');
   const line = el('div', 'progline');
-  line.append(
-    el('span', null, `${exam.label ? exam.label + ' · ' : ''}Question ${exam.i + 1} of ${n}`),
-    el('span', null, `${answered} answered`),
-  );
+  const tally = el('span', 'tally');
+  if (instant && marked.length) {
+    tally.append(el('b', 'ok', `${nRight} right`), ' · ', el('b', 'no', `${marked.length - nRight} wrong`), ` · ${answered} answered`);
+  } else tally.append(`${answered} answered`);
+  line.append(el('span', null, `${exam.label ? exam.label + ' · ' : ''}Question ${exam.i + 1} of ${n}`), tally);
   const track = el('div', 'track');
   const bar = el('i');
   bar.style.width = (100 * answered) / n + '%';
   track.append(bar);
   const grid = el('div', 'grid');
   exam.items.forEach((x, k) => {
-    const d = button('dot' + (x.pick.length ? ' ans' : '') + (k === exam.i ? ' cur' : ''), String(k + 1), () => {
+    const state = instant && x.checked ? ' ' + grade(x) : x.pick.length ? ' ans' : '';
+    const d = button('dot' + state + (k === exam.i ? ' cur' : ''), String(k + 1), () => {
       exam.i = k;
       exam.confirm = false;
       app.render();
@@ -107,11 +150,31 @@ export function renderExam(view, toggles, set, app, restart) {
 
   const card = el('article', 'q');
   card.append(questionHead(exam.i + 1, it.q, app), figures(it.q));
-  const ul = el('ul', 'opts');
-  it.order.forEach((oi, pos) =>
-    ul.append(optionButton(it.q.o[oi], LETTERS[pos], it.pick.includes(oi), () => choose(oi, app))),
-  );
-  card.append(ul);
+  if (instant && it.checked) {
+    const ok = grade(it) === 'r';
+    const banner = el('div', 'verdictbar ' + (ok ? 'r' : 'w'));
+    banner.setAttribute('role', 'status');
+    banner.append(el('span', 'vicon', ok ? '✓' : '✗'), el('span', null, ok ? 'Correct' : 'Wrong'));
+    if (!ok) {
+      const ans = it.order
+        .map((oi, pos) => (it.q.a.includes(oi) ? LETTERS[pos] : null))
+        .filter(Boolean)
+        .join(', ');
+      banner.append(el('span', 'vsub', `Correct answer: ${ans}`));
+    }
+    card.append(banner, markedOptions(it), explanation(it.q));
+  } else {
+    const ul = el('ul', 'opts');
+    it.order.forEach((oi, pos) =>
+      ul.append(optionButton(it.q.o[oi], LETTERS[pos], it.pick.includes(oi), () => choose(oi, app))),
+    );
+    card.append(ul);
+    if (instant && it.q.a.length > 1) {
+      const c = button('btn check', 'Check answer', () => check(app));
+      c.disabled = !it.pick.length;
+      card.append(c);
+    }
+  }
   view.append(card);
 
   const nav = el('div', 'nav');
@@ -153,7 +216,11 @@ export function renderExam(view, toggles, set, app, restart) {
   const hint = el('p', 'hint');
   hint.append('Keys: ', el('kbd', null, 'A'), '–', el('kbd', null, 'D'), ' to pick, ');
   hint.append(el('kbd', null, '←'), ' ', el('kbd', null, '→'), ' to move. ☆ stars a question for later.');
-  if (it.q.a.length > 1) hint.append(' This question has more than one correct option; select every one.');
+  if (it.q.a.length > 1)
+    hint.append(
+      ' This question has more than one correct option; select every one' +
+        (instant ? ', then press Check answer (or Enter).' : '.'),
+    );
   view.append(hint);
 }
 
@@ -230,6 +297,10 @@ export function examKey(e, app) {
   const pos = LETTERS.indexOf(e.key.toUpperCase());
   if (e.key.length === 1 && pos >= 0 && pos < it.order.length) {
     choose(it.order[pos], app);
+    return true;
+  }
+  if (e.key === 'Enter' && app.state.instant && it.q.a.length > 1 && it.pick.length && !it.checked) {
+    check(app);
     return true;
   }
   if (e.key === 'ArrowRight' && exam.i < exam.items.length - 1) {

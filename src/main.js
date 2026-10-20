@@ -64,6 +64,7 @@ const app = {
     hide: store.get('hide', false),
     shufQ: store.get('shufQ', true),
     shufO: store.get('shufO', true),
+    instant: store.get('instant', true),
   },
   setPref(key, value) {
     this.state[key] = value;

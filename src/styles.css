@@ -208,3 +208,11 @@ td:first-child{white-space:nowrap;color:var(--ink-2)}
 .jump a:hover{border-color:var(--pen);color:var(--pen)}
 .oq-group{scroll-margin-top:16px}
 #view{display:flex;flex-direction:column;gap:16px}
+.verdictbar{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;border-radius:8px;padding:10px 14px;font-weight:600;font-size:16px}
+.verdictbar.r{background:var(--ok-soft);color:var(--ok);border:1px solid var(--ok)}
+.verdictbar.w{background:var(--bad-soft);color:var(--bad);border:1px solid var(--bad)}
+.verdictbar .vicon{font-size:18px;line-height:1}
+.verdictbar .vsub{font-weight:500;font-size:14px;color:var(--ink-2)}
+.btn.check{align-self:flex-start}
+.tally b{font-weight:600}.tally .ok{color:var(--ok)}.tally .no{color:var(--bad)}
+@media (prefers-reduced-motion:no-preference){.verdictbar{animation:pop .18s ease-out}@keyframes pop{from{transform:scale(.98);opacity:.4}to{transform:none;opacity:1}}}

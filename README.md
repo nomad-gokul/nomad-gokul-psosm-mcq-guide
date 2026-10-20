@@ -6,6 +6,7 @@ A study and exam-practice web app for the NPTEL course **Privacy and Security in
 
 - **Learn mode.** Each week opens with its key facts, then every question with all options, the correct one marked, and the reason. You can hide answers and pick before you reveal.
 - **Exam mode.** One question at a time with a progress grid, single- and multi-select questions, keyboard shortcuts (A–D, ← →), and shuffled questions and options. At the end you get a score and a full review of each answer.
+- **Instant feedback.** As you answer, each question is marked **Correct** or **Wrong** straight away, with the right option highlighted and the reason shown. A live tally shows how many you have right and wrong. Multi-answer questions get a **Check answer** button. The answer locks once marked, and you can switch this off for a classic end-of-test result.
 - **Mistakes.** Every question you answer wrong is saved and marked "Missed". You can study or sit just your mistakes, and a question leaves the list once you answer it correctly.
 - **Starred questions.** Star any question while learning or during an exam, then practise only the starred ones.
 - **Custom exam.** Tick any combination of weeks, choose 10, 20, 30, 50 or all questions, and get one shuffled exam across them.
